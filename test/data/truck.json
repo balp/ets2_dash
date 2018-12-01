@@ -1,0 +1,48 @@
+{
+    "adblue.capacity": 80.0,
+    "adblue.warning.factor": 0.15000000596046448,
+    "battery.voltage.warning": 22.0,
+    "brake.air.pressure.emergency": 34.79999923706055,
+    "brake.air.pressure.warning": 69.5999984741211,
+    "brand": "Volvo",
+    "brand_id": "volvo",
+    "cabin.position": {
+        "x": 0.0,
+        "y": 1.288755178451538,
+        "z": -1.4456745386123657
+    },
+    "differential.ratio": 3.0899999141693115,
+    "forward.ratio": 1.0,
+    "fuel.capacity": 800.0,
+    "fuel.warning.factor": 0.15000000596046448,
+    "gears.forward": 14,
+    "gears.reverse": 4,
+    "head.position": {
+        "x": -0.7175154685974121,
+        "y": 1.4037144184112549,
+        "z": -0.4483802318572998
+    },
+    "hook.position": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 2.2579550743103027
+    },
+    "id": "vehicle.volvo.fh16_2012",
+    "name": "FH",
+    "oil.pressure.warning": 10.149999618530273,
+    "retarder.steps": 3,
+    "reverse.ratio": -3.2200000286102295,
+    "rpm.limit": 2100.0,
+    "water.temperature.warning": 105.0,
+    "wheel.liftable": false,
+    "wheel.position": {
+        "x": 0.95169997215271,
+        "y": 0.5018318891525269,
+        "z": 1.868200659751892
+    },
+    "wheel.powered": true,
+    "wheel.radius": 0.5062511563301086,
+    "wheel.simulated": true,
+    "wheel.steerable": false,
+    "wheels.count": 8
+}

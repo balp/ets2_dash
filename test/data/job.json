@@ -1,0 +1,15 @@
+{
+    "cargo": "Fuel Tanker",
+    "cargo.id": "fueltanker",
+    "cargo.mass": 10440.0,
+    "delivery.time": 222605,
+    "destination.city": "Glasgow",
+    "destination.city.id": "glasgow",
+    "destination.company": "ITCC",
+    "destination.company.id": "itcc",
+    "income": 16050,
+    "source.city": "Liverpool",
+    "source.city.id": "liverpool",
+    "source.company": "NBFC",
+    "source.company.id": "nbfc"
+}
