@@ -35,7 +35,7 @@ class View:
         speed_layout = [
             [PySimpleGUI.Text('80.12',
                               size=(8, 1),
-                              font=("Chilanka", 48),
+                              font=("Hack Bold", 48),
                               justification="right",
                               key="speed_kmh"),
              PySimpleGUI.Text("km/h",
@@ -43,7 +43,7 @@ class View:
                               justification="left")],
             [PySimpleGUI.Text('49.72',
                               size=(8, 1),
-                              font=("Chilanka", 48),
+                              font=("Hack Bold", 48),
                               justification="right",
                               key="speed_mph"),
              PySimpleGUI.Text("mph",

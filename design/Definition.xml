@@ -1,0 +1,14 @@
+    <Shapes xmlns="http://www.evolus.vn/Namespace/Pencil"
+            xmlns:p="http://www.evolus.vn/Namespace/Pencil"
+            xmlns:svg="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+
+            id="ets2_dash"
+            displayName="ETS2 Dachbord"
+            description="Display more ETS2 Telematics"
+            author="Balp"
+            url="Optional URL to its web page">
+
+            <!-- Your shapes go here -->
+
+    </Shapes>
