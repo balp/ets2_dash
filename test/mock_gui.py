@@ -13,6 +13,12 @@ def setup():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.setTelematicData(json.load(j))
+    with open("data/info.json", "r") as j:
+        model.setInfo(json.load(j))
+    with open("data/game.json", "r") as j:
+        model.setGame(json.load(j))
+    with open("data/job.json", "r") as j:
+        model.setJobConfig(json.load(j))
     return model
 
 

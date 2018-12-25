@@ -18,8 +18,13 @@ def on_message(client : typing.Any, userdata : typing.Any , message : object):
     json_data = json.loads(message.payload)
     if message.topic == "ets2/data":
         model.setTelematicData(json_data)
+    if message.topic == "ets2/game":
+        model.setGame(json_data)
+    if message.topic == "ets2/info":
+        model.setInfo(json_data)
     elif message.topic == "ets2/info/config/job":
         model.setJobConfig(json_data)
+
 
 
 def main():
@@ -29,6 +34,8 @@ def main():
     client.on_message = on_message
     client.connect("localhost") #connect to broker
     client.subscribe("ets2/data")
+    client.subscribe("ets2/game")
+    client.subscribe("ets2/info")
     client.subscribe("ets2/info/config/job")
 
     # client.subscribe("ets2/info/config/substances")

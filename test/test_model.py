@@ -3,13 +3,21 @@ from ets2_dash.model import Model
 import pytest
 
 
-def test_getTimeLeft():
+def test_getTimeLeftNormal():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.setTelematicData(json.load(j))
     with open("data/job.json", "r") as j:
         model.setJobConfig(json.load(j))
     assert 539 == model.getTimeLeft()
+
+def test_getTimeLeftCommunity():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    with open("data/job_community.json", "r") as j:
+        model.setJobConfig(json.load(j))
+    assert None == model.getTimeLeft()
 
 
 def test_getTimeToRest():
@@ -59,3 +67,57 @@ def test_getFuelConsumtion():
     with open("data/telematic.json", "r") as j:
         model.setTelematicData(json.load(j))
     assert pytest.approx(0.66, abs=0.005) == model.getFuelConsumtion()
+
+def test_getWearCabin():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    assert pytest.approx(0.005, abs=0.005) == model.getWearCabin()
+
+def test_getWearChassis():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    assert pytest.approx(0.006, abs=0.005) == model.getWearChassis()
+
+def test_getWearEngine():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    assert pytest.approx(0.004, abs=0.005) == model.getWearEngine()
+
+def test_getWearTransmission():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    assert pytest.approx(0.003, abs=0.005) == model.getWearTransmission()
+
+def test_getgetWearWheels():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    assert pytest.approx(0.015, abs=0.005) == model.getWearWheels()
+
+def test_getWearTrailer():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    assert pytest.approx(0.00, abs=0.005) == model.getWearTrailer()
+
+def test_getGamePause():
+    model = Model()
+    with open("data/info.json", "r") as j:
+        model.setInfo(json.load(j))
+    assert False == model.getGamePause()
+
+def test_getGameName():
+    model = Model()
+    with open("data/game.json", "r") as j:
+        model.setGame(json.load(j))
+    assert "Euro Truck Simulator 2 1.33.2.19s" == model.getGameName()
+
+def test_getGameId():
+    model = Model()
+    with open("data/game.json", "r") as j:
+        model.setGame(json.load(j))
+    assert "eut2" == model.getGameId()

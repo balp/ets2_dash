@@ -11,7 +11,9 @@ def main():
     client = mqtt.Client("ets2_dash") #create new instance
     client.on_message = on_message
     client.connect("localhost") #connect to broker
+    client.subscribe("ets2/game")
     client.subscribe("ets2/data")
+    client.subscribe("ets2/info")
     client.subscribe("ets2/info/config/substances")
     client.subscribe("ets2/info/config/job")
     client.subscribe("ets2/info/config/controls")

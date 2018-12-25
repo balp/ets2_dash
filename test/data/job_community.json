@@ -1,0 +1,15 @@
+{
+    "cargo":"Christmas Cookies",
+    "cargo.id":"xmas_cookie",
+    "cargo.mass":20000.0,
+    "delivery.time":4294967295,
+    "destination.city":"Stavanger",
+    "destination.city.id":"stavanger",
+    "destination.company":"Renar Logistik",
+    "destination.company.id":"renar",
+    "income":7331,
+    "source.city":"Kristiansand",
+    "source.city.id":"kristiansand",
+    "source.company":"Polarislines",
+    "source.company.id":"polarislines"
+}
