@@ -40,6 +40,17 @@ def test_getSpeedKmh():
         model.setTelematicData(json.load(j))
     assert pytest.approx(0.003, abs=0.001) == model.getSpeedKmh()
 
+def test_getCruiseControlKmh():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    assert pytest.approx(0.000, abs=0.001) == model.getCruiseControlKmh()
+
+def test_getSpeedLimitKmh():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    assert pytest.approx(48.2, abs=0.1) == model.getSpeedLimitKmh()
 
 def test_getSpeedMph():
     model = Model()
@@ -47,6 +58,17 @@ def test_getSpeedMph():
         model.setTelematicData(json.load(j))
     assert pytest.approx(0.003, abs=0.001) == model.getSpeedMph()
 
+def test_getCruiseControlMph():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    assert pytest.approx(0.000, abs=0.001) == model.getCruiseControlMph()
+
+def test_getSpeedLimitMph():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    assert pytest.approx(30.0, abs=0.1) == model.getSpeedLimitMph()
 
 def test_getFuelLeft():
     model = Model()
@@ -121,3 +143,9 @@ def test_getGameId():
     with open("data/game.json", "r") as j:
         model.setGame(json.load(j))
     assert "eut2" == model.getGameId()
+
+def test_getLightHighBeam():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    assert False == model.getLightHighBeam()

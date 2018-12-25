@@ -67,10 +67,38 @@ class Model:
                 return ms * 3.6
         return 0.0
 
+    def getCruiseControlKmh(self) -> float:
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.cruise_control' in self._telematic['truck']:
+                ms = self._telematic['truck']['truck.cruise_control']
+                return ms * 3.6
+        return 0.0
+
+    def getSpeedLimitKmh(self) -> float:
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.navigation.speed.limit' in self._telematic['truck']:
+                ms = self._telematic['truck']['truck.navigation.speed.limit']
+                return ms * 3.6
+        return 0.0
+
     def getSpeedMph(self) -> float:
         if self._telematic:
             if 'truck' in self._telematic and 'truck.speed' in self._telematic['truck']:
                 ms = self._telematic['truck']['truck.speed']
+                return ms * 2.2369363
+        return 0.0
+
+    def getCruiseControlMph(self) -> float:
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.cruise_control' in self._telematic['truck']:
+                ms = self._telematic['truck']['truck.cruise_control']
+                return ms * 2.2369363
+        return 0.0
+
+    def getSpeedLimitMph(self) -> float:
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.navigation.speed.limit' in self._telematic['truck']:
+                ms = self._telematic['truck']['truck.navigation.speed.limit']
                 return ms * 2.2369363
         return 0.0
 
@@ -127,3 +155,76 @@ class Model:
             if 'trailer' in self._telematic and 'trailer.wear.chassis' in self._telematic['trailer']:
                 return self._telematic['trailer']['trailer.wear.chassis']
         return 0.0
+
+    def getLightHighBeam(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.light.beam.high' in self._telematic['truck']:
+                return self._telematic['truck']['truck.light.beam.high']
+        return False
+
+    def getLightLowBeam(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.light.beam.low' in self._telematic['truck']:
+                return self._telematic['truck']['truck.light.beam.low']
+        return False
+
+    def getLightBeacon(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.light.beacon' in self._telematic['truck']:
+                return self._telematic['truck']['truck.light.beacon']
+        return False
+
+    def getLightLBlinker(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.light.lblinker' in self._telematic['truck']:
+                return self._telematic['truck']['truck.light.lblinker']
+        return False
+
+    def getLightRBlinker(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.light.rblinker' in self._telematic['truck']:
+                return self._telematic['truck']['truck.light.rblinker']
+        return False
+
+    def getLBlinker(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.lblinker' in self._telematic['truck']:
+                return self._telematic['truck']['truck.lblinker']
+        return False
+
+    def getRBlinker(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.rblinker' in self._telematic['truck']:
+                return self._telematic['truck']['truck.rblinker']
+        return False
+
+    def getLightParking(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.light.parking' in self._telematic['truck']:
+                return self._telematic['truck']['truck.light.parking']
+        return False
+
+    def getLightReverse(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.light.reverse' in self._telematic['truck']:
+                return self._telematic['truck']['truck.light.reverse']
+        return False
+
+    def getLightAuxFront(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.light.aux.front' in self._telematic['truck']:
+                return self._telematic['truck']['truck.light.aux.front']
+        return False
+
+    def getLightAuxRoof(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.light.aux.roof' in self._telematic['truck']:
+                return self._telematic['truck']['truck.light.aux.roof']
+        return False
+
+
+    def getLightBreaking(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.light.brake' in self._telematic['truck']:
+                return self._telematic['truck']['truck.light.brake']
+        return False
