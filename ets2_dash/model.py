@@ -228,3 +228,81 @@ class Model:
             if 'truck' in self._telematic and 'truck.light.brake' in self._telematic['truck']:
                 return self._telematic['truck']['truck.light.brake']
         return False
+
+    def getADBlueWarning(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.adblue.warning' in self._telematic['truck']:
+                return self._telematic['truck']['truck.adblue.warning']
+        return False
+
+    def getBreakEmergency(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.brake.air.pressure.emergency' in self._telematic['truck']:
+                return self._telematic['truck']['truck.brake.air.pressure.emergency']
+        return False
+
+    def getBreakWarning(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.brake.air.pressure.warning' in self._telematic['truck']:
+                return self._telematic['truck']['truck.brake.air.pressure.warning']
+        return False
+
+    def getBreakMotor(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.brake.motor' in self._telematic['truck']:
+                return self._telematic['truck']['truck.brake.motor']
+        return False
+
+    def getBreakParking(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.brake.parking' in self._telematic['truck']:
+                return self._telematic['truck']['truck.brake.parking']
+        return False
+
+
+    def getElectric(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.electric.enabled' in self._telematic['truck']:
+                return self._telematic['truck']['truck.electric.enabled']
+        return False
+
+    def getBatteryWarning(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.battery.voltage.warning' in self._telematic['truck']:
+                return self._telematic['truck']['truck.battery.voltage.warning']
+        return False
+
+    def getEngine(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.engine.enabled' in self._telematic['truck']:
+                return self._telematic['truck']['truck.engine.enabled']
+        return False
+
+
+    def getFuelWarning(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.fuel.warning' in self._telematic['truck']:
+                return self._telematic['truck']['truck.fuel.warning']
+        return False
+
+
+    def getOilWarning(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.oil.pressure.warning' in self._telematic['truck']:
+                return self._telematic['truck']['truck.oil.pressure.warning']
+        return False
+
+
+    def getWaterWarning(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.water.temperature.warning' in self._telematic['truck']:
+                return self._telematic['truck']['truck.water.temperature.warning']
+        return False
+
+
+    def getWipers(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.wipers' in self._telematic['truck']:
+                return self._telematic['truck']['truck.wipers']
+        return False
+

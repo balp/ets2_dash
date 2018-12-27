@@ -184,43 +184,46 @@ class View:
         ]
         warning_icons = [
             # Malfunctions
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/battery.png",
-                              size=(50, 50),
+            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/battery.png",
+                              size=(25, 25),
                               key='battery_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/warning.png",
-                              size=(50, 50),
+            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/warning.png",
+                              size=(25, 25),
                               key='electric_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/malfunction-indicador.png",
-                              size=(50, 50),
+            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/malfunction-indicador.png",
+                              size=(25, 25),
                               key='engine_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/brake-system-warning.png",
-                              size=(50, 50),
-                              key='air_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/warning.png",
-                              size=(50, 50),
+            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/brake-system-warning.png",
+                              size=(25, 25),
+                              key='break_emergency'),
+            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/brake-system-warning.png",
+                              size=(25, 25),
+                              key='break_warning'),
+            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/warning.png",
+                              size=(25, 25),
                               key='water_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/oil.png",
-                              size=(50, 50),
+            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/oil.png",
+                              size=(25, 25),
                               key='oil_icon'),
         ]
         info_icons = [
             # Info
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/winshield-wiper.png",
-                              size=(50, 50),
+            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/winshield-wiper.png",
+                              size=(25, 25),
                               key='wipers_icon'),
             # Breaking
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/hazard.png",
-                              size=(50, 50),
+            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/hazard.png",
+                              size=(25, 25),
                               key='break_parking_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/warning.png",
-                              size=(50, 50),
+            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/warning.png",
+                              size=(25, 25),
                               key='brake_engine_icon'),
             # Fuel
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/fuel.png",
-                              size=(50, 50),
+            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/fuel.png",
+                              size=(25, 25),
                               key='adblue_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/fuel.png",
-                              size=(50, 50),
+            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/fuel.png",
+                              size=(25, 25),
                               key='fuel_icon'),
         ]
         light_icons = [
@@ -338,6 +341,21 @@ class View:
         self._updateImage('light_aux_font_icon', 'fog-light', self._data.getLightAuxFront())
         self._updateImage('light_aux_roof_icon', 'dome-light', self._data.getLightAuxRoof())
         self._updateImage('light_brake_icon', 'glowplug', self._data.getLightBreaking())
+
+        self._updateImage('battery_icon', 'battery', self._data.getBatteryWarning())
+        self._updateImage('electric_icon', 'battery', not self._data.getElectric())
+        self._updateImage('engine_icon', 'malfunction-indicador', not self._data.getEngine())
+        self._updateImage('break_emergency', 'brake-system-warning', self._data.getBreakEmergency())
+        self._updateImage('break_warning', 'brake-system-warning', self._data.getBreakWarning())
+        self._updateImage('water_icon', 'warning', self._data.getWaterWarning())
+        self._updateImage('oil_icon', 'oil', self._data.getOilWarning())
+
+        self._updateImage('wipers_icon', 'winshield-wiper', self._data.getWipers())
+        self._updateImage('break_parking_icon', 'hazard', self._data.getBreakParking())
+        self._updateImage('brake_engine_icon', 'warning', self._data.getBreakMotor())
+        self._updateImage('adblue_icon', 'fuel', self._data.getADBlueWarning())
+        self._updateImage('fuel_icon', 'fuel', self._data.getFuelWarning())
+
 
 def formatMinuteTime(time):
     if time == None:
