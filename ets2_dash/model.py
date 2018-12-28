@@ -306,3 +306,23 @@ class Model:
                 return self._telematic['truck']['truck.wipers']
         return False
 
+    def getAirPressure(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.brake.air.pressure' in self._telematic['truck']:
+                return self._telematic['truck']['truck.brake.air.pressure']
+        return False
+
+    def getBreakRetarder(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.brake.retarder' in self._telematic['truck']:
+                return self._telematic['truck']['truck.brake.retarder']
+        return False
+
+
+    def getBreakTemperature(self):
+        if self._telematic:
+            if 'truck' in self._telematic and 'truck.brake.temperature' in self._telematic['truck']:
+                return self._telematic['truck']['truck.brake.temperature']
+        return False
+
+

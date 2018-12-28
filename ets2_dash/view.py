@@ -137,21 +137,21 @@ class View:
                               size=(10, 1),
                               justification="left"),
              PySimpleGUI.Text("---",
-                              size=(4, 1),
+                              size=(5, 1),
                               justification="right",
                               key="wear_cabin")],
             [PySimpleGUI.Text('Chassis',
                               size=(10, 1),
                               justification="left"),
              PySimpleGUI.Text("---",
-                              size=(4, 1),
+                              size=(5, 1),
                               justification="right",
                               key="wear_chassis")],
             [PySimpleGUI.Text('Engine',
                               size=(10, 1),
                               justification="left"),
              PySimpleGUI.Text("---",
-                              size=(4, 1),
+                              size=(5, 1),
                               justification="right",
                               key="wear_engine")],
         ]
@@ -160,21 +160,21 @@ class View:
                               size=(10, 1),
                               justification="left"),
              PySimpleGUI.Text("---",
-                              size=(4, 1),
+                              size=(5, 1),
                               justification="right",
                               key="wear_transmission")],
             [PySimpleGUI.Text('Wheels',
                               size=(10, 1),
                               justification="left"),
              PySimpleGUI.Text("---",
-                              size=(4, 1),
+                              size=(5, 1),
                               justification="right",
                               key="wear_wheels")],
             [PySimpleGUI.Text('Trailer',
                               size=(10, 1),
                               justification="left"),
              PySimpleGUI.Text("---",
-                              size=(4, 1),
+                              size=(5, 1),
                               justification="right",
                               key="wear_trailer")],
         ]
@@ -193,12 +193,6 @@ class View:
             PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/malfunction-indicador.png",
                               size=(25, 25),
                               key='engine_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/brake-system-warning.png",
-                              size=(25, 25),
-                              key='break_emergency'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/brake-system-warning.png",
-                              size=(25, 25),
-                              key='break_warning'),
             PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/warning.png",
                               size=(25, 25),
                               key='water_icon'),
@@ -211,13 +205,6 @@ class View:
             PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/winshield-wiper.png",
                               size=(25, 25),
                               key='wipers_icon'),
-            # Breaking
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/hazard.png",
-                              size=(25, 25),
-                              key='break_parking_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/warning.png",
-                              size=(25, 25),
-                              key='brake_engine_icon'),
             # Fuel
             PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/fuel.png",
                               size=(25, 25),
@@ -266,11 +253,52 @@ class View:
                               key='light_reverse_icon'),
 
         ]
+        brake_info = [
+            # Breaking
+            [PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/brake-system-warning.png",
+                              size=(25, 25),
+                              key='break_emergency'),
+             PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/brake-system-warning.png",
+                              size=(25, 25),
+                              key='break_warning')],
+            [PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/hazard.png",
+                              size=(25, 25),
+                              key='break_parking_icon'),
+             PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/warning.png",
+                              size=(25, 25),
+                              key='brake_engine_icon')],
+            [PySimpleGUI.Text('Pressure',
+                              size=(10, 1),
+                              justification="left"),
+             PySimpleGUI.Text("---",
+                              size=(5, 1),
+                              justification="right",
+                              key="air_pressure")],
+            [PySimpleGUI.Text('Retarder',
+                              size=(10, 1),
+                              justification="left"),
+             PySimpleGUI.Text("---",
+                              size=(5, 1),
+                              justification="right",
+                              key="brake_retarder")],
+            [PySimpleGUI.Text('Temperature',
+                              size=(10, 1),
+                              justification="left"),
+             PySimpleGUI.Text("---",
+                              size=(5, 1),
+                              justification="right",
+                              key="brake_temperature")],
+        ]
         layout = [
             [PySimpleGUI.Text('',
-                              size=(50, 1),
+                              size=(60, 1),
                               justification="center",
-                              key="game_name")],
+                              key="game_name"),
+             PySimpleGUI.Text('',
+                              size=(10, 1),
+                              justification="left",
+                              key="game_pause")
+             ],
             [PySimpleGUI.Frame('Job',
                                size=(50, 5),
                                layout=job_layout),
@@ -285,10 +313,8 @@ class View:
             warning_icons,
             info_icons,
             light_icons,
-            [PySimpleGUI.Text('',
-                              size=(10, 1),
-                              justification="left",
-                              key="game_pause"),
+            [PySimpleGUI.Column(layout=brake_info,
+                                size=(50, 5)),
              PySimpleGUI.Column(layout=button_layout,
                                 size=(50, 5), )],
         ]
@@ -345,17 +371,20 @@ class View:
         self._updateImage('battery_icon', 'battery', self._data.getBatteryWarning())
         self._updateImage('electric_icon', 'battery', not self._data.getElectric())
         self._updateImage('engine_icon', 'malfunction-indicador', not self._data.getEngine())
-        self._updateImage('break_emergency', 'brake-system-warning', self._data.getBreakEmergency())
-        self._updateImage('break_warning', 'brake-system-warning', self._data.getBreakWarning())
         self._updateImage('water_icon', 'warning', self._data.getWaterWarning())
         self._updateImage('oil_icon', 'oil', self._data.getOilWarning())
 
         self._updateImage('wipers_icon', 'winshield-wiper', self._data.getWipers())
-        self._updateImage('break_parking_icon', 'hazard', self._data.getBreakParking())
-        self._updateImage('brake_engine_icon', 'warning', self._data.getBreakMotor())
         self._updateImage('adblue_icon', 'fuel', self._data.getADBlueWarning())
         self._updateImage('fuel_icon', 'fuel', self._data.getFuelWarning())
 
+        self._updateImage('break_emergency', 'brake-system-warning', self._data.getBreakEmergency())
+        self._updateImage('break_warning', 'brake-system-warning', self._data.getBreakWarning())
+        self._updateImage('break_parking_icon', 'hazard', self._data.getBreakParking())
+        self._updateImage('brake_engine_icon', 'warning', self._data.getBreakMotor())
+        self._updateElement('air_pressure', formatDecimal(self._data.getAirPressure()))
+        self._updateElement('brake_retarder', formatInt(self._data.getBreakRetarder()))
+        self._updateElement('brake_temperature', formatDecimal(self._data.getBreakTemperature()))
 
 def formatMinuteTime(time):
     if time == None:
@@ -364,6 +393,8 @@ def formatMinuteTime(time):
     minutes = time % 60
     return f"{hours:02d}:{minutes:02d}"
 
+def formatInt(value):
+        return f'{value:03d}'
 
 def formatDecimal(value):
     decimal_value = decimal.Decimal(value)

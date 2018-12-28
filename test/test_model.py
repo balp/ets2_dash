@@ -325,3 +325,23 @@ def test_getBreakWarning():
     with open("data/telematic.json", "r") as j:
         model.setTelematicData(json.load(j))
     assert False == model.getBreakWarning()
+
+def test_getAirPressure():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    assert pytest.approx(124.4, abs=0.5) == model.getAirPressure()
+
+
+def test_getBreakRetarder():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    assert pytest.approx(0, abs=0.5) == model.getBreakRetarder()
+
+def test_getBreakTemperature():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.setTelematicData(json.load(j))
+    assert pytest.approx(18, abs=0.5) == model.getBreakTemperature()
+
