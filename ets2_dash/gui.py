@@ -17,13 +17,13 @@ def on_message(client : typing.Any, userdata : typing.Any , message : object):
     # print("message topic=",message.topic)
     json_data = json.loads(message.payload)
     if message.topic == "ets2/data":
-        model.setTelematicData(json_data)
+        model.set_telematic_data(json_data)
     if message.topic == "ets2/game":
-        model.setGame(json_data)
+        model.set_game(json_data)
     if message.topic == "ets2/info":
-        model.setInfo(json_data)
+        model.set_info(json_data)
     elif message.topic == "ets2/info/config/job":
-        model.setJobConfig(json_data)
+        model.set_job_config(json_data)
 
 
 
@@ -50,14 +50,14 @@ def main():
     print("Loop!!!")
     while (True):
         # This is the code that reads and updates your window
-        button, values = hmi.window.ReadNonBlocking()
+        button, values = hmi.window.Read(timeout=100)
         # print("Loop data", myData.data)
-        hmi.updateData()
+        hmi.update_data()
         if button == 'Exit':
             break
 
         # Your code begins here
-        client.loop(timeout=0.1, max_packets=1)
+        client.loop(timeout=0.01, max_packets=1)
 
 
     # Broke out of main loop. Close the window.

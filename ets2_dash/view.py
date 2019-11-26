@@ -3,12 +3,13 @@ import decimal
 import PySimpleGUI
 import ets2_dash.model
 
+
 class View:
     def __init__(self, data):
-        self._data : ets2_dash.model.Model = data
-        self._setupWindow()
+        self._data: ets2_dash.model.Model = data
+        self._setup_window()
 
-    def _setupWindow(self):
+    def _setup_window(self):
         job_layout = [
             [PySimpleGUI.Text('Time Left',
                               size=(15, 1),
@@ -38,24 +39,24 @@ class View:
                               justification="left"),
              PySimpleGUI.Text('80.1',
                               size=(5, 1),
-                              font=("Hack Bold", 18),
+                              # font=("Hack Bold", 6),
                               justification="right",
                               key="cc_speed_kmh"),
              PySimpleGUI.Text("km/h",
                               size=(4, 1),
-                              font=("Hack Bold", 6),
+                              # font=("Hack Bold", 5),
                               justification="left")],
             [PySimpleGUI.Text("Lim",
                               size=(3, 1),
                               justification="left"),
              PySimpleGUI.Text('60',
                               size=(5, 1),
-                              font=("Hack Bold", 18),
+                              # font=("Hack Bold", 6),
                               justification="right",
                               key="speed_limit_kmh"),
              PySimpleGUI.Text("km/h",
                               size=(4, 1),
-                              font=("Hack Bold", 6),
+                              # font=("Hack Bold", 5),
                               justification="left")]
         ]
         speed_mph_cc = [
@@ -64,46 +65,46 @@ class View:
                               justification="left"),
              PySimpleGUI.Text('80.1',
                               size=(5, 1),
-                              font=("Hack Bold", 18),
+                              # font=("Hack Bold", 6),
                               justification="right",
                               key="cc_speed_mph"),
              PySimpleGUI.Text("mph",
                               size=(4, 1),
-                              font=("Hack Bold", 6),
+                              # font=("Hack Bold", 5),
                               justification="left")],
             [PySimpleGUI.Text("Lim",
                               size=(3, 1),
                               justification="left"),
              PySimpleGUI.Text('60',
                               size=(5, 1),
-                              font=("Hack Bold", 18),
+                              # font=("Hack Bold", 6),
                               justification="right",
                               key="speed_limit_mph"),
              PySimpleGUI.Text("mph",
                               size=(4, 1),
-                              font=("Hack Bold", 6),
+                              # font=("Hack Bold", 5),
                               justification="left")]
         ]
         speed_layout = [
             [PySimpleGUI.Column(layout=speed_km_cc),
              PySimpleGUI.Text('80.12',
                               size=(5, 1),
-                              font=("Hack Bold", 48),
+                              # font=("Hack Bold", 10),
                               justification="right",
                               key="speed_kmh"),
              PySimpleGUI.Text("km/h",
                               size=(4, 1),
-                              font=("Hack Bold", 10),
+                              # font=("Hack Bold", 8),
                               justification="left")],
             [PySimpleGUI.Column(layout=speed_mph_cc),
              PySimpleGUI.Text('49.72',
                               size=(5, 1),
-                              font=("Hack Bold", 48),
+                              # font=("Hack Bold", 10),
                               justification="right",
                               key="speed_mph"),
              PySimpleGUI.Text("mph",
                               size=(4, 1),
-                              font=("Hack Bold", 10),
+                              # font=("Hack Bold", 8),
                               justification="left")],
         ]
         fuel_layout = [
@@ -256,17 +257,17 @@ class View:
         brake_info = [
             # Breaking
             [PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/brake-system-warning.png",
-                              size=(25, 25),
-                              key='break_emergency'),
+                               size=(25, 25),
+                               key='break_emergency'),
              PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/brake-system-warning.png",
-                              size=(25, 25),
-                              key='break_warning')],
+                               size=(25, 25),
+                               key='break_warning')],
             [PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/hazard.png",
-                              size=(25, 25),
-                              key='break_parking_icon'),
+                               size=(25, 25),
+                               key='break_parking_icon'),
              PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/warning.png",
-                              size=(25, 25),
-                              key='brake_engine_icon')],
+                               size=(25, 25),
+                               key='brake_engine_icon')],
             [PySimpleGUI.Text('Pressure',
                               size=(10, 1),
                               justification="left"),
@@ -291,115 +292,122 @@ class View:
         ]
         layout = [
             [PySimpleGUI.Text('',
-                              size=(60, 1),
+                              size=(70, 1),
                               justification="center",
                               key="game_name"),
              PySimpleGUI.Text('',
-                              size=(10, 1),
+                              size=(20, 1),
                               justification="left",
                               key="game_pause")
              ],
             [PySimpleGUI.Frame('Job',
-                               size=(50, 5),
+                               size=(80, 6),
                                layout=job_layout),
              PySimpleGUI.Column(layout=speed_layout,
-                                size=(50, 5))],
+                                # size=(80, 6)
+                                )],
             [PySimpleGUI.Frame('Fuel',
-                               size=(50, 5),
+                               size=(80, 6),
                                layout=fuel_layout),
              PySimpleGUI.Frame('Wear',
-                               size=(50, 5),
+                               size=(80, 6),
                                layout=wear_layout)],
             warning_icons,
             info_icons,
             light_icons,
             [PySimpleGUI.Column(layout=brake_info,
-                                size=(50, 5)),
+                                # size=(80, 2)
+                                ),
              PySimpleGUI.Column(layout=button_layout,
-                                size=(50, 5), )],
+                                # size=(80, 2),
+                                )],
         ]
-        self.window = PySimpleGUI.Window("ETS2 - Telematic Unit").Layout(layout)
+        self.window = PySimpleGUI.Window("ETS2 - Telematic Unit").Layout(layout).Finalize()
 
-    def _updateElement(self, key: str, value: str):
+    def _update_element(self, key: str, value: str):
         self.window.FindElement(key).Update(value)
 
-    def _updateImage(self, key : str, iconname: str, active : bool):
+    def _update_image(self, key: str, iconname: str, active: bool):
         if active:
             filename = f"/home/balp/src/ets2_dash/ets2_dash/icons/25-on/{iconname}.png"
         else:
             filename = f"/home/balp/src/ets2_dash/ets2_dash/icons/25/{iconname}.png"
         self.window.FindElement(key).Update(filename=filename)
 
-    def updateData(self):
-        self._updateElement('game_name', self._data.getGameName())
-        self._updateElement('game_pause', 'paused' if self._data.getGamePause() else '')
-        self._updateElement('time_left', formatMinuteTime(self._data.getTimeLeft()))
-        self._updateElement('time_rest', formatMinuteTime(self._data.getTimeToRest()))
-        self._updateElement('time_dest', formatMinuteTime(self._data.getTimeDestination()))
+    def update_data(self):
+        self._update_element('game_name', self._data.get_game_name())
+        self._update_element('game_pause', 'paused' if self._data.get_game_pause() else '')
+        self._update_element('time_left', format_minute_time(self._data.get_time_left()))
+        self._update_element('time_rest', format_minute_time(self._data.get_time_to_rest()))
+        self._update_element('time_dest', format_minute_time(self._data.get_time_destination()))
 
-        self._updateElement('cc_speed_kmh', formatDecimal(self._data.getCruiseControlKmh()))
-        self._updateElement('speed_limit_kmh', formatDecimal(self._data.getSpeedLimitKmh()))
-        self._updateElement('speed_kmh', formatDecimal(self._data.getSpeedKmh()))
-        self._updateElement('cc_speed_mph', formatDecimal(self._data.getCruiseControlMph()))
-        self._updateElement('speed_limit_mph', formatDecimal(self._data.getSpeedLimitMph()))
-        self._updateElement('speed_mph', formatDecimal(self._data.getSpeedMph()))
+        self._update_element('cc_speed_kmh', format_decimal(self._data.get_cruise_control_kmh()))
+        self._update_element('speed_limit_kmh', format_decimal(self._data.get_speed_limit_kmh()))
+        self._update_element('speed_kmh', format_decimal(self._data.get_speed_kmh()))
+        self._update_element('cc_speed_mph', format_decimal(self._data.get_cruise_control_mph()))
+        self._update_element('speed_limit_mph', format_decimal(self._data.get_speed_limit_mph()))
+        self._update_element('speed_mph', format_decimal(self._data.get_speed_mph()))
 
-        self._updateElement('fuel_left', formatDecimal(self._data.getFuelLeft()))
-        self._updateElement('fuel_range', formatDecimal(self._data.getFuelRange()))
-        self._updateElement('fuel_consumtion', formatDecimal(self._data.getFuelConsumtion()))
+        self._update_element('fuel_left', format_decimal(self._data.get_fuel_left()))
+        self._update_element('fuel_range', format_decimal(self._data.get_fuel_range()))
+        self._update_element('fuel_consumtion', format_decimal(self._data.get_fuel_consumtion()))
 
-        self._updateElement('wear_cabin', formatPercent(self._data.getWearCabin()))
-        self._updateElement('wear_chassis', formatPercent(self._data.getWearChassis()))
-        self._updateElement('wear_engine', formatPercent(self._data.getWearEngine()))
-        self._updateElement('wear_transmission', formatPercent(self._data.getWearTransmission()))
-        self._updateElement('wear_wheels', formatPercent(self._data.getWearWheels()))
-        self._updateElement('wear_trailer', formatPercent(self._data.getWearTrailer()))
+        self._update_element('wear_cabin', format_percent(self._data.get_wear_cabin()))
+        self._update_element('wear_chassis', format_percent(self._data.get_wear_chassis()))
+        self._update_element('wear_engine', format_percent(self._data.get_wear_engine()))
+        self._update_element('wear_transmission', format_percent(self._data.get_wear_transmission()))
+        self._update_element('wear_wheels', format_percent(self._data.get_wear_wheels()))
+        self._update_element('wear_trailer', format_percent(self._data.get_wear_trailer()))
 
-        self._updateImage('light_beam_high_icon', 'high-beam', self._data.getLightHighBeam())
-        self._updateImage('light_beam_low_icon', 'low-beam', self._data.getLightLowBeam())
-        self._updateImage('light_beacon_icon', 'light', self._data.getLightBeacon())
-        self._updateImage('light_lblinker_icon', 'turn-signals', self._data.getLightLBlinker())
-        self._updateImage('light_rblinker_icon', 'turn-signals', self._data.getLightRBlinker())
-        self._updateImage('lblinker_icon', 'turn-signals', self._data.getLBlinker())
-        self._updateImage('rblinker_icon', 'turn-signals', self._data.getRBlinker())
-        self._updateImage('light_parking_icon', 'parking-lights', self._data.getLightParking())
-        self._updateImage('light_reverse_icon', 'trunk', self._data.getLightReverse())
-        self._updateImage('light_aux_font_icon', 'fog-light', self._data.getLightAuxFront())
-        self._updateImage('light_aux_roof_icon', 'dome-light', self._data.getLightAuxRoof())
-        self._updateImage('light_brake_icon', 'glowplug', self._data.getLightBreaking())
+        self._update_image('light_beam_high_icon', 'high-beam', self._data.get_light_high_beam())
+        self._update_image('light_beam_low_icon', 'low-beam', self._data.get_light_low_beam())
+        self._update_image('light_beacon_icon', 'light', self._data.get_light_beacon())
+        self._update_image('light_lblinker_icon', 'turn-signals', self._data.get_light_l_blinker())
+        self._update_image('light_rblinker_icon', 'turn-signals', self._data.get_light_r_blinker())
+        self._update_image('lblinker_icon', 'turn-signals', self._data.get_l_blinker())
+        self._update_image('rblinker_icon', 'turn-signals', self._data.get_r_blinker())
+        self._update_image('light_parking_icon', 'parking-lights', self._data.get_light_parking())
+        self._update_image('light_reverse_icon', 'trunk', self._data.get_light_reverse())
+        self._update_image('light_aux_font_icon', 'fog-light', self._data.get_light_aux_front())
+        self._update_image('light_aux_roof_icon', 'dome-light', self._data.get_light_aux_roof())
+        self._update_image('light_brake_icon', 'glowplug', self._data.get_light_breaking())
 
-        self._updateImage('battery_icon', 'battery', self._data.getBatteryWarning())
-        self._updateImage('electric_icon', 'battery', not self._data.getElectric())
-        self._updateImage('engine_icon', 'malfunction-indicador', not self._data.getEngine())
-        self._updateImage('water_icon', 'warning', self._data.getWaterWarning())
-        self._updateImage('oil_icon', 'oil', self._data.getOilWarning())
+        self._update_image('battery_icon', 'battery', self._data.get_battery_warning())
+        self._update_image('electric_icon', 'battery', not self._data.get_electric())
+        self._update_image('engine_icon', 'malfunction-indicador', not self._data.get_engine())
+        self._update_image('water_icon', 'warning', self._data.get_water_warning())
+        self._update_image('oil_icon', 'oil', self._data.get_oil_warning())
 
-        self._updateImage('wipers_icon', 'winshield-wiper', self._data.getWipers())
-        self._updateImage('adblue_icon', 'fuel', self._data.getADBlueWarning())
-        self._updateImage('fuel_icon', 'fuel', self._data.getFuelWarning())
+        self._update_image('wipers_icon', 'winshield-wiper', self._data.get_wipers())
+        self._update_image('adblue_icon', 'fuel', self._data.get_ad_blue_warning())
+        self._update_image('fuel_icon', 'fuel', self._data.get_fuel_warning())
 
-        self._updateImage('break_emergency', 'brake-system-warning', self._data.getBreakEmergency())
-        self._updateImage('break_warning', 'brake-system-warning', self._data.getBreakWarning())
-        self._updateImage('break_parking_icon', 'hazard', self._data.getBreakParking())
-        self._updateImage('brake_engine_icon', 'warning', self._data.getBreakMotor())
-        self._updateElement('air_pressure', formatDecimal(self._data.getAirPressure()))
-        self._updateElement('brake_retarder', formatInt(self._data.getBreakRetarder()))
-        self._updateElement('brake_temperature', formatDecimal(self._data.getBreakTemperature()))
+        self._update_image('break_emergency', 'brake-system-warning', self._data.get_break_emergency())
+        self._update_image('break_warning', 'brake-system-warning', self._data.get_break_warning())
+        self._update_image('break_parking_icon', 'hazard', self._data.get_break_parking())
+        self._update_image('brake_engine_icon', 'warning', self._data.get_break_motor())
+        self._update_element('air_pressure', format_decimal(self._data.get_air_pressure()))
+        self._update_element('brake_retarder', format_int(self._data.get_break_retarder()))
+        self._update_element('brake_temperature', format_decimal(self._data.get_break_temperature()))
 
-def formatMinuteTime(time):
-    if time == None:
+
+def format_minute_time(time):
+    if time is None:
         return "---"
     hours = time // 60
     minutes = time % 60
     return f"{hours:02d}:{minutes:02d}"
 
-def formatInt(value):
-        return f'{value:03d}'
 
-def formatDecimal(value):
+def format_int(value):
+    return f'{value:03d}'
+
+
+def format_decimal(value):
     decimal_value = decimal.Decimal(value)
     return f'{decimal_value:.1f}'
 
-def formatPercent(value):
-    per_value = decimal.Decimal(value*100)
+
+def format_percent(value):
+    per_value = decimal.Decimal(value * 100)
     return f"{per_value:.1f}%"

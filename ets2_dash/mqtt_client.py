@@ -1,16 +1,20 @@
 import paho.mqtt.client as mqtt
 import typing
 
-def on_message(client : typing.Any, userdata : typing.Any, message : object):
-    print("message received " , message.payload)
-    print("message topic=",message.topic)
-    print("message qos=",message.qos)
-    print("message retain flag=",message.retain)
+
+def on_message(client: typing.Any, userdata: typing.Any, message: object):
+    print("message: ", client)
+    print("userdata: ", userdata)
+    print("message received ", message.payload)
+    print("message topic=", message.topic)
+    print("message qos=", message.qos)
+    print("message retain flag=", message.retain)
+
 
 def main():
-    client = mqtt.Client("ets2_dash") #create new instance
+    client = mqtt.Client("ets2_dash")  # create new instance
     client.on_message = on_message
-    client.connect("localhost") #connect to broker
+    client.connect("localhost")  # connect to broker
     client.subscribe("ets2/game")
     client.subscribe("ets2/data")
     client.subscribe("ets2/info")
@@ -20,8 +24,8 @@ def main():
     client.subscribe("ets2/info/config/hshifter")
     client.subscribe("ets2/info/config/truck")
     client.subscribe("ets2/info/config/trailer")
-
     client.loop_forever()
+
 
 if __name__ == '__main__':
     main()

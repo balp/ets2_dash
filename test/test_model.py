@@ -3,345 +3,348 @@ from ets2_dash.model import Model
 import pytest
 
 
-def test_getTimeLeftNormal():
+def test_get_time_left_normal():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
+        model.set_telematic_data(json.load(j))
     with open("data/job.json", "r") as j:
-        model.setJobConfig(json.load(j))
-    assert 539 == model.getTimeLeft()
+        model.set_job_config(json.load(j))
+    assert 539 == model.get_time_left()
 
 
-def test_getTimeLeftCommunity():
+def test_get_time_left_community():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
+        model.set_telematic_data(json.load(j))
     with open("data/job_community.json", "r") as j:
-        model.setJobConfig(json.load(j))
-    assert None == model.getTimeLeft()
+        model.set_job_config(json.load(j))
+    assert model.get_time_left() is None
 
 
-def test_getTimeToRest():
+def test_get_time_to_rest():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert 450 == model.getTimeToRest()
+        model.set_telematic_data(json.load(j))
+    assert 450 == model.get_time_to_rest()
 
 
-def test_getTimeDestination():
+def test_get_time_destination():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert 283 == model.getTimeDestination()
+        model.set_telematic_data(json.load(j))
+    assert 283 == model.get_time_destination()
 
 
-def test_getSpeedKmh():
+def test_get_speed_kmh():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(0.003, abs=0.001) == model.getSpeedKmh()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(0.003, abs=0.001) == model.get_speed_kmh()
 
 
-def test_getCruiseControlKmh():
+def test_get_cruise_control_kmh():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(0.000, abs=0.001) == model.getCruiseControlKmh()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(0.000, abs=0.001) == model.get_cruise_control_kmh()
 
 
-def test_getSpeedLimitKmh():
+def test_get_speed_limit_kmh():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(48.2, abs=0.1) == model.getSpeedLimitKmh()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(48.2, abs=0.1) == model.get_speed_limit_kmh()
 
 
-def test_getSpeedMph():
+def test_get_speed_mph():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(0.003, abs=0.001) == model.getSpeedMph()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(0.003, abs=0.001) == model.get_speed_mph()
 
 
-def test_getCruiseControlMph():
+def test_get_cruise_control_mph():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(0.000, abs=0.001) == model.getCruiseControlMph()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(0.000, abs=0.001) == model.get_cruise_control_mph()
 
 
-def test_getSpeedLimitMph():
+def test_get_speed_limit_mph():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(30.0, abs=0.1) == model.getSpeedLimitMph()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(30.0, abs=0.1) == model.get_speed_limit_mph()
 
 
-def test_getFuelLeft():
+def test_get_fuel_left():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(556.5, abs=0.05) == model.getFuelLeft()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(556.5, abs=0.05) == model.get_fuel_left()
 
 
-def test_getFuelRange():
+def test_get_fuel_range():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(1739.1, abs=0.05) == model.getFuelRange()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(1739.1, abs=0.05) == model.get_fuel_range()
 
 
-def test_getFuelConsumtion():
+def test_get_fuel_consumtion():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(0.66, abs=0.005) == model.getFuelConsumtion()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(0.66, abs=0.005) == model.get_fuel_consumtion()
 
 
-def test_getWearCabin():
+def test_get_wear_cabin():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(0.005, abs=0.005) == model.getWearCabin()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(0.005, abs=0.005) == model.get_wear_cabin()
 
 
-def test_getWearChassis():
+def test_get_wear_chassis():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(0.006, abs=0.005) == model.getWearChassis()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(0.006, abs=0.005) == model.get_wear_chassis()
 
 
-def test_getWearEngine():
+def test_get_wear_engine():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(0.004, abs=0.005) == model.getWearEngine()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(0.004, abs=0.005) == model.get_wear_engine()
 
 
-def test_getWearTransmission():
+def test_get_wear_transmission():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(0.003, abs=0.005) == model.getWearTransmission()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(0.003, abs=0.005) == model.get_wear_transmission()
 
 
-def test_getgetWearWheels():
+def test_get_wear_wheels():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(0.015, abs=0.005) == model.getWearWheels()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(0.015, abs=0.005) == model.get_wear_wheels()
 
 
-def test_getWearTrailer():
+def test_get_wear_trailer():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(0.00, abs=0.005) == model.getWearTrailer()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(0.00, abs=0.005) == model.get_wear_trailer()
 
 
-def test_getGamePause():
+def test_get_game_pause():
     model = Model()
     with open("data/info.json", "r") as j:
-        model.setInfo(json.load(j))
-    assert False == model.getGamePause()
+        model.set_info(json.load(j))
+    assert not model.get_game_pause()
 
 
-def test_getGameName():
+def test_get_game_name():
     model = Model()
     with open("data/game.json", "r") as j:
-        model.setGame(json.load(j))
-    assert "Euro Truck Simulator 2 1.33.2.19s" == model.getGameName()
+        model.set_game(json.load(j))
+    assert "Euro Truck Simulator 2 1.33.2.19s" == model.get_game_name()
 
 
-def test_getGameId():
+def test_get_game_id():
     model = Model()
     with open("data/game.json", "r") as j:
-        model.setGame(json.load(j))
-    assert "eut2" == model.getGameId()
+        model.set_game(json.load(j))
+    assert "eut2" == model.get_game_id()
 
 
-def test_getLightHighBeam():
+def test_get_light_high_beam():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getLightHighBeam()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_light_high_beam()
 
 
-def test_getLightLowBeam():
+def test_get_light_low_beam():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert True == model.getLightLowBeam()
+        model.set_telematic_data(json.load(j))
+    assert model.get_light_low_beam()
 
 
-def test_getLightBeacon():
+def test_get_light_beacon():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getLightBeacon()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_light_beacon()
 
 
-def test_getLightLBlinker():
+def test_get_light_l_blinker():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getLightLBlinker()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_light_l_blinker()
 
 
-def test_getLightRBlinker():
+def test_get_light_r_blinker():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getLightRBlinker()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_light_r_blinker()
 
 
-def test_getLightParking():
+def test_get_light_parking():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert True == model.getLightParking()
+        model.set_telematic_data(json.load(j))
+    assert model.get_light_parking()
 
 
-def test_getLightReverse():
+def test_get_light_reverse():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getLightReverse()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_light_reverse()
 
 
-def test_getLightAuxFront():
+def test_get_light_aux_front():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getLightAuxFront()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_light_aux_front()
 
 
-def test_getLightAuxRoof():
+def test_get_light_aux_roof():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getLightAuxRoof()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_light_aux_roof()
 
 
-def test_getLightBreaking():
+def test_get_light_breaking():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getLightBreaking()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_light_breaking()
 
 
-def test_getLBlinker():
+def test_get_l_blinker():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getLBlinker()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_l_blinker()
 
 
-def test_getRBlinker():
+def test_get_r_blinker():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getRBlinker()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_r_blinker()
 
 
-def test_getADBlueWarning():
+def test_get_ad_blue_warning():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getADBlueWarning()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_ad_blue_warning()
 
 
-def test_getBreakMotor():
+def test_get_break_motor():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getBreakMotor()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_break_motor()
 
 
-def test_getBreakParking():
+def test_get_break_parking():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert True == model.getBreakParking()
+        model.set_telematic_data(json.load(j))
+    assert model.get_break_parking()
 
-def test_getElectric():
+
+def test_get_electric():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getElectric()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_electric()
 
-def test_getBatteryWarning():
+
+def test_get_battery_warning():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert True == model.getBatteryWarning()
+        model.set_telematic_data(json.load(j))
+    assert model.get_battery_warning()
 
 
-def test_getEngine():
+def test_get_engine():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getEngine()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_engine()
 
 
-def test_getFuelWarning():
+def test_get_fuel_warning():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getFuelWarning()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_fuel_warning()
 
 
-def test_getOilWarning():
+def test_get_oil_warning():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert True == model.getOilWarning()
+        model.set_telematic_data(json.load(j))
+    assert model.get_oil_warning()
 
 
-def test_getWaterWarning():
+def test_get_water_warning():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getWaterWarning()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_water_warning()
 
 
-def test_getWipers():
+def test_get_wipers():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getWipers()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_wipers()
 
 
-def test_getBreakEmergency():
+def test_get_break_emergency():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getBreakEmergency()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_break_emergency()
 
 
-def test_getBreakWarning():
+def test_get_break_warning():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert False == model.getBreakWarning()
+        model.set_telematic_data(json.load(j))
+    assert not model.get_break_warning()
 
-def test_getAirPressure():
+
+def test_get_air_pressure():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(124.4, abs=0.5) == model.getAirPressure()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(124.4, abs=0.5) == model.get_air_pressure()
 
 
-def test_getBreakRetarder():
+def test_get_break_retarder():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(0, abs=0.5) == model.getBreakRetarder()
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(0, abs=0.5) == model.get_break_retarder()
 
-def test_getBreakTemperature():
+
+def test_get_break_temperature():
     model = Model()
     with open("data/telematic.json", "r") as j:
-        model.setTelematicData(json.load(j))
-    assert pytest.approx(18, abs=0.5) == model.getBreakTemperature()
-
+        model.set_telematic_data(json.load(j))
+    assert pytest.approx(18, abs=0.5) == model.get_break_temperature()
