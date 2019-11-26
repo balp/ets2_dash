@@ -183,7 +183,6 @@ class Model:
         common = Common(game_time=data['common']['game.time'], scale=data['common']['local.scale'],
                         rest_stop=data['common']['rest.stop'])
         trailer_ = data['trailer']
-        print(trailer_)
         trailer = Trailer(acceleration_angular=vector_from_dict(trailer_['trailer.acceleration.angular']),
                           acceleration_linear=vector_from_dict(trailer_['trailer.acceleration.linear']),
                           connected=trailer_['trailer.connected'],
@@ -192,7 +191,6 @@ class Model:
                           wear_chassis=trailer_['trailer.wear.chassis'],
                           world_placement=placement_from_dict(trailer_['trailer.world.placement']))
         truck_ = data['truck']
-        print(truck_)
         truck = Truck(adblue=truck_['truck.adblue'],
                       adblue_warning=truck_['truck.adblue.warning'],
                       battery_voltage=truck_['truck.battery.voltage'],
@@ -268,7 +266,6 @@ class Model:
                                     timestamp=data['timestamp'],
                                     trailer=trailer,
                                     truck=truck)
-        print(self._telematic)
 
     def set_job_config(self, data):
         self._job = JobConfig(cargo=data['cargo'],
