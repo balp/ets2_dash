@@ -1,0 +1,24 @@
+{
+  "body.type": "_goldoilcael",
+  "cargo.accessory.id": "goldhofer_stz_vl.coil",
+  "chain.type": "single",
+  "hook.position": {
+    "x": 0.0,
+    "y": 1.0,
+    "z": -6.970731735229492
+  },
+  "id": "goldhofer_stz_vl.chassis_short_yx2esii",
+  "license.plate": "285 YZE",
+  "license.plate.country": "Estonia",
+  "license.plate.country.id": "estonia",
+  "wheel.position": {
+    "x": 0.9530791640281677,
+    "y": 0.38547998666763306,
+    "z": 8.7681303024292
+  },
+  "wheel.powered": false,
+  "wheel.radius": 0.38547900319099426,
+  "wheel.simulated": true,
+  "wheel.steerable": true,
+  "wheels.count": 8
+}

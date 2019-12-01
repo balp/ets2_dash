@@ -32,6 +32,13 @@ class View:
                               size=(7, 1),
                               justification="right",
                               key="time_dest")],
+            [PySimpleGUI.Text('With Rest',
+                              size=(15, 1),
+                              justification="left"),
+             PySimpleGUI.Text("21:21",
+                              size=(7, 1),
+                              justification="right",
+                              key="time_dest_rest")],
         ]
         speed_km_cc = [
             [PySimpleGUI.Text("CC",
@@ -290,39 +297,75 @@ class View:
                               justification="right",
                               key="brake_temperature")],
         ]
-        layout = [
-            [PySimpleGUI.Text('',
-                              size=(70, 1),
-                              justification="center",
-                              key="game_name"),
-             PySimpleGUI.Text('',
-                              size=(20, 1),
-                              justification="left",
-                              key="game_pause")
-             ],
-            [PySimpleGUI.Frame('Job',
-                               size=(80, 6),
-                               layout=job_layout),
-             PySimpleGUI.Column(layout=speed_layout,
-                                # size=(80, 6)
-                                )],
-            [PySimpleGUI.Frame('Fuel',
-                               size=(80, 6),
-                               layout=fuel_layout),
-             PySimpleGUI.Frame('Wear',
-                               size=(80, 6),
-                               layout=wear_layout)],
+        game_info = [PySimpleGUI.Text('',
+                                      size=(70, 1),
+                                      justification="center",
+                                      key="game_name"),
+                     PySimpleGUI.Text('',
+                                      size=(20, 1),
+                                      justification="left",
+                                      key="game_pause")
+                     ]
+        speed_info = [PySimpleGUI.Frame('Job',
+                                        size=(80, 6),
+                                        layout=job_layout),
+                      PySimpleGUI.Column(layout=speed_layout,
+                                         # size=(80, 6)
+                                         )]
+        wear_info = [PySimpleGUI.Frame('Fuel',
+                                       size=(80, 6),
+                                       layout=fuel_layout),
+                     PySimpleGUI.Frame('Wear',
+                                       size=(80, 6),
+                                       layout=wear_layout)]
+        end_layout = [PySimpleGUI.Column(layout=brake_info,
+                                         # size=(80, 2)
+                                         ),
+                      PySimpleGUI.Column(layout=button_layout,
+                                         # size=(80, 2),
+                                         )]
+        dash = [
+            game_info,
+            speed_info,
+            wear_info,
             warning_icons,
             info_icons,
             light_icons,
-            [PySimpleGUI.Column(layout=brake_info,
-                                # size=(80, 2)
-                                ),
-             PySimpleGUI.Column(layout=button_layout,
-                                # size=(80, 2),
-                                )],
+            end_layout,
         ]
+
+        layout_ = [game_info, speed_info, wear_info, warning_icons, info_icons, light_icons, end_layout, ]
+        truck = [self._info_label('Brand', "truck_brand"),
+                 self._info_label('Brand ID', "truck_brand_id"),
+                 self._info_label('ID', "truck_id"),
+                 self._info_label('Name', "truck_name"),
+                 self._info_label('Country', "truck_license_plate_country"),
+                 self._info_label('Plate', "truck_license_plate"),
+                 ]
+        trailer = [self._info_label('ID', "trailer_id"),
+                   self._info_label('Body', "trailer_body_type"),
+                   self._info_label('Cargo', "trailer_cargo_accessory_id"),
+                   self._info_label('Chain', "trailer_chain_type"),
+                   self._info_label('Country', "trailer_license_plate_country"),
+                   self._info_label('Plate', "trailer_license_plate"),
+
+                   ]
+        layout = [[PySimpleGUI.Column(layout=dash, ),
+                   PySimpleGUI.Frame('Truck', layout=truck, ),
+                   PySimpleGUI.Frame('Trailer', layout=trailer, ),
+                   ]]
+
         self.window = PySimpleGUI.Window("ETS2 - Telematic Unit").Layout(layout).Finalize()
+
+    def _info_label(self, label, key):
+        return [PySimpleGUI.Text(label,
+                                 justification="center",
+                                 key=key + "_label"),
+                PySimpleGUI.Text('',
+                                 size=(12, 1),
+                                 justification="left",
+                                 key=key)
+                ]
 
     def _update_element(self, key: str, value: str):
         self.window.FindElement(key).Update(value)
@@ -340,6 +383,7 @@ class View:
         self._update_element('time_left', format_minute_time(self._data.get_time_left()))
         self._update_element('time_rest', format_minute_time(self._data.get_time_to_rest()))
         self._update_element('time_dest', format_minute_time(self._data.get_time_destination()))
+        self._update_element('time_dest_rest', format_minute_time(self._data.get_time_destination_with_rest()))
 
         self._update_element('cc_speed_kmh', format_decimal(self._data.get_cruise_control_kmh()))
         self._update_element('speed_limit_kmh', format_decimal(self._data.get_speed_limit_kmh()))
@@ -389,6 +433,23 @@ class View:
         self._update_element('air_pressure', format_decimal(self._data.get_air_pressure()))
         self._update_element('brake_retarder', format_int(self._data.get_break_retarder()))
         self._update_element('brake_temperature', format_decimal(self._data.get_break_temperature()))
+
+        if self._data.truck_config:
+            self._update_element('truck_brand', self._data.truck_config.brand)
+            self._update_element('truck_brand_id', self._data.truck_config.brand_id)
+            self._update_element('truck_id', self._data.truck_config.id)
+            self._update_element('truck_name', self._data.truck_config.name)
+            self._update_element('truck_license_plate_country', self._data.truck_config.license_plate_country)
+            self._update_element('truck_license_plate', self._data.truck_config.license_plate)
+
+        if self._data.trailer_config:
+            self._update_element('trailer_id', self._data.trailer_config.id)
+            self._update_element('trailer_body_type', self._data.trailer_config.body_type)
+            self._update_element('trailer_cargo_accessory_id', self._data.trailer_config.cargo_accessory_id)
+            self._update_element('trailer_chain_type', self._data.trailer_config.chain_type)
+            self._update_element('trailer_license_plate_country', self._data.trailer_config.license_plate_country)
+            self._update_element('trailer_license_plate', self._data.trailer_config.license_plate)
+
 
 
 def format_minute_time(time):

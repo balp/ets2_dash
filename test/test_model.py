@@ -28,11 +28,32 @@ def test_get_time_to_rest():
     assert 450 == model.get_time_to_rest()
 
 
+def test_get_time_destination_freeride():
+    model = Model()
+    with open("data/telematic_freeride.json", "r") as j:
+        model.set_telematic_data(json.load(j))
+    assert model.get_time_destination() == 100
+
+
 def test_get_time_destination():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
     assert 283 == model.get_time_destination()
+
+
+def test_get_time_destination_with_rest_no_rest():
+    model = Model()
+    with open("data/telematic.json", "r") as j:
+        model.set_telematic_data(json.load(j))
+    assert 283 == model.get_time_destination_with_rest()
+
+
+def test_get_time_destination_with_rest_needs_rest():
+    model = Model()
+    with open("data/telematic_reststop.json", "r") as j:
+        model.set_telematic_data(json.load(j))
+    assert 1263 == model.get_time_destination_with_rest()
 
 
 def test_get_speed_kmh():
@@ -250,6 +271,19 @@ def test_get_ad_blue_warning():
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
     assert not model.get_ad_blue_warning()
+
+
+def test_get_break_motor_breaking():
+    model = Model()
+    with open("data/telematic_breaking.json", "r") as j:
+        model.set_telematic_data(json.load(j))
+    assert not model.get_break_motor()
+
+def test_get_break_motor_breaking_engine():
+    model = Model()
+    with open("data/telematic_engine_break.json", "r") as j:
+        model.set_telematic_data(json.load(j))
+    assert model.get_break_motor()
 
 
 def test_get_break_motor():

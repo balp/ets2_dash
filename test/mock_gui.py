@@ -19,6 +19,10 @@ def setup():
         model.set_game(json.load(j))
     with open("data/job.json", "r") as j:
         model.set_job_config(json.load(j))
+    with open("data/truck_config.json", "r") as j:
+        model.set_truck_config(json.load(j))
+    with open("data/trailer_config.json", "r") as j:
+        model.set_trailer_config(json.load(j))
     return model
 
 

@@ -1,0 +1,174 @@
+{
+  "common": {
+    "game.time": 278327,
+    "local.scale": 19.0,
+    "rest.stop": 479
+  },
+  "raw_paused_simulation_timestamp": 5836983178,
+  "raw_rendering_timestamp": 9692180873,
+  "raw_simulation_timestamp": 9692228962,
+  "timestamp": 5836983178,
+  "trailer": {
+    "trailer.acceleration.angular": {
+      "x": 0.0020798358600586653,
+      "y": -0.00038964455598033965,
+      "z": 0.0056601460091769695
+    },
+    "trailer.acceleration.linear": {
+      "x": 0.0007810858660377562,
+      "y": -0.07263477146625519,
+      "z": 0.00021611806005239487
+    },
+    "trailer.connected": true,
+    "trailer.velocity.angular": {
+      "x": 6.358739483403042e-05,
+      "y": -8.618849096819758e-05,
+      "z": 0.0007925972458906472
+    },
+    "trailer.velocity.linear": {
+      "x": 0.0006385627202689648,
+      "y": -0.0029660535510629416,
+      "z": 0.00021894072415307164
+    },
+    "trailer.wear.chassis": 0.005700007081031799,
+    "trailer.world.placement": {
+      "orientation": {
+        "heading": 0.5240092277526855,
+        "pitch": -0.0008788935374468565,
+        "roll": -0.00013466856034938246
+      },
+      "position": {
+        "x": 61063.26963806152,
+        "y": 8.015603065490723,
+        "z": -56652.10073852539
+      }
+    }
+  },
+  "truck": {
+    "truck.adblue": 49.55988693237305,
+    "truck.adblue.warning": false,
+    "truck.battery.voltage": 28.067739486694336,
+    "truck.battery.voltage.warning": false,
+    "truck.brake.air.pressure": 136.5851287841797,
+    "truck.brake.air.pressure.emergency": false,
+    "truck.brake.air.pressure.warning": false,
+    "truck.brake.motor": true,
+    "truck.brake.parking": false,
+    "truck.brake.retarder": 0,
+    "truck.brake.temperature": 104.291259765625,
+    "truck.cabin.acceleration.angular": {
+      "x": -0.0005931381019763649,
+      "y": 0.0007765725022181869,
+      "z": 0.0021697310730814934
+    },
+    "truck.cabin.offset": {
+      "orientation": {
+        "heading": 3.3026133223756915e-06,
+        "pitch": -0.0003324025310575962,
+        "roll": -3.6124110920354724e-05
+      },
+      "position": {
+        "x": 0.0003361658309586346,
+        "y": -0.0005322694778442383,
+        "z": -0.0032956600189208984
+      }
+    },
+    "truck.cabin.velocity.angular": {
+      "x": 0.0009612604626454413,
+      "y": 0.00010336239211028442,
+      "z": -1.870444611995481e-05
+    },
+    "truck.cruise_control": 0.0,
+    "truck.dashboard.backlight": 1.0,
+    "truck.displayed.gear": 14,
+    "truck.effective.brake": 0.0,
+    "truck.effective.clutch": 0.0,
+    "truck.effective.steering": 0.0008091704221442342,
+    "truck.effective.throttle": 1.401298464324817e-45,
+    "truck.electric.enabled": true,
+    "truck.engine.enabled": true,
+    "truck.engine.gear": 14,
+    "truck.engine.rpm": 1609.873046875,
+    "truck.fuel.amount": 191.19778442382813,
+    "truck.fuel.consumption.average": 0.5395737886428833,
+    "truck.fuel.range": 831.2947387695313,
+    "truck.fuel.warning": false,
+    "truck.head.offset": {
+      "orientation": {
+        "heading": 0.0,
+        "pitch": -0.01944444701075554,
+        "roll": 0.0
+      },
+      "position": {
+        "x": 0.0,
+        "y": -0.05000000074505806,
+        "z": 0.10000000149011612
+      }
+    },
+    "truck.hshifter.slot": 0,
+    "truck.input.brake": 0.0,
+    "truck.input.clutch": 0.0,
+    "truck.input.steering": 0.0008091704221442342,
+    "truck.input.throttle": 0.0,
+    "truck.lblinker": false,
+    "truck.light.aux.front": 1,
+    "truck.light.aux.roof": 1,
+    "truck.light.beacon": false,
+    "truck.light.beam.high": false,
+    "truck.light.beam.low": true,
+    "truck.light.brake": false,
+    "truck.light.lblinker": false,
+    "truck.light.parking": true,
+    "truck.light.rblinker": false,
+    "truck.light.reverse": false,
+    "truck.local.acceleration.angular": {
+      "x": 0.004012025892734528,
+      "y": 0.0007592997862957418,
+      "z": -0.00645954767242074
+    },
+    "truck.local.acceleration.linear": {
+      "x": 0.001008310355246067,
+      "y": -0.05135202035307884,
+      "z": 1.8058898448944092
+    },
+    "truck.local.velocity.angular": {
+      "x": -0.002453570021316409,
+      "y": -0.0004205036675557494,
+      "z": 0.004507218953222036
+    },
+    "truck.local.velocity.linear": {
+      "x": -0.0009077168069779873,
+      "y": 0.08065282553434372,
+      "z": -32.398921966552734
+    },
+    "truck.navigation.distance": 9617.125,
+    "truck.navigation.speed.limit": 19.44444465637207,
+    "truck.navigation.time": 680.755126953125,
+    "truck.odometer": 26975.091796875,
+    "truck.oil.pressure": 72.63816833496094,
+    "truck.oil.pressure.warning": false,
+    "truck.oil.temperature": 93.87747955322266,
+    "truck.rblinker": false,
+    "truck.speed": 32.42963790893555,
+    "truck.water.temperature": 89.18617248535156,
+    "truck.water.temperature.warning": false,
+    "truck.wear.cabin": 0.0,
+    "truck.wear.chassis": 0.0,
+    "truck.wear.engine": 0.00120000378228724,
+    "truck.wear.transmission": 0.00120000378228724,
+    "truck.wear.wheels": 0.01200005505234003,
+    "truck.wipers": false,
+    "truck.world.placement": {
+      "orientation": {
+        "heading": 0.796339750289917,
+        "pitch": -0.00029654402169398963,
+        "roll": 2.9369812182267196e-05
+      },
+      "position": {
+        "x": 55595.40802001953,
+        "y": 6.939177989959717,
+        "z": -55591.75018310547
+      }
+    }
+  }
+}

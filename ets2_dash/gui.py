@@ -23,12 +23,16 @@ def on_message(client: typing.Any, userdata: typing.Any , message : object):
     json_data = json.loads(message.payload)
     if message.topic == "ets2/data":
         model.set_telematic_data(json_data)
-    if message.topic == "ets2/game":
+    elif message.topic == "ets2/game":
         model.set_game(json_data)
-    if message.topic == "ets2/info":
+    elif message.topic == "ets2/info":
         model.set_info(json_data)
     elif message.topic == "ets2/info/config/job":
         model.set_job_config(json_data)
+    elif message.topic == "ets2/info/config/truck":
+        model.set_truck_config(json_data)
+    elif message.topic == "ets2/info/config/trailer":
+        model.set_trailer_config(json_data)
 
 
 def mqtt_thread_loop(model: Model, state: GlobalState):
@@ -42,8 +46,8 @@ def mqtt_thread_loop(model: Model, state: GlobalState):
     # client.subscribe("ets2/info/config/substances")
     # client.subscribe("ets2/info/config/controls")
     # client.subscribe("ets2/info/config/hshifter")
-    # client.subscribe("ets2/info/config/truck")
-    # client.subscribe("ets2/info/config/trailer")
+    client.subscribe("ets2/info/config/truck")
+    client.subscribe("ets2/info/config/trailer")
     while state.active:
         client.loop(timeout=1.0)
 
