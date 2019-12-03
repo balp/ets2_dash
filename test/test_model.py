@@ -279,6 +279,7 @@ def test_get_break_motor_breaking():
         model.set_telematic_data(json.load(j))
     assert not model.get_break_motor()
 
+
 def test_get_break_motor_breaking_engine():
     model = Model()
     with open("data/telematic_engine_break.json", "r") as j:
@@ -382,3 +383,9 @@ def test_get_break_temperature():
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
     assert pytest.approx(18, abs=0.5) == model.get_break_temperature()
+
+def test_get_break_warning_1_01():
+    model = Model()
+    with open("data/telematic_1_01.json", "r") as j:
+        model.set_telematic_data(json.load(j))
+    assert not model.get_break_warning()

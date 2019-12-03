@@ -19,6 +19,7 @@
       "y": 0.23213182389736176,
       "z": 0.014327029697597027
     },
+    "trailer.cargo.damage": 0.0,
     "trailer.connected": true,
     "trailer.velocity.angular": {
       "x": 4.876903403783217e-05,
@@ -31,6 +32,7 @@
       "z": 0.0007105975528247654
     },
     "trailer.wear.chassis": 0.0,
+    "trailer.wear.wheels": 0.0016400007298216224,
     "trailer.world.placement": {
       "orientation": {
         "heading": 0.01800912618637085,

@@ -141,54 +141,21 @@ class View:
             [PySimpleGUI.Exit(button_color=('white', 'firebrick4'))]
         ]
         wear_layout_left = [
-            [PySimpleGUI.Text('Cabin',
-                              size=(10, 1),
-                              justification="left"),
-             PySimpleGUI.Text("---",
-                              size=(5, 1),
-                              justification="right",
-                              key="wear_cabin")],
-            [PySimpleGUI.Text('Chassis',
-                              size=(10, 1),
-                              justification="left"),
-             PySimpleGUI.Text("---",
-                              size=(5, 1),
-                              justification="right",
-                              key="wear_chassis")],
-            [PySimpleGUI.Text('Engine',
-                              size=(10, 1),
-                              justification="left"),
-             PySimpleGUI.Text("---",
-                              size=(5, 1),
-                              justification="right",
-                              key="wear_engine")],
+            self.wear_info_label('Cabin', "wear_cabin"),
+            self.wear_info_label('Chassis', "wear_chassis"),
+            self.wear_info_label('Engine', "wear_engine"),
+            self.wear_info_label('Transmission', "wear_transmission"),
+            self.wear_info_label('Wheels', "wear_wheels"),
         ]
         wear_layout_right = [
-            [PySimpleGUI.Text('Transmission',
-                              size=(10, 1),
-                              justification="left"),
-             PySimpleGUI.Text("---",
-                              size=(5, 1),
-                              justification="right",
-                              key="wear_transmission")],
-            [PySimpleGUI.Text('Wheels',
-                              size=(10, 1),
-                              justification="left"),
-             PySimpleGUI.Text("---",
-                              size=(5, 1),
-                              justification="right",
-                              key="wear_wheels")],
-            [PySimpleGUI.Text('Trailer',
-                              size=(10, 1),
-                              justification="left"),
-             PySimpleGUI.Text("---",
-                              size=(5, 1),
-                              justification="right",
-                              key="wear_trailer")],
+            self.wear_info_label('Chassis', "wear_trailer"),
+            self.wear_info_label('Wheel', "wear_trailer_wheel"),
+            self.wear_info_label('Cargo', "wear_trailer_cargo"),
+
         ]
         wear_layout = [
-            [PySimpleGUI.Column(layout=[[PySimpleGUI.Column(layout=wear_layout_left),
-                                         PySimpleGUI.Column(layout=wear_layout_right)]])]
+            [PySimpleGUI.Column(layout=[[PySimpleGUI.Frame('Truck', layout=wear_layout_left),
+                                         PySimpleGUI.Frame('Trailer', layout=wear_layout_right)]])]
         ]
         warning_icons = [
             # Malfunctions
@@ -357,6 +324,15 @@ class View:
 
         self.window = PySimpleGUI.Window("ETS2 - Telematic Unit").Layout(layout).Finalize()
 
+    def wear_info_label(self, label, key):
+        return [PySimpleGUI.Text(label,
+                                 size=(10, 1),
+                                 justification="left"),
+                PySimpleGUI.Text("---",
+                                 size=(5, 1),
+                                 justification="right",
+                                 key=key)]
+
     def _info_label(self, label, key):
         return [PySimpleGUI.Text(label,
                                  justification="center",
@@ -401,7 +377,10 @@ class View:
         self._update_element('wear_engine', format_percent(self._data.get_wear_engine()))
         self._update_element('wear_transmission', format_percent(self._data.get_wear_transmission()))
         self._update_element('wear_wheels', format_percent(self._data.get_wear_wheels()))
-        self._update_element('wear_trailer', format_percent(self._data.get_wear_trailer()))
+        if self._data.telematic:
+            self._update_element('wear_trailer', format_percent(self._data.telematic.trailer.wear_chassis))
+            self._update_element('wear_trailer_wheel', format_percent(self._data.telematic.trailer.wear_wheels))
+            self._update_element('wear_trailer_cargo', format_percent(self._data.telematic.trailer.cargo_damage))
 
         self._update_image('light_beam_high_icon', 'high-beam', self._data.get_light_high_beam())
         self._update_image('light_beam_low_icon', 'low-beam', self._data.get_light_low_beam())

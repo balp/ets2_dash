@@ -52,10 +52,12 @@ def placement_from_dict(value: Dict) -> Placement:
 class Trailer:
     acceleration_angular: Vector
     acceleration_linear: Vector
+    cargo_damage: float
     connected: bool
     velocity_angular: Vector
     velocity_linear: Vector
     wear_chassis: float
+    wear_wheels: float
     world_placement: Placement
 
 
@@ -63,10 +65,12 @@ def trailer_from_dict(data: Dict) -> Trailer:
     trailer_ = data['trailer']
     return Trailer(acceleration_angular=vector_from_dict(trailer_['trailer.acceleration.angular']),
                    acceleration_linear=vector_from_dict(trailer_['trailer.acceleration.linear']),
+                   cargo_damage=trailer_['trailer.cargo.damage'],
                    connected=trailer_['trailer.connected'],
                    velocity_angular=vector_from_dict(trailer_['trailer.velocity.angular']),
                    velocity_linear=vector_from_dict(trailer_['trailer.velocity.linear']),
                    wear_chassis=trailer_['trailer.wear.chassis'],
+                   wear_wheels=trailer_['trailer.wear.wheels'],
                    world_placement=placement_from_dict(trailer_['trailer.world.placement']))
 
 
@@ -417,7 +421,7 @@ def trailer_config_from_dict(data: Dict) -> TrailerConfig:
 
 class Model:
     def __init__(self):
-        self._telematic: Optional[Telematic] = None
+        self.telematic: Optional[Telematic] = None
         self._job: Optional[JobConfig] = None
         self._info: Optional[Info] = None
         self._game: Optional[Game] = None
@@ -425,7 +429,7 @@ class Model:
         self.trailer_config: Optional[TruckConfig] = None
 
     def set_telematic_data(self, data):
-        self._telematic = telematic_from_dict(data)
+        self.telematic = telematic_from_dict(data)
 
     def set_job_config(self, data):
         self._job = jobconfig_from_dict(data)
@@ -458,26 +462,26 @@ class Model:
         return None
 
     def get_time_left(self) -> Optional[int]:
-        if self._telematic and self._job:
-            game_time = self._telematic.common.game_time
+        if self.telematic and self._job:
+            game_time = self.telematic.common.game_time
             delivery_time: int = self._job.delivery_time
             if game_time and delivery_time and delivery_time != 0xFFFFFFFF:
                 return delivery_time - game_time
         return None
 
     def get_time_to_rest(self) -> int:
-        if self._telematic:
-            return self._telematic.common.rest_stop
+        if self.telematic:
+            return self.telematic.common.rest_stop
         return 0
 
     def get_time_destination(self) -> int:
-        if self._telematic:
-            eta = self._telematic.truck.navigation_time
+        if self.telematic:
+            eta = self.telematic.truck.navigation_time
             return int(eta) // 60
         return 0
 
     def get_time_destination_with_rest(self) -> int:
-        if self._telematic:
+        if self.telematic:
 
             drive_time = self.get_time_destination()
             next_rest = self.get_time_to_rest()
@@ -490,211 +494,211 @@ class Model:
         return 0
 
     def get_speed_kmh(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.speed * 3.6
+        if self.telematic:
+            return self.telematic.truck.speed * 3.6
         return 0.0
 
     def get_cruise_control_kmh(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.cruise_control * 3.6
+        if self.telematic:
+            return self.telematic.truck.cruise_control * 3.6
         return 0.0
 
     def get_speed_limit_kmh(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.navigation_speed_limit * 3.6
+        if self.telematic:
+            return self.telematic.truck.navigation_speed_limit * 3.6
         return 0.0
 
     def get_speed_mph(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.speed * 2.2369363
+        if self.telematic:
+            return self.telematic.truck.speed * 2.2369363
         return 0.0
 
     def get_cruise_control_mph(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.cruise_control * 2.2369363
+        if self.telematic:
+            return self.telematic.truck.cruise_control * 2.2369363
         return 0.0
 
     def get_speed_limit_mph(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.navigation_speed_limit * 2.2369363
+        if self.telematic:
+            return self.telematic.truck.navigation_speed_limit * 2.2369363
         return 0.0
 
     def get_fuel_left(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.fuel_amount
+        if self.telematic:
+            return self.telematic.truck.fuel_amount
         return 0.0
 
     def get_fuel_range(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.fuel_range
+        if self.telematic:
+            return self.telematic.truck.fuel_range
         return 0.0
 
     def get_fuel_consumtion(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.fuel_consumption_average
+        if self.telematic:
+            return self.telematic.truck.fuel_consumption_average
         return 0.0
 
     def get_wear_cabin(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.wear_cabin
+        if self.telematic:
+            return self.telematic.truck.wear_cabin
         return 0.0
 
     def get_wear_chassis(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.wear_chassis
+        if self.telematic:
+            return self.telematic.truck.wear_chassis
         return 0.0
 
     def get_wear_engine(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.wear_engine
+        if self.telematic:
+            return self.telematic.truck.wear_engine
         return 0.0
 
     def get_wear_transmission(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.wear_transmission
+        if self.telematic:
+            return self.telematic.truck.wear_transmission
         return 0.0
 
     def get_wear_wheels(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.wear_wheels
+        if self.telematic:
+            return self.telematic.truck.wear_wheels
         return 0.0
 
     def get_wear_trailer(self) -> float:
-        if self._telematic:
-            return self._telematic.trailer.wear_chassis
+        if self.telematic:
+            return self.telematic.trailer.wear_chassis
         return 0.0
 
     def get_light_high_beam(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.light_beam_high
+        if self.telematic:
+            return self.telematic.truck.light_beam_high
         return False
 
     def get_light_low_beam(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.light_beam_low
+        if self.telematic:
+            return self.telematic.truck.light_beam_low
         return False
 
     def get_light_beacon(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.light_beacon
+        if self.telematic:
+            return self.telematic.truck.light_beacon
         return False
 
     def get_light_l_blinker(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.light_lblinker
+        if self.telematic:
+            return self.telematic.truck.light_lblinker
         return False
 
     def get_light_r_blinker(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.light_rblinker
+        if self.telematic:
+            return self.telematic.truck.light_rblinker
         return False
 
     def get_l_blinker(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.lblinker
+        if self.telematic:
+            return self.telematic.truck.lblinker
         return False
 
     def get_r_blinker(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.rblinker
+        if self.telematic:
+            return self.telematic.truck.rblinker
         return False
 
     def get_light_parking(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.light_parking
+        if self.telematic:
+            return self.telematic.truck.light_parking
         return False
 
     def get_light_reverse(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.light_reverse
+        if self.telematic:
+            return self.telematic.truck.light_reverse
         return False
 
     def get_light_aux_front(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.light_aux_front != 0
+        if self.telematic:
+            return self.telematic.truck.light_aux_front != 0
         return False
 
     def get_light_aux_roof(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.light_aux_roof != 0
+        if self.telematic:
+            return self.telematic.truck.light_aux_roof != 0
         return False
 
     def get_light_breaking(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.light_brake
+        if self.telematic:
+            return self.telematic.truck.light_brake
         return False
 
     def get_ad_blue_warning(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.adblue_warning
+        if self.telematic:
+            return self.telematic.truck.adblue_warning
         return False
 
     def get_break_emergency(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.brake_air_pressure_emergency
+        if self.telematic:
+            return self.telematic.truck.brake_air_pressure_emergency
         return False
 
     def get_break_warning(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.brake_air_pressure_warning
+        if self.telematic:
+            return self.telematic.truck.brake_air_pressure_warning
         return False
 
     def get_break_motor(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.brake_motor
+        if self.telematic:
+            return self.telematic.truck.brake_motor
         return False
 
     def get_break_parking(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.brake_parking
+        if self.telematic:
+            return self.telematic.truck.brake_parking
         return False
 
     def get_electric(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.electric_enabled
+        if self.telematic:
+            return self.telematic.truck.electric_enabled
         return False
 
     def get_battery_warning(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.battery_voltage_warning
+        if self.telematic:
+            return self.telematic.truck.battery_voltage_warning
         return False
 
     def get_engine(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.engine_enabled
+        if self.telematic:
+            return self.telematic.truck.engine_enabled
         return False
 
     def get_fuel_warning(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.fuel_warning
+        if self.telematic:
+            return self.telematic.truck.fuel_warning
         return False
 
     def get_oil_warning(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.oil_pressure_warning
+        if self.telematic:
+            return self.telematic.truck.oil_pressure_warning
         return False
 
     def get_water_warning(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.water_temperature_warning
+        if self.telematic:
+            return self.telematic.truck.water_temperature_warning
         return False
 
     def get_wipers(self) -> bool:
-        if self._telematic:
-            return self._telematic.truck.wipers
+        if self.telematic:
+            return self.telematic.truck.wipers
         return False
 
     def get_air_pressure(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.brake_air_pressure
+        if self.telematic:
+            return self.telematic.truck.brake_air_pressure
         return False
 
     def get_break_retarder(self) -> int:
-        if self._telematic:
-            return self._telematic.truck.brake_retarder
+        if self.telematic:
+            return self.telematic.truck.brake_retarder
         return False
 
     def get_break_temperature(self) -> float:
-        if self._telematic:
-            return self._telematic.truck.brake_temperature
+        if self.telematic:
+            return self.telematic.truck.brake_temperature
         return False

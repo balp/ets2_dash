@@ -1,0 +1,20 @@
+{
+  "cargo": "Yacht",
+  "cargo.id": "yacht",
+  "cargo.loaded": true,
+  "cargo.mass": 6500.0,
+  "cargo.unit.count": 100,
+  "cargo.unit.mass": 65.0,
+  "delivery.time": 281953,
+  "destination.city": "Stockholm",
+  "destination.city.id": "stockholm",
+  "destination.company": "Marina",
+  "destination.company.id": "marina",
+  "income": 24293,
+  "is.special.job": false,
+  "job.market": "freight_market",
+  "source.city": "Helsinki",
+  "source.city.id": "helsinki",
+  "source.company": "Marina",
+  "source.company.id": "marina_it"
+}

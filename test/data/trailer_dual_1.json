@@ -1,0 +1,22 @@
+{
+  "cargo.accessory.id": "",
+  "hook.position": {
+    "x": 0.0,
+    "y": 0.44999998807907104,
+    "z": -5.310273170471191
+  },
+  "id": "scs_box.curtain_sider.chassis_cax2esii",
+  "license.plate": "DXP 510",
+  "license.plate.country": "Sweden",
+  "license.plate.country.id": "sweden",
+  "wheel.position": {
+    "x": 0.8199999928474426,
+    "y": 0.5120000243186951,
+    "z": 0.6665385365486145
+  },
+  "wheel.powered": false,
+  "wheel.radius": 0.4977928102016449,
+  "wheel.simulated": true,
+  "wheel.steerable": false,
+  "wheels.count": 4
+}

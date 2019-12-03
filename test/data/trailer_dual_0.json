@@ -1,0 +1,25 @@
+{
+  "body.type": "curtainside",
+  "cargo.accessory.id": "",
+  "chain.type": "double",
+  "hook.position": {
+    "x": 0.0,
+    "y": 1.0,
+    "z": -5.0657806396484375
+  },
+  "id": "scs_box.curtain_sider.chassis_hookx2esii",
+  "license.plate": "ELS 917",
+  "license.plate.country": "Sweden",
+  "license.plate.country.id": "sweden",
+  "wheel.liftable": true,
+  "wheel.position": {
+    "x": 0.8199999928474426,
+    "y": 0.5120000243186951,
+    "z": 1.5416467189788818
+  },
+  "wheel.powered": false,
+  "wheel.radius": 0.4977928102016449,
+  "wheel.simulated": true,
+  "wheel.steerable": false,
+  "wheels.count": 6
+}
