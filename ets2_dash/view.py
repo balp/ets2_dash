@@ -11,34 +11,14 @@ class View:
 
     def _setup_window(self):
         job_layout = [
-            [PySimpleGUI.Text('Time Left',
-                              size=(15, 1),
-                              justification="left"),
-             PySimpleGUI.Text("21:21",
-                              size=(7, 1),
-                              justification="right",
-                              key="time_left")],
-            [PySimpleGUI.Text('Time to rest',
-                              size=(15, 1),
-                              justification="left"),
-             PySimpleGUI.Text("21:21",
-                              size=(7, 1),
-                              justification="right",
-                              key="time_rest")],
-            [PySimpleGUI.Text('To destination',
-                              size=(15, 1),
-                              justification="left"),
-             PySimpleGUI.Text("21:21",
-                              size=(7, 1),
-                              justification="right",
-                              key="time_dest")],
-            [PySimpleGUI.Text('With Rest',
-                              size=(15, 1),
-                              justification="left"),
-             PySimpleGUI.Text("21:21",
-                              size=(7, 1),
-                              justification="right",
-                              key="time_dest_rest")],
+            self._info_label('Cargo', 'job_cargo'),
+            self._info_label('Income', 'job_income'),
+            self._info_label('Source', 'job_source'),
+            self._info_label('Destination', 'job_destination'),
+            self._info_label('Time Left', 'time_left'),
+            self._info_label('Time to rest', 'time_rest'),
+            self._info_label('To destination', 'time_dest'),
+            self._info_label('With Rest', 'time_dest_rest'),
         ]
         speed_km_cc = [
             [PySimpleGUI.Text("CC",
@@ -115,27 +95,9 @@ class View:
                               justification="left")],
         ]
         fuel_layout = [
-            [PySimpleGUI.Text('Left',
-                              size=(15, 1),
-                              justification="left"),
-             PySimpleGUI.Text("---",
-                              size=(7, 1),
-                              justification="right",
-                              key="fuel_left")],
-            [PySimpleGUI.Text('Range',
-                              size=(15, 1),
-                              justification="left"),
-             PySimpleGUI.Text("556",
-                              size=(7, 1),
-                              justification="right",
-                              key="fuel_range")],
-            [PySimpleGUI.Text('Consumtion',
-                              size=(15, 1),
-                              justification="left"),
-             PySimpleGUI.Text("556",
-                              size=(7, 1),
-                              justification="right",
-                              key="fuel_consumtion")]
+            self._info_label('Left', 'fuel_left'),
+            self._info_label('Range', 'fuel_range'),
+            self._info_label('Consumtion', 'fuel_consumtion'),
         ]
         button_layout = [
             [PySimpleGUI.Exit(button_color=('white', 'firebrick4'))]
@@ -151,7 +113,6 @@ class View:
             self.wear_info_label('Chassis', "wear_trailer"),
             self.wear_info_label('Wheel', "wear_trailer_wheel"),
             self.wear_info_label('Cargo', "wear_trailer_cargo"),
-
         ]
         wear_layout = [
             [PySimpleGUI.Column(layout=[[PySimpleGUI.Frame('Truck', layout=wear_layout_left),
@@ -242,27 +203,9 @@ class View:
              PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/warning.png",
                                size=(25, 25),
                                key='brake_engine_icon')],
-            [PySimpleGUI.Text('Pressure',
-                              size=(10, 1),
-                              justification="left"),
-             PySimpleGUI.Text("---",
-                              size=(5, 1),
-                              justification="right",
-                              key="air_pressure")],
-            [PySimpleGUI.Text('Retarder',
-                              size=(10, 1),
-                              justification="left"),
-             PySimpleGUI.Text("---",
-                              size=(5, 1),
-                              justification="right",
-                              key="brake_retarder")],
-            [PySimpleGUI.Text('Temperature',
-                              size=(10, 1),
-                              justification="left"),
-             PySimpleGUI.Text("---",
-                              size=(5, 1),
-                              justification="right",
-                              key="brake_temperature")],
+            self.wear_info_label('Pressure', "air_pressure"),
+            self.wear_info_label('Retarder', "brake_retarder"),
+            self.wear_info_label('Temperature', "brake_temperature"),
         ]
         game_info = [PySimpleGUI.Text('',
                                       size=(70, 1),
@@ -335,11 +278,12 @@ class View:
 
     def _info_label(self, label, key):
         return [PySimpleGUI.Text(label,
-                                 justification="center",
-                                 key=key + "_label"),
-                PySimpleGUI.Text('',
                                  size=(12, 1),
                                  justification="left",
+                                 key=key + "_label"),
+                PySimpleGUI.Text('',
+                                 size=(18, 1),
+                                 justification="right",
                                  key=key)
                 ]
 
@@ -356,10 +300,20 @@ class View:
     def update_data(self):
         self._update_element('game_name', self._data.get_game_name())
         self._update_element('game_pause', 'paused' if self._data.get_game_pause() else '')
-        self._update_element('time_left', format_minute_time(self._data.get_time_left()))
-        self._update_element('time_rest', format_minute_time(self._data.get_time_to_rest()))
-        self._update_element('time_dest', format_minute_time(self._data.get_time_destination()))
-        self._update_element('time_dest_rest', format_minute_time(self._data.get_time_destination_with_rest()))
+
+        if self._data.job:
+            self._update_element('job_cargo',
+                                 f'{self._data.job.cargo} ({self._data.job.cargo_mass / 1000:.1f}t)')
+            self._update_element('job_income', f'{self._data.job.income} €')
+            self._update_element('job_source', f'{self._data.job.source_company}'
+                                               f':{self._data.job.source_city}')
+            self._update_element('job_destination', f'{self._data.job.destination_company}'
+                                                    f':{self._data.job.destination_city}')
+
+            self._update_element('time_left', format_minute_time(self._data.get_time_left()))
+            self._update_element('time_rest', format_minute_time(self._data.get_time_to_rest()))
+            self._update_element('time_dest', format_minute_time(self._data.get_time_destination()))
+            self._update_element('time_dest_rest', format_minute_time(self._data.get_time_destination_with_rest()))
 
         self._update_element('cc_speed_kmh', format_decimal(self._data.get_cruise_control_kmh()))
         self._update_element('speed_limit_kmh', format_decimal(self._data.get_speed_limit_kmh()))
@@ -428,7 +382,6 @@ class View:
             self._update_element('trailer_chain_type', self._data.trailer_config.chain_type)
             self._update_element('trailer_license_plate_country', self._data.trailer_config.license_plate_country)
             self._update_element('trailer_license_plate', self._data.trailer_config.license_plate)
-
 
 
 def format_minute_time(time):

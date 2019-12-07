@@ -422,7 +422,7 @@ def trailer_config_from_dict(data: Dict) -> TrailerConfig:
 class Model:
     def __init__(self):
         self.telematic: Optional[Telematic] = None
-        self._job: Optional[JobConfig] = None
+        self.job: Optional[JobConfig] = None
         self._info: Optional[Info] = None
         self._game: Optional[Game] = None
         self.truck_config: Optional[TruckConfig] = None
@@ -432,7 +432,7 @@ class Model:
         self.telematic = telematic_from_dict(data)
 
     def set_job_config(self, data):
-        self._job = jobconfig_from_dict(data)
+        self.job = jobconfig_from_dict(data)
 
     def set_info(self, data):
         self._info = info_from_dict(data)
@@ -462,9 +462,9 @@ class Model:
         return None
 
     def get_time_left(self) -> Optional[int]:
-        if self.telematic and self._job:
+        if self.telematic and self.job:
             game_time = self.telematic.common.game_time
-            delivery_time: int = self._job.delivery_time
+            delivery_time: int = self.job.delivery_time
             if game_time and delivery_time and delivery_time != 0xFFFFFFFF:
                 return delivery_time - game_time
         return None
