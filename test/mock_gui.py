@@ -21,8 +21,10 @@ def setup():
         model.set_job_config(json.load(j))
     with open("data/truck_config.json", "r") as j:
         model.set_truck_config(json.load(j))
-    with open("data/trailer_config.json", "r") as j:
-        model.set_trailer_config(json.load(j))
+    with open("data/trailer_dual_0.json", "r") as j:
+        model.set_trailer_config(json.load(j), 0)
+    with open("data/trailer_dual_1.json", "r") as j:
+        model.set_trailer_config(json.load(j), 1)
     return model
 
 

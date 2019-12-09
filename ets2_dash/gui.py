@@ -31,8 +31,26 @@ def on_message(client: typing.Any, userdata: typing.Any , message : object):
         model.set_job_config(json_data)
     elif message.topic == "ets2/info/config/truck":
         model.set_truck_config(json_data)
-    elif message.topic == "ets2/info/config/trailer":
-        model.set_trailer_config(json_data)
+    elif message.topic == "ets2/info/config/trailer.0":
+        model.set_trailer_config(json_data, 0)
+    elif message.topic == "ets2/info/config/trailer.1":
+        model.set_trailer_config(json_data, 1)
+    elif message.topic == "ets2/info/config/trailer.2":
+        model.set_trailer_config(json_data, 2)
+    elif message.topic == "ets2/info/config/trailer.3":
+        model.set_trailer_config(json_data, 3)
+    elif message.topic == "ets2/info/config/trailer.4":
+        model.set_trailer_config(json_data, 4)
+    elif message.topic == "ets2/info/config/trailer.5":
+        model.set_trailer_config(json_data, 5)
+    elif message.topic == "ets2/info/config/trailer.6":
+        model.set_trailer_config(json_data, 6)
+    elif message.topic == "ets2/info/config/trailer.7":
+        model.set_trailer_config(json_data, 7)
+    elif message.topic == "ets2/info/config/trailer.8":
+        model.set_trailer_config(json_data, 8)
+    elif message.topic == "ets2/info/config/trailer.9":
+        model.set_trailer_config(json_data, 9)
 
 
 def mqtt_thread_loop(model: Model, state: GlobalState):
@@ -47,7 +65,19 @@ def mqtt_thread_loop(model: Model, state: GlobalState):
     # client.subscribe("ets2/info/config/controls")
     # client.subscribe("ets2/info/config/hshifter")
     client.subscribe("ets2/info/config/truck")
-    client.subscribe("ets2/info/config/trailer")
+    # client.subscribe("ets2/info/config/trailer")
+
+    client.subscribe("ets2/info/config/trailer.0")
+    client.subscribe("ets2/info/config/trailer.1")
+    client.subscribe("ets2/info/config/trailer.2")
+    client.subscribe("ets2/info/config/trailer.3")
+    client.subscribe("ets2/info/config/trailer.4")
+    client.subscribe("ets2/info/config/trailer.5")
+    client.subscribe("ets2/info/config/trailer.6")
+    client.subscribe("ets2/info/config/trailer.7")
+    client.subscribe("ets2/info/config/trailer.8")
+    client.subscribe("ets2/info/config/trailer.9")
+
     while state.active:
         client.loop(timeout=1.0)
 

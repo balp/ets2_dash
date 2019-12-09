@@ -1,4 +1,6 @@
 import json
+import pprint
+
 from ets2_dash.model import Model
 import pytest
 
@@ -384,8 +386,42 @@ def test_get_break_temperature():
         model.set_telematic_data(json.load(j))
     assert pytest.approx(18, abs=0.5) == model.get_break_temperature()
 
+
 def test_get_break_warning_1_01():
     model = Model()
     with open("data/telematic_1_01.json", "r") as j:
         model.set_telematic_data(json.load(j))
     assert not model.get_break_warning()
+
+
+def test_dual_trailer_config():
+    model = Model()
+    with open("data/trailer_dual_0.json", "r") as t0:
+        model.set_trailer_config(json.load(t0), 0)
+    with open("data/trailer_dual_1.json", "r") as t1:
+        model.set_trailer_config(json.load(t1), 1)
+    assert model.trailer_config[0] is not None
+    assert model.trailer_config[1] is not None
+    assert model.trailer_config[2] is None
+
+def test_no_trailer():
+    model = Model()
+    data = json.loads("{}")
+    pprint.pprint(data)
+    model.set_trailer_config(data, 0)
+    model.set_trailer_config(data, 1)
+    model.set_trailer_config(data, 1)
+    assert model.trailer_config[0] is None
+    assert model.trailer_config[1] is None
+    assert model.trailer_config[2] is None
+
+def test_add_job():
+    model = Model()
+    with open("data/job_1.01.json", "r") as j:
+        model.set_job_config(json.load(j))
+    assert model.job.income == 24293
+
+def test_add_no_job():
+    model = Model()
+    model.set_job_config(json.loads("{}"))
+    assert model.job is None

@@ -218,7 +218,8 @@ class View:
                      ]
         speed_info = [PySimpleGUI.Frame('Job',
                                         size=(80, 6),
-                                        layout=job_layout),
+                                        layout=job_layout,
+                                        key="job"),
                       PySimpleGUI.Column(layout=speed_layout,
                                          # size=(80, 6)
                                          )]
@@ -252,24 +253,36 @@ class View:
                  self._info_label('Country', "truck_license_plate_country"),
                  self._info_label('Plate', "truck_license_plate"),
                  ]
-        trailer = [self._info_label('ID', "trailer_id"),
-                   self._info_label('Body', "trailer_body_type"),
-                   self._info_label('Cargo', "trailer_cargo_accessory_id"),
-                   self._info_label('Chain', "trailer_chain_type"),
-                   self._info_label('Country', "trailer_license_plate_country"),
-                   self._info_label('Plate', "trailer_license_plate"),
-
-                   ]
-        layout = [[PySimpleGUI.Column(layout=dash, ),
-                   PySimpleGUI.Frame('Truck', layout=truck, ),
-                   PySimpleGUI.Frame('Trailer', layout=trailer, ),
+        trailer_0 = [self._info_label('ID', "trailer_id_0"),
+                     self._info_label('Body', "trailer_body_type"),
+                     self._info_label('Chain', "trailer_chain_type"),
+                     self._info_label('Cargo', "trailer_cargo_accessory_id_0"),
+                     self._info_label('Country', "trailer_license_plate_country_0"),
+                     self._info_label('Plate', "trailer_license_plate_0"),
+                     ]
+        trailer_1 = [self._info_label('ID', "trailer_id_1"),
+                     self._info_label('Cargo', "trailer_cargo_accessory_id_1"),
+                     self._info_label('Country', "trailer_license_plate_country_1"),
+                     self._info_label('Plate', "trailer_license_plate_1"),
+                     ]
+        trailer_2 = [self._info_label('ID', "trailer_id_2"),
+                     self._info_label('Cargo', "trailer_cargo_accessory_id_2"),
+                     self._info_label('Country', "trailer_license_plate_country_2"),
+                     self._info_label('Plate', "trailer_license_plate_2"),
+                     ]
+        trailers = [[PySimpleGUI.Frame('Truck', layout=truck)],
+                    [PySimpleGUI.Frame('0', layout=trailer_0, key="trailer_0")],
+                    [PySimpleGUI.Frame('1', layout=trailer_1, key="trailer_1")],
+                    [PySimpleGUI.Frame('2', layout=trailer_2, key="trailer_2")]]
+        layout = [[PySimpleGUI.Column(layout=dash),
+                   PySimpleGUI.Column(layout=trailers),
                    ]]
 
         self.window = PySimpleGUI.Window("ETS2 - Telematic Unit").Layout(layout).Finalize()
 
     def wear_info_label(self, label, key):
         return [PySimpleGUI.Text(label,
-                                 size=(10, 1),
+                                 size=(11, 1),
                                  justification="left"),
                 PySimpleGUI.Text("---",
                                  size=(5, 1),
@@ -282,7 +295,7 @@ class View:
                                  justification="left",
                                  key=key + "_label"),
                 PySimpleGUI.Text('',
-                                 size=(18, 1),
+                                 size=(25, 1),
                                  justification="right",
                                  key=key)
                 ]
@@ -304,13 +317,25 @@ class View:
         if self._data.job:
             self._update_element('job_cargo',
                                  f'{self._data.job.cargo} ({self._data.job.cargo_mass / 1000:.1f}t)')
-            self._update_element('job_income', f'{self._data.job.income} €')
+            if self._data.game.id == "ats":
+                self._update_element('job_income', f'${self._data.job.income}')
+            else:
+                self._update_element('job_income', f'{self._data.job.income} €')
             self._update_element('job_source', f'{self._data.job.source_company}'
                                                f':{self._data.job.source_city}')
             self._update_element('job_destination', f'{self._data.job.destination_company}'
                                                     f':{self._data.job.destination_city}')
 
             self._update_element('time_left', format_minute_time(self._data.get_time_left()))
+            self._update_element('time_rest', format_minute_time(self._data.get_time_to_rest()))
+            self._update_element('time_dest', format_minute_time(self._data.get_time_destination()))
+            self._update_element('time_dest_rest', format_minute_time(self._data.get_time_destination_with_rest()))
+        else:
+            self._update_element('job_cargo', '')
+            self._update_element('job_income', '')
+            self._update_element('job_source', '')
+            self._update_element('job_destination', '')
+            self._update_element('time_left', '')
             self._update_element('time_rest', format_minute_time(self._data.get_time_to_rest()))
             self._update_element('time_dest', format_minute_time(self._data.get_time_destination()))
             self._update_element('time_dest_rest', format_minute_time(self._data.get_time_destination_with_rest()))
@@ -375,13 +400,34 @@ class View:
             self._update_element('truck_license_plate_country', self._data.truck_config.license_plate_country)
             self._update_element('truck_license_plate', self._data.truck_config.license_plate)
 
-        if self._data.trailer_config:
-            self._update_element('trailer_id', self._data.trailer_config.id)
-            self._update_element('trailer_body_type', self._data.trailer_config.body_type)
-            self._update_element('trailer_cargo_accessory_id', self._data.trailer_config.cargo_accessory_id)
-            self._update_element('trailer_chain_type', self._data.trailer_config.chain_type)
-            self._update_element('trailer_license_plate_country', self._data.trailer_config.license_plate_country)
-            self._update_element('trailer_license_plate', self._data.trailer_config.license_plate)
+        if self._data.trailer_config[0]:
+            self.window.FindElement("trailer_0").Update(visible=True)
+            self._update_element('trailer_id_0', self._data.trailer_config[0].id)
+            self._update_element('trailer_body_type', self._data.trailer_config[0].body_type)
+            self._update_element('trailer_chain_type', self._data.trailer_config[0].chain_type)
+            self._update_element('trailer_cargo_accessory_id_0', self._data.trailer_config[0].cargo_accessory_id)
+            self._update_element('trailer_license_plate_country_0', self._data.trailer_config[0].license_plate_country)
+            self._update_element('trailer_license_plate_0', self._data.trailer_config[0].license_plate)
+        else:
+            self.window.FindElement("trailer_0").Update(visible=False)
+
+        if self._data.trailer_config[1]:
+            self.window.FindElement("trailer_1").Update(visible=True)
+            self._update_element('trailer_id_1', self._data.trailer_config[1].id)
+            self._update_element('trailer_cargo_accessory_id_1', self._data.trailer_config[1].cargo_accessory_id)
+            self._update_element('trailer_license_plate_country_1', self._data.trailer_config[1].license_plate_country)
+            self._update_element('trailer_license_plate_1', self._data.trailer_config[1].license_plate)
+        else:
+            self.window.FindElement("trailer_1").Update(visible=False)
+
+        if self._data.trailer_config[2]:
+            self.window.FindElement("trailer_2").Update(visible=True)
+            self._update_element('trailer_id_2', self._data.trailer_config[2].id)
+            self._update_element('trailer_cargo_accessory_id_2', self._data.trailer_config[2].cargo_accessory_id)
+            self._update_element('trailer_license_plate_country_2', self._data.trailer_config[2].license_plate_country)
+            self._update_element('trailer_license_plate_2', self._data.trailer_config[2].license_plate)
+        else:
+            self.window.FindElement("trailer_2").Update(visible=False)
 
 
 def format_minute_time(time):

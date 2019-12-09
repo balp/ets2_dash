@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Optional, Dict
+from typing import Optional, Dict, List
 
 
 @dataclass
@@ -259,20 +259,23 @@ class JobConfig:
     source_company_id: str
 
 
-def jobconfig_from_dict(data: Dict) -> JobConfig:
-    return JobConfig(cargo=data['cargo'],
-                     cargo_id=data['cargo.id'],
-                     cargo_mass=data['cargo.mass'],
-                     delivery_time=data['delivery.time'],
-                     destination_city=data['destination.city'],
-                     destination_city_id=data['destination.city.id'],
-                     destination_company=data['destination.company'],
-                     destination_company_id=data['destination.company.id'],
-                     income=data['income'],
-                     source_city=data['source.city'],
-                     source_city_id=data['source.city.id'],
-                     source_company=data['source.company'],
-                     source_company_id=data['source.company.id'])
+def jobconfig_from_dict(data: Dict) -> Optional[JobConfig]:
+    if len(data):
+        return JobConfig(cargo=data['cargo'],
+                         cargo_id=data['cargo.id'],
+                         cargo_mass=data['cargo.mass'],
+                         delivery_time=data['delivery.time'],
+                         destination_city=data['destination.city'],
+                         destination_city_id=data['destination.city.id'],
+                         destination_company=data['destination.company'],
+                         destination_company_id=data['destination.company.id'],
+                         income=data['income'],
+                         source_city=data['source.city'],
+                         source_city_id=data['source.city.id'],
+                         source_company=data['source.company'],
+                         source_company_id=data['source.company.id'])
+    else:
+        return None
 
 
 @dataclass
@@ -385,9 +388,9 @@ def truckconfig_from_dict(data: Dict) -> TruckConfig:
 @dataclass
 class TrailerConfig:
     id: str
-    body_type: str
+    body_type: Optional[str]
+    chain_type: Optional[str]
     cargo_accessory_id: str
-    chain_type: str
     hook_position: Vector
     license_plate: str
     license_plate_country: str
@@ -400,33 +403,37 @@ class TrailerConfig:
     wheels_count: int
 
 
-def trailer_config_from_dict(data: Dict) -> TrailerConfig:
-    return TrailerConfig(
-        id=data['id'],
-        body_type=data['body.type'],
-        cargo_accessory_id=data['cargo.accessory.id'],
-        chain_type=data['chain.type'],
-        hook_position=vector_from_dict(data['hook.position']),
-        license_plate=data['license.plate'],
-        license_plate_country=data['license.plate.country'],
-        license_plate_country_id=data['license.plate.country.id'],
-        wheel_position=vector_from_dict(data['wheel.position']),
-        wheel_powered=data['wheel.powered'],
-        wheel_radius=data['wheel.radius'],
-        wheel_simulated=data['wheel.simulated'],
-        wheel_steerable=data['wheel.steerable'],
-        wheels_count=data['wheels.count'],
-    )
+def trailer_config_from_dict(data: Dict) -> Optional[TrailerConfig]:
+    if len(data):
+        return TrailerConfig(
+            id=data['id'],
+            body_type=(data['body.type'] if 'body.type' in data else None),
+            chain_type=(data['chain.type'] if 'chain.type' in data else None),
+            cargo_accessory_id=data['cargo.accessory.id'],
+            hook_position=vector_from_dict(data['hook.position']),
+            license_plate=data['license.plate'],
+            license_plate_country=data['license.plate.country'],
+            license_plate_country_id=data['license.plate.country.id'],
+            wheel_position=vector_from_dict(data['wheel.position']),
+            wheel_powered=data['wheel.powered'],
+            wheel_radius=data['wheel.radius'],
+            wheel_simulated=data['wheel.simulated'],
+            wheel_steerable=data['wheel.steerable'],
+            wheels_count=data['wheels.count'],
+        )
+    else:
+        return None
+
 
 
 class Model:
     def __init__(self):
         self.telematic: Optional[Telematic] = None
         self.job: Optional[JobConfig] = None
-        self._info: Optional[Info] = None
-        self._game: Optional[Game] = None
+        self.info: Optional[Info] = None
+        self.game: Optional[Game] = None
         self.truck_config: Optional[TruckConfig] = None
-        self.trailer_config: Optional[TruckConfig] = None
+        self.trailer_config: List[Optional[TrailerConfig]] = [None for _ in range(10)]
 
     def set_telematic_data(self, data):
         self.telematic = telematic_from_dict(data)
@@ -435,30 +442,30 @@ class Model:
         self.job = jobconfig_from_dict(data)
 
     def set_info(self, data):
-        self._info = info_from_dict(data)
+        self.info = info_from_dict(data)
 
     def set_game(self, data):
-        self._game = game_from_dict(data)
+        self.game = game_from_dict(data)
 
     def set_truck_config(self, data):
         self.truck_config = truckconfig_from_dict(data)
 
-    def set_trailer_config(self, data):
-        self.trailer_config = trailer_config_from_dict(data)
+    def set_trailer_config(self, data, index):
+        self.trailer_config[index] = trailer_config_from_dict(data)
 
     def get_game_pause(self) -> Optional[bool]:
-        if self._info:
-            return self._info.paused
+        if self.info:
+            return self.info.paused
         return None
 
     def get_game_name(self) -> Optional[str]:
-        if self._game:
-            return self._game.name
+        if self.game:
+            return self.game.name
         return None
 
     def get_game_id(self) -> Optional[str]:
-        if self._game:
-            return self._game.id
+        if self.game:
+            return self.game.id
         return None
 
     def get_time_left(self) -> Optional[int]:
