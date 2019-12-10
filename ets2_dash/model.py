@@ -221,11 +221,7 @@ def truck_from_dict(data: Dict):
 @dataclass
 class Telematic:
     common: Common
-    raw_paused_simulation_timestamp: int
-    raw_rendering_timestamp: int
-    raw_simulation_timestamp: int
-    timestamp: int
-    trailer: Trailer
+    trailer:Trailer
     truck: Truck
 
 
@@ -234,10 +230,6 @@ def telematic_from_dict(data: Dict):
     trailer = trailer_from_dict(data)
     truck = truck_from_dict(data)
     return Telematic(common=common,
-                     raw_paused_simulation_timestamp=data['raw_paused_simulation_timestamp'],
-                     raw_rendering_timestamp=data['raw_rendering_timestamp'],
-                     raw_simulation_timestamp=data['raw_simulation_timestamp'],
-                     timestamp=data['timestamp'],
                      trailer=trailer,
                      truck=truck)
 

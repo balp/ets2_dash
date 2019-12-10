@@ -9,9 +9,8 @@ def test_get_time_left_normal():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    with open("data/job.json", "r") as j:
-        model.set_job_config(json.load(j))
-    assert 539 == model.get_time_left()
+    model.set_job_config(json.loads("{}"))
+    assert model.get_time_left() == None
 
 
 def test_get_time_left_community():
@@ -27,7 +26,7 @@ def test_get_time_to_rest():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert 450 == model.get_time_to_rest()
+    assert model.get_time_to_rest() == 63
 
 
 def test_get_time_destination_freeride():
@@ -41,14 +40,14 @@ def test_get_time_destination():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert 283 == model.get_time_destination()
+    assert model.get_time_destination() == 0
 
 
 def test_get_time_destination_with_rest_no_rest():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert 283 == model.get_time_destination_with_rest()
+    assert model.get_time_destination_with_rest() == 0
 
 
 def test_get_time_destination_with_rest_needs_rest():
@@ -62,7 +61,7 @@ def test_get_speed_kmh():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert pytest.approx(0.003, abs=0.001) == model.get_speed_kmh()
+    assert model.get_speed_kmh() == pytest.approx(16.1, abs=0.1)
 
 
 def test_get_cruise_control_kmh():
@@ -76,14 +75,14 @@ def test_get_speed_limit_kmh():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert pytest.approx(48.2, abs=0.1) == model.get_speed_limit_kmh()
+    assert model.get_speed_limit_kmh() == pytest.approx(0.0, abs=0.1)
 
 
 def test_get_speed_mph():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert pytest.approx(0.003, abs=0.001) == model.get_speed_mph()
+    assert model.get_speed_mph() == pytest.approx(10.0, abs=0.1)
 
 
 def test_get_cruise_control_mph():
@@ -97,28 +96,28 @@ def test_get_speed_limit_mph():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert pytest.approx(30.0, abs=0.1) == model.get_speed_limit_mph()
+    assert model.get_speed_limit_mph() == pytest.approx(0.0, abs=0.1)
 
 
 def test_get_fuel_left():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert pytest.approx(556.5, abs=0.05) == model.get_fuel_left()
+    assert model.get_fuel_left() == pytest.approx(142.3, abs=0.05)
 
 
 def test_get_fuel_range():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert pytest.approx(1739.1, abs=0.05) == model.get_fuel_range()
+    assert model.get_fuel_range() == pytest.approx(444.6, abs=0.05)
 
 
 def test_get_fuel_consumtion():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert pytest.approx(0.66, abs=0.005) == model.get_fuel_consumtion()
+    assert model.get_fuel_consumtion() == pytest.approx(0.5, abs=0.1)
 
 
 def test_get_wear_cabin():
@@ -153,7 +152,7 @@ def test_get_wear_wheels():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert pytest.approx(0.015, abs=0.005) == model.get_wear_wheels()
+    assert model.get_wear_wheels() == pytest.approx(0.005, abs=0.001)
 
 
 def test_get_wear_trailer():
@@ -237,14 +236,14 @@ def test_get_light_aux_front():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert not model.get_light_aux_front()
+    assert model.get_light_aux_front()
 
 
 def test_get_light_aux_roof():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert not model.get_light_aux_roof()
+    assert model.get_light_aux_roof()
 
 
 def test_get_light_breaking():
@@ -300,28 +299,28 @@ def test_get_break_parking():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert model.get_break_parking()
+    assert not model.get_break_parking()
 
 
 def test_get_electric():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert not model.get_electric()
+    assert model.get_electric()
 
 
 def test_get_battery_warning():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert model.get_battery_warning()
+    assert not model.get_battery_warning()
 
 
 def test_get_engine():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert not model.get_engine()
+    assert model.get_engine()
 
 
 def test_get_fuel_warning():
@@ -335,7 +334,7 @@ def test_get_oil_warning():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert model.get_oil_warning()
+    assert not model.get_oil_warning()
 
 
 def test_get_water_warning():
@@ -370,7 +369,7 @@ def test_get_air_pressure():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert pytest.approx(124.4, abs=0.5) == model.get_air_pressure()
+    assert model.get_air_pressure() == pytest.approx(115.5, abs=0.5)
 
 
 def test_get_break_retarder():
@@ -384,7 +383,7 @@ def test_get_break_temperature():
     model = Model()
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
-    assert pytest.approx(18, abs=0.5) == model.get_break_temperature()
+    assert model.get_break_temperature() == pytest.approx(27.8, abs=0.5)
 
 
 def test_get_break_warning_1_01():
