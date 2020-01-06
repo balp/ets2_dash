@@ -6,11 +6,13 @@ import PySimpleGUI
 import json
 
 from ets2.model import Model
-from ets2_dash.view import View
+from ets2_worklog.view import View
+from ets2_worklog.model import WorkLog
 
 
 def setup():
     model = Model()
+    work_log = WorkLog(model)
     telematic_files = ["data/telematic.json",
                        "data/telematic_1_01.json",
                        "data/telematic_breaking.json",
@@ -32,12 +34,12 @@ def setup():
         model.set_trailer_config(json.load(j), 0)
     with open("data/trailer_dual_1.json", "r") as j:
         model.set_trailer_config(json.load(j), 1)
-    return model
+    return model, work_log
 
 
-def main(data_values):
+def main(data_values, work_log):
     PySimpleGUI.ChangeLookAndFeel('Dark')
-    hmi = View(data_values)
+    hmi = View(data_values, work_log)
 
     _, _ = hmi.window.Read(timeout=100)
 
@@ -49,4 +51,5 @@ def main(data_values):
 
 
 if __name__ == '__main__':
-    main(setup())
+    data_values, work_log = setup()
+    main(data_values, work_log)

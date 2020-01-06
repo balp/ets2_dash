@@ -1,29 +1,23 @@
-
 import PySimpleGUI
 import threading
-from dataclasses import dataclass
 
 from ets2.model import Model
-from ets2.mqtt_handler import mqtt_thread_loop
-from ets2_dash.view import View
-
-
-@dataclass
-class GlobalState:
-    active: bool = True
+from ets2.mqtt_handler import mqtt_thread_loop, GlobalState
+from ets2_worklog.view import View
+from ets2_worklog.model import WorkLog
 
 
 def main():
-    print("Startup!!!")
     model: Model = Model()
+    work_log: WorkLog = WorkLog(model)
     state: GlobalState = GlobalState()
-    mqtt_reader_thread = threading.Thread(target=mqtt_thread_loop, args=(model, state))
+    mqtt_reader_thread = threading.Thread(target=mqtt_thread_loop,
+                                          args=(model, state))
     mqtt_reader_thread.start()
 
     PySimpleGUI.ChangeLookAndFeel('Dark')
-    hmi = View(model)
+    hmi = View(model=model, work_log=work_log)
 
-    print("Loop!!!")
     while True:
         event, values = hmi.window.Read(timeout=50)
         hmi.update_data()

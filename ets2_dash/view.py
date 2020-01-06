@@ -3,7 +3,7 @@ import datetime
 
 import PySimpleGUI
 
-import ets2_dash.model
+import ets2.model
 
 
 def wear_info_label(label, key):
@@ -30,7 +30,7 @@ def _info_label(label, key):
 
 class View:
     def __init__(self, data):
-        self._data: ets2_dash.model.Model = data
+        self._data: ets2.model.Model = data
         self._setup_window()
         self._count = 0
 

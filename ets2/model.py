@@ -1,3 +1,4 @@
+import json
 from dataclasses import dataclass
 from operator import attrgetter
 from typing import Optional, Dict, List
@@ -222,7 +223,7 @@ def truck_from_dict(data: Dict):
 @dataclass
 class Telematic:
     common: Common
-    trailer:Trailer
+    trailer: Trailer
     truck: Truck
 
 
@@ -341,41 +342,44 @@ class TruckConfig:
     wheels_count: bool
 
 
-def truckconfig_from_dict(data: Dict) -> TruckConfig:
-    return TruckConfig(
-        id=data['id'],
-        name=data['name'],
-        adblue_capacity=data['adblue.capacity'],
-        adblue_warning_factor=data['adblue.warning.factor'],
-        battery_voltage_warning=data['battery.voltage.warning'],
-        brake_air_pressure_emergency=data['brake.air.pressure.emergency'],
-        brake_air_pressure_warning=data['brake.air.pressure.warning'],
-        brand=data['brand'],
-        brand_id=data['brand_id'],
-        cabin_position=vector_from_dict(data['cabin.position']),
-        differential_ratio=data['differential.ratio'],
-        forward_ratio=data['forward.ratio'],
-        fuel_capacity=data['fuel.capacity'],
-        fuel_warning_factor=data['fuel.warning.factor'],
-        gears_forward=data['gears.forward'],
-        gears_reverse=data['gears.reverse'],
-        head_position=vector_from_dict(data['head.position']),
-        hook_position=vector_from_dict(data['hook.position']),
-        license_plate=data['license.plate'],
-        license_plate_country=data['license.plate.country'],
-        license_plate_country_id=data['license.plate.country.id'],
-        oil_pressure_warning=data['oil.pressure.warning'],
-        retarder_steps=data['retarder.steps'],
-        reverse_ratio=data['reverse.ratio'],
-        rpm_limit=data['rpm.limit'],
-        water_temperature_warning=data['water.temperature.warning'],
-        wheel_position=vector_from_dict(data['wheel.position']),
-        wheel_powered=data['wheel.powered'],
-        wheel_radius=data['wheel.radius'],
-        wheel_simulated=data['wheel.simulated'],
-        wheel_steerable=data['wheel.steerable'],
-        wheels_count=data['wheels.count'],
-    )
+def truckconfig_from_dict(data: Dict) -> Optional[TruckConfig]:
+    if len(data):
+        return TruckConfig(
+            id=data['id'],
+            name=data['name'],
+            adblue_capacity=data['adblue.capacity'],
+            adblue_warning_factor=data['adblue.warning.factor'],
+            battery_voltage_warning=data['battery.voltage.warning'],
+            brake_air_pressure_emergency=data['brake.air.pressure.emergency'],
+            brake_air_pressure_warning=data['brake.air.pressure.warning'],
+            brand=data['brand'],
+            brand_id=data['brand_id'],
+            cabin_position=vector_from_dict(data['cabin.position']),
+            differential_ratio=data['differential.ratio'],
+            forward_ratio=data['forward.ratio'],
+            fuel_capacity=data['fuel.capacity'],
+            fuel_warning_factor=data['fuel.warning.factor'],
+            gears_forward=data['gears.forward'],
+            gears_reverse=data['gears.reverse'],
+            head_position=vector_from_dict(data['head.position']),
+            hook_position=vector_from_dict(data['hook.position']),
+            license_plate=data['license.plate'],
+            license_plate_country=data['license.plate.country'],
+            license_plate_country_id=data['license.plate.country.id'],
+            oil_pressure_warning=data['oil.pressure.warning'],
+            retarder_steps=data['retarder.steps'],
+            reverse_ratio=data['reverse.ratio'],
+            rpm_limit=data['rpm.limit'],
+            water_temperature_warning=data['water.temperature.warning'],
+            wheel_position=vector_from_dict(data['wheel.position']),
+            wheel_powered=data['wheel.powered'],
+            wheel_radius=data['wheel.radius'],
+            wheel_simulated=data['wheel.simulated'],
+            wheel_steerable=data['wheel.steerable'],
+            wheels_count=data['wheels.count'],
+        )
+    else:
+        return None
 
 
 @dataclass
@@ -427,6 +431,9 @@ class Tracks:
     def __str__(self):
         return str(self.points)
 
+    def __repr__(self):
+        return str(self.points)
+
     def add_telematic(self, telematic: Telematic) -> None:
         if telematic.common.game_time > self._last_time:
             self._last_time = telematic.common.game_time
@@ -451,6 +458,7 @@ class Tracks:
 
 class Model:
     def __init__(self):
+        self._observers = []
         self.telematic: Optional[Telematic] = None
         self.job: Optional[JobConfig] = None
         self.info: Optional[Info] = None
@@ -459,24 +467,37 @@ class Model:
         self.trailer_config: List[Optional[TrailerConfig]] = [None for _ in range(10)]
         self.tracks: Tracks = Tracks()
 
+    def register_observer(self, observer):
+        self._observers.append(observer)
+
+    def _data_changed(self):
+        for observer in self._observers:
+            observer.notify(self)
+
     def set_telematic_data(self, data):
         self.telematic = telematic_from_dict(data)
         self.tracks.add_telematic(self.telematic)
+        self._data_changed()
 
     def set_job_config(self, data):
         self.job = jobconfig_from_dict(data)
+        self._data_changed()
 
     def set_info(self, data):
         self.info = info_from_dict(data)
+        self._data_changed()
 
     def set_game(self, data):
         self.game = game_from_dict(data)
+        self._data_changed()
 
     def set_truck_config(self, data):
         self.truck_config = truckconfig_from_dict(data)
+        self._data_changed()
 
     def set_trailer_config(self, data, index):
         self.trailer_config[index] = trailer_config_from_dict(data)
+        self._data_changed()
 
     def get_game_pause(self) -> Optional[bool]:
         if self.info:
@@ -734,3 +755,36 @@ class Model:
         if self.telematic:
             return self.telematic.truck.brake_temperature
         return False
+
+
+def add_json_to_model(model: Model, json_data: json, topic: str):
+    if topic == "ets2/data":
+        model.set_telematic_data(json_data)
+    elif topic == "ets2/game":
+        model.set_game(json_data)
+    elif topic == "ets2/info":
+        model.set_info(json_data)
+    elif topic == "ets2/info/config/job":
+        model.set_job_config(json_data)
+    elif topic == "ets2/info/config/truck":
+        model.set_truck_config(json_data)
+    elif topic == "ets2/info/config/trailer.0":
+        model.set_trailer_config(json_data, 0)
+    elif topic == "ets2/info/config/trailer.1":
+        model.set_trailer_config(json_data, 1)
+    elif topic == "ets2/info/config/trailer.2":
+        model.set_trailer_config(json_data, 2)
+    elif topic == "ets2/info/config/trailer.3":
+        model.set_trailer_config(json_data, 3)
+    elif topic == "ets2/info/config/trailer.4":
+        model.set_trailer_config(json_data, 4)
+    elif topic == "ets2/info/config/trailer.5":
+        model.set_trailer_config(json_data, 5)
+    elif topic == "ets2/info/config/trailer.6":
+        model.set_trailer_config(json_data, 6)
+    elif topic == "ets2/info/config/trailer.7":
+        model.set_trailer_config(json_data, 7)
+    elif topic == "ets2/info/config/trailer.8":
+        model.set_trailer_config(json_data, 8)
+    elif topic == "ets2/info/config/trailer.9":
+        model.set_trailer_config(json_data, 9)

@@ -3,7 +3,7 @@ import pprint
 
 from approvaltests import verify
 
-from ets2_dash.model import Model
+from ets2.model import Model
 import pytest
 
 
@@ -447,7 +447,7 @@ def test_inital_track():
 
 def test_inital_track_bottom_left_corner_empty():
     model = Model()
-    assert model.tracks.bottom_left() == (-100000, -5)
+    assert model.tracks.bottom_left() == (-119999, -20000)
 
 def test_inital_track_bottom_left_corner():
     model = Model()
@@ -460,11 +460,11 @@ def test_inital_track_bottom_left_corner():
     for f in files:
         with open(f, "r") as j:
             model.set_telematic_data(json.load(j))
-    assert model.tracks.bottom_left() == (-38626.81513977051, -1.187657356262207)
+    assert model.tracks.bottom_left() == (-38626.81513977051, 28.410934448242188, 35655.31903076172)
 
 def test_inital_track_top_right_corner_empty():
     model = Model()
-    assert model.tracks.top_right() == (61000, 30)
+    assert model.tracks.top_right() == (-65000, -70000)
 
 
 def test_inital_track_top_right_corner():
@@ -478,4 +478,4 @@ def test_inital_track_top_right_corner():
     for f in files:
         with open(f, "r") as j:
             model.set_telematic_data(json.load(j))
-    assert model.tracks.top_right() == (60740.99865722656, 28.410934448242188)
+    assert model.tracks.top_right() == (-38626.81513977051, 28.410934448242188, 35655.31903076172)
