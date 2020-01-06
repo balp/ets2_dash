@@ -61,7 +61,7 @@ def mqtt_thread_loop(model: Model, state: GlobalState):
     client.subscribe("ets2/game")
     client.subscribe("ets2/info")
     client.subscribe("ets2/info/config/job")
-    # client.subscribe("ets2/info/config/substances")
+    client.subscribe("ets2/info/config/substances")
     # client.subscribe("ets2/info/config/controls")
     # client.subscribe("ets2/info/config/hshifter")
     client.subscribe("ets2/info/config/truck")

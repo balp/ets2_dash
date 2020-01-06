@@ -1,6 +1,8 @@
 import json
 import pprint
 
+from approvaltests import verify
+
 from ets2_dash.model import Model
 import pytest
 
@@ -10,7 +12,7 @@ def test_get_time_left_normal():
     with open("data/telematic.json", "r") as j:
         model.set_telematic_data(json.load(j))
     model.set_job_config(json.loads("{}"))
-    assert model.get_time_left() == None
+    assert model.get_time_left() is None
 
 
 def test_get_time_left_community():
@@ -403,6 +405,7 @@ def test_dual_trailer_config():
     assert model.trailer_config[1] is not None
     assert model.trailer_config[2] is None
 
+
 def test_no_trailer():
     model = Model()
     data = json.loads("{}")
@@ -414,13 +417,65 @@ def test_no_trailer():
     assert model.trailer_config[1] is None
     assert model.trailer_config[2] is None
 
+
 def test_add_job():
     model = Model()
     with open("data/job_1.01.json", "r") as j:
         model.set_job_config(json.load(j))
     assert model.job.income == 24293
 
+
 def test_add_no_job():
     model = Model()
     model.set_job_config(json.loads("{}"))
     assert model.job is None
+
+
+def test_inital_track():
+    model = Model()
+    files = ["data/telematic.json",
+             "data/telematic_1_01.json",
+             "data/telematic_breaking.json",
+             "data/telematic_engine_break.json",
+             "data/telematic_freeride.json",
+             "data/telematic_reststop.json"]
+    for f in files:
+        with open(f, "r") as j:
+            model.set_telematic_data(json.load(j))
+    verify(str(model.tracks))
+
+
+def test_inital_track_bottom_left_corner_empty():
+    model = Model()
+    assert model.tracks.bottom_left() == (-100000, -5)
+
+def test_inital_track_bottom_left_corner():
+    model = Model()
+    files = ["data/telematic.json",
+             "data/telematic_1_01.json",
+             "data/telematic_breaking.json",
+             "data/telematic_engine_break.json",
+             "data/telematic_freeride.json",
+             "data/telematic_reststop.json"]
+    for f in files:
+        with open(f, "r") as j:
+            model.set_telematic_data(json.load(j))
+    assert model.tracks.bottom_left() == (-38626.81513977051, -1.187657356262207)
+
+def test_inital_track_top_right_corner_empty():
+    model = Model()
+    assert model.tracks.top_right() == (61000, 30)
+
+
+def test_inital_track_top_right_corner():
+    model = Model()
+    files = ["data/telematic.json",
+             "data/telematic_1_01.json",
+             "data/telematic_breaking.json",
+             "data/telematic_engine_break.json",
+             "data/telematic_freeride.json",
+             "data/telematic_reststop.json"]
+    for f in files:
+        with open(f, "r") as j:
+            model.set_telematic_data(json.load(j))
+    assert model.tracks.top_right() == (60740.99865722656, 28.410934448242188)

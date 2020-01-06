@@ -11,8 +11,15 @@ from ets2_dash.view import View
 
 def setup():
     model = Model()
-    with open("data/telematic.json", "r") as j:
-        model.set_telematic_data(json.load(j))
+    telematic_files = ["data/telematic.json",
+                       "data/telematic_1_01.json",
+                       "data/telematic_breaking.json",
+                       "data/telematic_engine_break.json",
+                       "data/telematic_freeride.json",
+                       "data/telematic_reststop.json"]
+    for telematic_file in telematic_files:
+        with open(telematic_file, "r") as j:
+            model.set_telematic_data(json.load(j))
     with open("data/info.json", "r") as j:
         model.set_info(json.load(j))
     with open("data/game.json", "r") as j:

@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from operator import attrgetter
 from typing import Optional, Dict, List
 
 
@@ -417,6 +418,36 @@ def trailer_config_from_dict(data: Dict) -> Optional[TrailerConfig]:
         return None
 
 
+class Tracks:
+    """Keep tracks of where the truck been"""
+    def __init__(self):
+        self.points: List[Placement] = []
+        self._last_time = 0
+
+    def __str__(self):
+        return str(self.points)
+
+    def add_telematic(self, telematic: Telematic) -> None:
+        if telematic.common.game_time > self._last_time:
+            self._last_time = telematic.common.game_time
+            self.points.append(telematic.truck.world_placement)
+
+    def bottom_left(self) -> (int, int):
+        if self.points:
+            x = min(self.points, key=attrgetter('position.x')).position.x
+            y = min(self.points, key=attrgetter('position.y')).position.y
+            z = min(self.points, key=attrgetter('position.z')).position.z
+            return x, y, z
+        return -119999, -20000  # ATS Hack
+
+    def top_right(self) -> (int, int):
+        if self.points:
+            x = max(self.points, key=attrgetter('position.x')).position.x
+            y = max(self.points, key=attrgetter('position.y')).position.y
+            z = max(self.points, key=attrgetter('position.z')).position.z
+            return x, y, z
+        return -65000, -70000  # ATS Hack
+
 
 class Model:
     def __init__(self):
@@ -426,9 +457,11 @@ class Model:
         self.game: Optional[Game] = None
         self.truck_config: Optional[TruckConfig] = None
         self.trailer_config: List[Optional[TrailerConfig]] = [None for _ in range(10)]
+        self.tracks: Tracks = Tracks()
 
     def set_telematic_data(self, data):
         self.telematic = telematic_from_dict(data)
+        self.tracks.add_telematic(self.telematic)
 
     def set_job_config(self, data):
         self.job = jobconfig_from_dict(data)
