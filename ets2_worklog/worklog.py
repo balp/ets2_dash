@@ -12,7 +12,7 @@ def main():
     work_log: WorkLog = WorkLog(model)
     state: GlobalState = GlobalState()
     mqtt_reader_thread = threading.Thread(target=mqtt_thread_loop,
-                                          args=(model, state))
+                                          args=(model, work_log, state))
     mqtt_reader_thread.start()
 
     PySimpleGUI.ChangeLookAndFeel('Dark')

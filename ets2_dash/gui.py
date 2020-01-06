@@ -17,7 +17,8 @@ def main():
     print("Startup!!!")
     model: Model = Model()
     state: GlobalState = GlobalState()
-    mqtt_reader_thread = threading.Thread(target=mqtt_thread_loop, args=(model, state))
+    mqtt_reader_thread = threading.Thread(target=mqtt_thread_loop,
+                                          args=(model, None, state))
     mqtt_reader_thread.start()
 
     PySimpleGUI.ChangeLookAndFeel('Dark')

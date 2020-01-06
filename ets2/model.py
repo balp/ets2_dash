@@ -470,34 +470,34 @@ class Model:
     def register_observer(self, observer):
         self._observers.append(observer)
 
-    def _data_changed(self):
+    def _data_changed(self, change):
         for observer in self._observers:
-            observer.notify(self)
+            observer.notify(self, change)
 
     def set_telematic_data(self, data):
         self.telematic = telematic_from_dict(data)
         self.tracks.add_telematic(self.telematic)
-        self._data_changed()
+        self._data_changed("telematic")
 
     def set_job_config(self, data):
         self.job = jobconfig_from_dict(data)
-        self._data_changed()
+        self._data_changed("job")
 
     def set_info(self, data):
         self.info = info_from_dict(data)
-        self._data_changed()
+        self._data_changed("info")
 
     def set_game(self, data):
         self.game = game_from_dict(data)
-        self._data_changed()
+        self._data_changed("game")
 
     def set_truck_config(self, data):
         self.truck_config = truckconfig_from_dict(data)
-        self._data_changed()
+        self._data_changed("truck_config")
 
     def set_trailer_config(self, data, index):
         self.trailer_config[index] = trailer_config_from_dict(data)
-        self._data_changed()
+        self._data_changed("trailer_config")
 
     def get_game_pause(self) -> Optional[bool]:
         if self.info:

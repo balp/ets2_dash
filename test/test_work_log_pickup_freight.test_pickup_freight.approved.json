@@ -1,7 +1,9 @@
 {
     "_jobs": [
         {
+            "cancelled": null,
             "config": null,
+            "delivered": null,
             "ended": {
                 "__reduce__": [
                     {
@@ -53,6 +55,7 @@
             }
         },
         {
+            "cancelled": null,
             "config": {
                 "cargo": "Lumber",
                 "cargo_id": "lumber_b",
@@ -69,6 +72,7 @@
                 "source_company": "Deepgrove",
                 "source_company_id": "dg_wd_saw"
             },
+            "delivered": null,
             "ended": null,
             "py/object": "ets2_worklog.model.Job",
             "started": {

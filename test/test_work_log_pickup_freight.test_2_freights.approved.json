@@ -149,7 +149,17 @@
             "cancelled": null,
             "config": null,
             "delivered": null,
-            "ended": null,
+            "ended": {
+                "__reduce__": [
+                    {
+                        "py/type": "datetime.datetime"
+                    },
+                    [
+                        "AAEBGw4kAAAAAA=="
+                    ]
+                ],
+                "py/object": "datetime.datetime"
+            },
             "py/object": "ets2_worklog.model.Job",
             "started": {
                 "__reduce__": [
@@ -163,7 +173,7 @@
                 "py/object": "datetime.datetime"
             },
             "track": {
-                "_last_time": 38312,
+                "_last_time": 38316,
                 "points": [
                     {
                         "orientation": {
@@ -177,6 +187,196 @@
                             "x": -113934.7191772461,
                             "y": 5.177135944366455,
                             "z": -42777.36331176758
+                        },
+                        "py/object": "ets2.model.Placement"
+                    },
+                    {
+                        "orientation": {
+                            "heading": 0.6608810424804688,
+                            "pitch": -6.7163523453928065e-06,
+                            "py/object": "ets2.model.Euler",
+                            "roll": 5.54004191144486e-06
+                        },
+                        "position": {
+                            "py/object": "ets2.model.Vector",
+                            "x": -113746.27894592285,
+                            "y": 5.177285194396973,
+                            "z": -42803.44400024414
+                        },
+                        "py/object": "ets2.model.Placement"
+                    },
+                    {
+                        "orientation": {
+                            "heading": 0.42154666781425476,
+                            "pitch": -0.0001929907884914428,
+                            "py/object": "ets2.model.Euler",
+                            "roll": -0.00018251781875733286
+                        },
+                        "position": {
+                            "py/object": "ets2.model.Vector",
+                            "x": -113731.70094299316,
+                            "y": 5.183038234710693,
+                            "z": -42779.22634887695
+                        },
+                        "py/object": "ets2.model.Placement"
+                    }
+                ],
+                "py/object": "ets2.model.Tracks"
+            }
+        },
+        {
+            "cancelled": null,
+            "config": {
+                "cargo": "Gypsum",
+                "cargo_id": "gypsum",
+                "cargo_mass": 21492.798828125,
+                "delivery_time": 38977,
+                "destination_city": "The Dalles",
+                "destination_city_id": "the_dalles",
+                "destination_company": "Home Store",
+                "destination_company_id": "hs_mkt",
+                "income": 12429,
+                "py/object": "ets2.model.JobConfig",
+                "source_city": "Coos Bay",
+                "source_city_id": "coos_bay",
+                "source_company": "Home Store",
+                "source_company_id": "hs_whs"
+            },
+            "delivered": {
+                "auto_load": true,
+                "auto_park": false,
+                "cargo_damage": 0.0,
+                "distance": 487.0,
+                "py/object": "ets2_worklog.model.Delivered",
+                "revenue": 12429,
+                "time": 351,
+                "xp": 795
+            },
+            "ended": {
+                "__reduce__": [
+                    {
+                        "py/type": "datetime.datetime"
+                    },
+                    [
+                        "AAEBGxQbAAAAAA=="
+                    ]
+                ],
+                "py/object": "datetime.datetime"
+            },
+            "py/object": "ets2_worklog.model.Job",
+            "started": {
+                "__reduce__": [
+                    {
+                        "py/type": "datetime.datetime"
+                    },
+                    [
+                        "AAEBGw4kAAAAAA=="
+                    ]
+                ],
+                "py/object": "datetime.datetime"
+            },
+            "track": {
+                "_last_time": 38667,
+                "points": [
+                    {
+                        "py/id": 36
+                    },
+                    {
+                        "orientation": {
+                            "heading": 0.90943443775177,
+                            "pitch": 1.753081778588239e-05,
+                            "py/object": "ets2.model.Euler",
+                            "roll": -1.13836483706109e-06
+                        },
+                        "position": {
+                            "py/object": "ets2.model.Vector",
+                            "x": -113712.37997817993,
+                            "y": 5.176380634307861,
+                            "z": -42736.49880981445
+                        },
+                        "py/object": "ets2.model.Placement"
+                    },
+                    {
+                        "orientation": {
+                            "heading": 0.3180747926235199,
+                            "pitch": -0.0003237130003981292,
+                            "py/object": "ets2.model.Euler",
+                            "roll": -0.0015823650173842907
+                        },
+                        "position": {
+                            "py/object": "ets2.model.Vector",
+                            "x": -99166.45639038086,
+                            "y": 12.230788230895996,
+                            "z": -51001.42868041992
+                        },
+                        "py/object": "ets2.model.Placement"
+                    },
+                    {
+                        "orientation": {
+                            "heading": 0.2571701109409332,
+                            "pitch": 0.0020690918900072575,
+                            "py/object": "ets2.model.Euler",
+                            "roll": 0.0001236264215549454
+                        },
+                        "position": {
+                            "py/object": "ets2.model.Vector",
+                            "x": -99233.9595336914,
+                            "y": 12.250280380249023,
+                            "z": -50934.83279418945
+                        },
+                        "py/object": "ets2.model.Placement"
+                    },
+                    {
+                        "orientation": {
+                            "heading": 0.2233603447675705,
+                            "pitch": 0.00035232389927841723,
+                            "py/object": "ets2.model.Euler",
+                            "roll": -5.710796904168092e-05
+                        },
+                        "position": {
+                            "py/object": "ets2.model.Vector",
+                            "x": -99288.8861694336,
+                            "y": 12.376511573791504,
+                            "z": -51052.101501464844
+                        },
+                        "py/object": "ets2.model.Placement"
+                    }
+                ],
+                "py/object": "ets2.model.Tracks"
+            }
+        },
+        {
+            "cancelled": null,
+            "config": null,
+            "delivered": null,
+            "ended": null,
+            "py/object": "ets2_worklog.model.Job",
+            "started": {
+                "__reduce__": [
+                    {
+                        "py/type": "datetime.datetime"
+                    },
+                    [
+                        "AAEBGxQbAAAAAA=="
+                    ]
+                ],
+                "py/object": "datetime.datetime"
+            },
+            "track": {
+                "_last_time": 38667,
+                "points": [
+                    {
+                        "orientation": {
+                            "heading": 0.22336062788963318,
+                            "pitch": 0.0003549421380739659,
+                            "py/object": "ets2.model.Euler",
+                            "roll": -5.7145913160638884e-05
+                        },
+                        "position": {
+                            "py/object": "ets2.model.Vector",
+                            "x": -99288.8861694336,
+                            "y": 12.376470565795898,
+                            "z": -51052.101501464844
                         },
                         "py/object": "ets2.model.Placement"
                     }
@@ -203,77 +403,77 @@
             }
         },
         "info": {
-            "paused": false,
+            "paused": true,
             "py/object": "ets2.model.Info"
         },
         "job": null,
         "py/object": "ets2.model.Model",
         "telematic": {
             "common": {
-                "game_time": 38312,
+                "game_time": 38667,
                 "py/object": "ets2.model.Common",
-                "rest_stop": 581,
+                "rest_stop": 226,
                 "scale": 3.0
             },
             "py/object": "ets2.model.Telematic",
             "trailer": {
                 "acceleration_angular": {
                     "py/object": "ets2.model.Vector",
-                    "x": -0.0011283610947430134,
-                    "y": 1.2916611922264565e-06,
-                    "z": 5.581895948125748e-06
+                    "x": -0.0005581545410677791,
+                    "y": -1.2042250091326423e-05,
+                    "z": -3.1988733098842204e-05
                 },
                 "acceleration_linear": {
                     "py/object": "ets2.model.Vector",
-                    "x": 2.687186497496441e-05,
-                    "y": -0.013560137711465359,
-                    "z": 0.0021443134173750877
+                    "x": 0.00046772247878834605,
+                    "y": -0.013350364752113819,
+                    "z": 3.2667260256857844e-06
                 },
-                "cargo_damage": 6.945314817130566e-05,
+                "cargo_damage": 2.6963388677359035e-07,
                 "connected": false,
                 "py/object": "ets2.model.Trailer",
                 "velocity_angular": {
                     "py/object": "ets2.model.Vector",
-                    "x": 0.00011189553333679214,
-                    "y": -2.2064783422592882e-07,
-                    "z": 4.46151375399495e-07
+                    "x": 6.509331433335319e-05,
+                    "y": -7.756915692880284e-06,
+                    "z": -7.646862059118575e-07
                 },
                 "velocity_linear": {
                     "py/object": "ets2.model.Vector",
-                    "x": 8.353917110071052e-06,
-                    "y": 0.0024038839619606733,
-                    "z": -0.00010401262989034876
+                    "x": 0.0002764087694231421,
+                    "y": 0.002197939669713378,
+                    "z": -3.936955181416124e-05
                 },
-                "wear_chassis": 0.013595662079751492,
-                "wear_wheels": 0.013595662079751492,
+                "wear_chassis": 0.009722059592604637,
+                "wear_wheels": 0.009722059592604637,
                 "world_placement": {
                     "orientation": {
-                        "heading": 0.3958577811717987,
-                        "pitch": 8.363186498172581e-05,
+                        "heading": 0.24393245577812195,
+                        "pitch": -5.5210693972185254e-05,
                         "py/object": "ets2.model.Euler",
-                        "roll": -1.0700628990889527e-05
+                        "roll": -2.117358599207364e-05
                     },
                     "position": {
                         "py/object": "ets2.model.Vector",
-                        "x": -113930.79376220703,
-                        "y": 5.173255920410156,
-                        "z": -42782.45690917969
+                        "x": -99282.47064208984,
+                        "y": 12.375089645385742,
+                        "z": -51051.71896362305
                     },
                     "py/object": "ets2.model.Placement"
                 }
             },
             "truck": {
-                "adblue": 64.88665771484375,
+                "adblue": 54.08164978027344,
                 "adblue_warning": false,
-                "battery_voltage": 13.69074821472168,
+                "battery_voltage": 13.688865661621094,
                 "battery_voltage_warning": false,
-                "brake_air_pressure": 97.89523315429688,
+                "brake_air_pressure": 88.40076446533203,
                 "brake_air_pressure_emergency": false,
                 "brake_air_pressure_warning": false,
                 "brake_motor": false,
                 "brake_parking": false,
                 "brake_retarder": 0,
-                "brake_temperature": 94.8542251586914,
+                "brake_temperature": 61.57093048095703,
                 "cabin_acceleration_angular": {
                     "py/object": "ets2.model.Vector",
                     "x": 0.0,
@@ -303,18 +503,18 @@
                 },
                 "cruise_control": 0.0,
                 "dashboard_backlight": 1.0,
-                "displayed_gear": 3,
+                "displayed_gear": -1,
                 "effective_brake": 1.0,
                 "effective_clutch": 0.0,
-                "effective_steering": 0.002087546046823263,
+                "effective_steering": 0.567232608795166,
                 "effective_throttle": 0.0,
                 "electric_enabled": true,
                 "engine_enabled": true,
                 "engine_gear": 0,
-                "engine_rpm": 599.9986572265625,
-                "fuel_amount": 455.7331848144531,
-                "fuel_consumption_average": 0.46223539113998413,
-                "fuel_range": 1431.0462646484375,
+                "engine_rpm": 599.9972534179688,
+                "fuel_amount": 239.63307189941406,
+                "fuel_consumption_average": 0.46449264883995056,
+                "fuel_range": 752.4710083007812,
                 "fuel_warning": false,
                 "head_offset": {
                     "orientation": {
@@ -334,7 +534,7 @@
                 "hshifter_slot": 0,
                 "input_brake": 0.0,
                 "input_clutch": 0.0,
-                "input_steering": 0.002087546046823263,
+                "input_steering": 0.567232608795166,
                 "input_throttle": 0.0,
                 "lblinker": false,
                 "light_aux_front": 1,
@@ -346,68 +546,56 @@
                 "light_lblinker": false,
                 "light_parking": true,
                 "light_rblinker": false,
-                "light_reverse": false,
+                "light_reverse": true,
                 "local_acceleration_angular": {
                     "py/object": "ets2.model.Vector",
-                    "x": -0.003223245730623603,
-                    "y": 5.16258387506241e-06,
-                    "z": 0.00010118159116245806
+                    "x": -0.001948226010426879,
+                    "y": -2.1071453375043347e-05,
+                    "z": 9.130919352173805e-05
                 },
                 "local_acceleration_linear": {
                     "py/object": "ets2.model.Vector",
-                    "x": 0.00037163091474212706,
-                    "y": -0.0057870023883879185,
-                    "z": 0.023027215152978897
+                    "x": 0.0002647233195602894,
+                    "y": 0.03982933610677719,
+                    "z": 0.00021258782362565398
                 },
                 "local_velocity_angular": {
                     "py/object": "ets2.model.Vector",
-                    "x": -0.0004103201499674469,
-                    "y": 3.180055045959307e-06,
-                    "z": 1.4616225598729216e-05
+                    "x": 0.0001670177443884313,
+                    "y": 1.512439575890312e-05,
+                    "z": -1.0040561164714745e-06
                 },
                 "local_velocity_linear": {
                     "py/object": "ets2.model.Vector",
-                    "x": 8.843670366331935e-05,
-                    "y": -0.0013863801723346114,
-                    "z": 0.0057382117956876755
+                    "x": -1.6030235201469623e-05,
+                    "y": -0.0015500109875574708,
+                    "z": 0.000493462139274925
                 },
-                "navigation_distance": 737.828857421875,
+                "navigation_distance": 393.462646484375,
                 "navigation_speed_limit": 0.0,
-                "navigation_time": 117.77947998046875,
-                "odometer": 17137.17578125,
-                "oil_pressure": 39.54541015625,
+                "navigation_time": 22.875734329223633,
+                "odometer": 17625.7421875,
+                "oil_pressure": 39.545352935791016,
                 "oil_pressure_warning": false,
-                "oil_temperature": 90.75440979003906,
+                "oil_temperature": 91.64779663085938,
                 "py/object": "ets2.model.Truck",
                 "rblinker": false,
-                "speed": -0.00712883984670043,
-                "water_temperature": 86.2168197631836,
+                "speed": -0.01175117027014494,
+                "water_temperature": 87.06563568115234,
                 "water_temperature_warning": false,
-                "wear_cabin": 0.00254922010935843,
-                "wear_chassis": 0.0031865250784903765,
-                "wear_engine": 0.0037152734585106373,
-                "wear_transmission": 0.0030779684893786907,
-                "wear_wheels": 0.021697821095585823,
+                "wear_cabin": 0.0025513770524412394,
+                "wear_chassis": 0.0031892212573438883,
+                "wear_engine": 0.004692628979682922,
+                "wear_transmission": 0.0040547847747802734,
+                "wear_wheels": 0.03145786374807358,
                 "wipers": false,
                 "world_placement": {
-                    "orientation": {
-                        "heading": 0.3937174081802368,
-                        "pitch": 4.819077730644494e-05,
-                        "py/object": "ets2.model.Euler",
-                        "roll": -1.89727472843515e-07
-                    },
-                    "position": {
-                        "py/object": "ets2.model.Vector",
-                        "x": -113934.71926879883,
-                        "y": 5.177162170410156,
-                        "z": -42777.36328125
-                    },
-                    "py/object": "ets2.model.Placement"
+                    "py/id": 62
                 }
             }
         },
         "tracks": {
-            "_last_time": 38312,
+            "_last_time": 38667,
             "points": [
                 {
                     "py/id": 6
@@ -420,6 +608,24 @@
                 },
                 {
                     "py/id": 22
+                },
+                {
+                    "py/id": 33
+                },
+                {
+                    "py/id": 36
+                },
+                {
+                    "py/id": 46
+                },
+                {
+                    "py/id": 49
+                },
+                {
+                    "py/id": 52
+                },
+                {
+                    "py/id": 55
                 }
             ],
             "py/object": "ets2.model.Tracks"
