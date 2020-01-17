@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from paho.mqtt import client as mqtt
 
 from ets2.model import Model, add_json_to_model
-from ets2_worklog.model import WorkLog, add_json_to_work_log
+from ets2.work_log import WorkLog, add_json_to_work_log
 
 
 @dataclass

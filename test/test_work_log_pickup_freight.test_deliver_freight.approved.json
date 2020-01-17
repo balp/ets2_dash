@@ -1,24 +1,21 @@
 {
+    "_db": {
+        "_conn": {
+            "py/object": "sqlite3.Connection"
+        },
+        "py/object": "ets2_worklog.database.DataBase"
+    },
     "_jobs": [
         {
             "cancelled": null,
             "config": null,
             "delivered": null,
-            "ended": {
-                "__reduce__": [
-                    {
-                        "py/type": "datetime.datetime"
-                    },
-                    [
-                        "AAEBGhQcAAAAAA=="
-                    ]
-                ],
-                "py/object": "datetime.datetime"
-            },
-            "py/object": "ets2_worklog.model.Job",
+            "ended": 37228,
+            "id": 1,
+            "py/object": "ets2_worklog.jobs.Job",
             "started": null,
             "track": {
-                "_last_time": 37228,
+                "last_time": 37228,
                 "points": [
                     {
                         "orientation": {
@@ -77,39 +74,20 @@
                 "auto_park": false,
                 "cargo_damage": 0.0,
                 "distance": 676.0,
-                "py/object": "ets2_worklog.model.Delivered",
+                "py/object": "ets2_worklog.jobs.Delivered",
                 "revenue": 18742,
                 "time": 1084,
                 "xp": 870
             },
-            "ended": {
-                "__reduce__": [
-                    {
-                        "py/type": "datetime.datetime"
-                    },
-                    [
-                        "AAEBGw4gAAAAAA=="
-                    ]
-                ],
-                "py/object": "datetime.datetime"
-            },
-            "py/object": "ets2_worklog.model.Job",
-            "started": {
-                "__reduce__": [
-                    {
-                        "py/type": "datetime.datetime"
-                    },
-                    [
-                        "AAEBGhQcAAAAAA=="
-                    ]
-                ],
-                "py/object": "datetime.datetime"
-            },
+            "ended": 38312,
+            "id": 2,
+            "py/object": "ets2_worklog.jobs.Job",
+            "started": 37228,
             "track": {
-                "_last_time": 38312,
+                "last_time": 38312,
                 "points": [
                     {
-                        "py/id": 9
+                        "py/id": 10
                     },
                     {
                         "orientation": {
@@ -150,20 +128,11 @@
             "config": null,
             "delivered": null,
             "ended": null,
-            "py/object": "ets2_worklog.model.Job",
-            "started": {
-                "__reduce__": [
-                    {
-                        "py/type": "datetime.datetime"
-                    },
-                    [
-                        "AAEBGw4gAAAAAA=="
-                    ]
-                ],
-                "py/object": "datetime.datetime"
-            },
+            "id": 3,
+            "py/object": "ets2_worklog.jobs.Job",
+            "started": 38312,
             "track": {
-                "_last_time": 38312,
+                "last_time": 38312,
                 "points": [
                     {
                         "orientation": {
@@ -407,19 +376,19 @@
             }
         },
         "tracks": {
-            "_last_time": 38312,
+            "last_time": 38312,
             "points": [
                 {
-                    "py/id": 6
+                    "py/id": 7
                 },
                 {
-                    "py/id": 9
+                    "py/id": 10
                 },
                 {
-                    "py/id": 19
+                    "py/id": 18
                 },
                 {
-                    "py/id": 22
+                    "py/id": 21
                 }
             ],
             "py/object": "ets2.model.Tracks"

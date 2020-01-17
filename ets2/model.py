@@ -244,7 +244,7 @@ class JobConfig:
     delivery_time: int
     destination_city: str
     destination_city_id: str
-    destination_company: str
+    destination_companywiw1waawewadaewddewdweawewaweweaweewiw1waawewadaewddewdweawewaweweawee: str
     destination_company_id: str
     income: int
     source_city: str
@@ -426,7 +426,7 @@ class Tracks:
     """Keep tracks of where the truck been"""
     def __init__(self):
         self.points: List[Placement] = []
-        self._last_time = 0
+        self.last_time = 0
 
     def __str__(self):
         return str(self.points)
@@ -434,10 +434,12 @@ class Tracks:
     def __repr__(self):
         return str(self.points)
 
-    def add_telematic(self, telematic: Telematic) -> None:
-        if telematic.common.game_time > self._last_time:
-            self._last_time = telematic.common.game_time
+    def add_telematic(self, telematic: Telematic) -> bool:
+        if telematic.common.game_time > self.last_time:
+            self.last_time = telematic.common.game_time
             self.points.append(telematic.truck.world_placement)
+            return True
+        return False
 
     def bottom_left(self) -> (int, int):
         if self.points:
@@ -445,7 +447,9 @@ class Tracks:
             y = min(self.points, key=attrgetter('position.y')).position.y
             z = min(self.points, key=attrgetter('position.z')).position.z
             return x, y, z
-        return -119999, -20000  # ATS Hack
+        return -139999, 20000  # ATS Hack
+    # (-112412.32244873047, -4.791529655456543, -21954.455291748047) (-81420.59246826172, 135.00054931640625, 16343.585357666016)
+
 
     def top_right(self) -> (int, int):
         if self.points:
@@ -453,7 +457,7 @@ class Tracks:
             y = max(self.points, key=attrgetter('position.y')).position.y
             z = max(self.points, key=attrgetter('position.z')).position.z
             return x, y, z
-        return -65000, -70000  # ATS Hack
+        return -20000, -85000  # ATS Hack
 
 
 class Model:

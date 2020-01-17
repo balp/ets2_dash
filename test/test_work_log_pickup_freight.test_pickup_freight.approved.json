@@ -1,24 +1,21 @@
 {
+    "_db": {
+        "_conn": {
+            "py/object": "sqlite3.Connection"
+        },
+        "py/object": "ets2_worklog.database.DataBase"
+    },
     "_jobs": [
         {
             "cancelled": null,
             "config": null,
             "delivered": null,
-            "ended": {
-                "__reduce__": [
-                    {
-                        "py/type": "datetime.datetime"
-                    },
-                    [
-                        "AAEBGhQcAAAAAA=="
-                    ]
-                ],
-                "py/object": "datetime.datetime"
-            },
-            "py/object": "ets2_worklog.model.Job",
+            "ended": 37228,
+            "id": 1,
+            "py/object": "ets2_worklog.jobs.Job",
             "started": null,
             "track": {
-                "_last_time": 37228,
+                "last_time": 37228,
                 "points": [
                     {
                         "orientation": {
@@ -74,23 +71,14 @@
             },
             "delivered": null,
             "ended": null,
-            "py/object": "ets2_worklog.model.Job",
-            "started": {
-                "__reduce__": [
-                    {
-                        "py/type": "datetime.datetime"
-                    },
-                    [
-                        "AAEBGhQcAAAAAA=="
-                    ]
-                ],
-                "py/object": "datetime.datetime"
-            },
+            "id": 2,
+            "py/object": "ets2_worklog.jobs.Job",
+            "started": 37228,
             "track": {
-                "_last_time": 37228,
+                "last_time": 37228,
                 "points": [
                     {
-                        "py/id": 9
+                        "py/id": 10
                     }
                 ],
                 "py/object": "ets2.model.Tracks"
@@ -119,7 +107,7 @@
             "py/object": "ets2.model.Info"
         },
         "job": {
-            "py/id": 13
+            "py/id": 14
         },
         "py/object": "ets2.model.Model",
         "telematic": {
@@ -321,13 +309,13 @@
             }
         },
         "tracks": {
-            "_last_time": 37228,
+            "last_time": 37228,
             "points": [
                 {
-                    "py/id": 6
+                    "py/id": 7
                 },
                 {
-                    "py/id": 9
+                    "py/id": 10
                 }
             ],
             "py/object": "ets2.model.Tracks"

@@ -4,12 +4,12 @@ import threading
 from ets2.model import Model
 from ets2.mqtt_handler import mqtt_thread_loop, GlobalState
 from ets2_worklog.view import View
-from ets2_worklog.model import WorkLog
+from ets2.work_log import WorkLog
 
 
 def main():
     model: Model = Model()
-    work_log: WorkLog = WorkLog(model)
+    work_log: WorkLog = WorkLog(model, database=None)
     state: GlobalState = GlobalState()
     mqtt_reader_thread = threading.Thread(target=mqtt_thread_loop,
                                           args=(model, work_log, state))

@@ -447,7 +447,7 @@ def test_inital_track():
 
 def test_inital_track_bottom_left_corner_empty():
     model = Model()
-    assert model.tracks.bottom_left() == (-119999, -20000)
+    assert model.tracks.bottom_left() == (-139999, -10000)
 
 def test_inital_track_bottom_left_corner():
     model = Model()
@@ -464,7 +464,7 @@ def test_inital_track_bottom_left_corner():
 
 def test_inital_track_top_right_corner_empty():
     model = Model()
-    assert model.tracks.top_right() == (-65000, -70000)
+    assert model.tracks.top_right() == (-64000, -85000)
 
 
 def test_inital_track_top_right_corner():
