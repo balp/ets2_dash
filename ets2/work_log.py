@@ -40,12 +40,12 @@ class WorkLog:
     def __init__(self, data: ets2.model.Model, database: Optional[DataBase]) -> None:
         self._model = data
         self._model.register_observer(self)
-        self.jobs: List[Job] = []
         if database is None:
             self._db = DataBase(Path('~/.local/share/ets2_work_log/'),
                                 'work_log.sqlite')
         else:
             self._db = database
+        self.jobs: List[Job] = self._db.get_jobs()
 
     def __repr__(self):
         return str(self.jobs)
@@ -57,6 +57,7 @@ class WorkLog:
                 if model.telematic:
                     game_time = model.telematic.common.game_time
                 self.jobs[-1].ended = game_time
+                self._db.save_job(self.jobs[-1])
                 job = job_from_model(model)
                 self.jobs.append(job)
                 self._db.save_job(job)

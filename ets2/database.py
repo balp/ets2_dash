@@ -1,6 +1,74 @@
 import sqlite3
+from typing import List
 
-from ets2.jobs import Job
+from ets2.jobs import Job, Delivered, Cancelled
+from ets2.model import Tracks, JobConfig, Placement, Vector, Euler
+
+
+def _get_job_delivered(curr2, job, job_id):
+    curr2.execute('select auto_load, auto_park, cargo_damage, time,'
+                  ' distance, xp, revenue from job_delivered where id=?',
+                  (job_id,))
+    r = curr2.fetchone()
+    if r is not None:
+        print(f"Got delivered {r}")
+        job.delivered = Delivered(auto_load=r[0],
+                                  auto_park=r[1],
+                                  cargo_damage=r[2],
+                                  time=r[3],
+                                  distance=r[4],
+                                  xp=r[5],
+                                  revenue=r[6])
+
+
+def _get_job_config(curr2, job, job_id):
+    curr2.execute('select cargo, cargo_id, cargo_mass,'
+                  ' delivery_time, destination_city, destination_city_id,'
+                  ' destination_company, destination_company_id,'
+                  ' income, source_city, source_city_id,'
+                  ' source_company, source_company_id from job_config where id=?',
+                  (job_id,))
+    r = curr2.fetchone()
+    if r is not None:
+        print(f"Got config {r}")
+        job.config = JobConfig(cargo=r[0],
+                               cargo_id=r[1],
+                               cargo_mass=r[2],
+                               delivery_time=r[3],
+                               destination_city=r[4],
+                               destination_city_id=r[5],
+                               destination_company=r[6],
+                               destination_company_id=r[7],
+                               income=r[8],
+                               source_city=r[9],
+                               source_city_id=r[10],
+                               source_company=r[11],
+                               source_company_id=r[12])
+
+
+def _get_job_cancelled(curr2, job, job_id):
+    curr2.execute('select penalty from job_cancelled where id=?',
+                  (job_id,))
+    r = curr2.fetchone()
+    if r is not None:
+        print(f"Got config {r}")
+        job.cancelled = Cancelled(penalty=r[0])
+
+
+def _get_job_track(curr2, job, job_id):
+    curr2.execute('select last_time from tracks where id=?',
+                  (job_id,))
+    r = curr2.fetchone()
+    if r is not None:
+        print(f"Got config {r}")
+        job.track.last_time = r[0]
+
+    for count, x, y, z in curr2.execute('select count, x, y, z from track_point'
+                                        ' where id=?'
+                                        ' order by count', (job_id,)):
+        job.track.points.append(Placement(position=Vector(x=x, y=y, z=z),
+                                          orientation=Euler(heading=0, pitch=0, roll=0)))
+
 
 
 class DataBase:
@@ -85,9 +153,11 @@ class DataBase:
     def save_job(self, job: Job):
         cursor = self._conn.cursor()
         if job.id is not None:
+            print(f"update job set started = {job.started}, ended = {job.ended} where id = {job.id}")
             cursor.execute("update job set started = ?, ended = ? where id = ?",
                            (job.started, job.ended, job.id))
         else:
+            print(f"insert into job (started, ended) values ({job.started},{job.ended})")
             cursor.execute("insert into job (started, ended) values (?,?)",
                            (job.started, job.ended))
             job.id = cursor.lastrowid
@@ -132,3 +202,21 @@ class DataBase:
             cursor.execute("replace into track_point (id, count, x, y, z) values (?,?,?,?,?)",
                            (job.id, i, point.position.x, point.position.y, point.position.z))
         cursor.close()
+
+    def get_jobs(self) -> List[Job]:
+        jobs: List[Job] = []
+        curr = self._conn.cursor()
+        for job_id, started, ended in curr.execute('select id, started, ended from job order by id'):
+            print(f"job_id '{job_id}' {type(job_id)}, started '{started}', ended '{ended}'")
+            job = Job(config=None, started=started, ended=ended, delivered=None, cancelled=None,
+                      track=Tracks(), id=job_id)
+            curr2 = self._conn.cursor()
+            _get_job_config(curr2, job, job_id)
+            _get_job_delivered(curr2, job, job_id)
+            _get_job_cancelled(curr2, job, job_id)
+            _get_job_track(curr2, job, job_id)
+
+            jobs.append(job)
+            curr2.close()
+        curr.close()
+        return jobs

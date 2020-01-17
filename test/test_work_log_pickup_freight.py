@@ -1,8 +1,4 @@
-import jsonpickle as jsonpickle
-from approvaltests import verify_with_namer, get_default_reporter
-from approvaltests.core.namer import Namer
-
-from test.utils import rerun_data_from_files
+from test.utils import rerun_data_from_files, verify_work_log_as_json
 
 
 def test_pickup_freight():
@@ -28,9 +24,3 @@ def test_2_freights():
     verify_work_log_as_json(work_log)
 
 
-def verify_work_log_as_json(work_log):
-    jsonpickle.set_encoder_options('json', sort_keys=True, indent=4)
-    jsonpickle.set_preferred_backend('json')
-    verify_with_namer(data=jsonpickle.encode(work_log),
-                      namer=Namer(extension='.json'),
-                      reporter=get_default_reporter())

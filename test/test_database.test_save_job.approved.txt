@@ -1,0 +1,73 @@
+BEGIN TRANSACTION;
+CREATE TABLE job
+            (
+                id      integer primary key,
+                started integer,
+                ended   integer
+            );
+INSERT INTO "job" VALUES(1,NULL,37228);
+INSERT INTO "job" VALUES(2,37228,NULL);
+CREATE TABLE job_cancelled
+            (
+                id      integer primary key,
+                penalty integer,
+                FOREIGN KEY (id)
+                    REFERENCES job (id)
+            );
+CREATE TABLE job_config
+            (
+                id                     integer primary key,
+                cargo                  text,
+                cargo_id               text,
+                cargo_mass             real,
+                delivery_time          integer,
+                destination_city       text,
+                destination_city_id    text,
+                destination_company    text,
+                destination_company_id text,
+                income                 integer,
+                source_city            text,
+                source_city_id         text,
+                source_company         text,
+                source_company_id      text,
+                FOREIGN KEY (id)
+                    REFERENCES job (id)
+            );
+INSERT INTO "job_config" VALUES(2,'Lumber','lumber_b',21387.240234375,38821,'Coos Bay','coos_bay','Olthon Homes','oh_con_hom',18742,'Port Angeles','port_angeles','Deepgrove','dg_wd_saw');
+CREATE TABLE job_delivered
+            (
+                id           integer primary key,
+                auto_load    integer,
+                auto_park    integer,
+                cargo_damage real,
+                time         integer,
+                distance     real,
+                xp           integer,
+                revenue      integer,
+                FOREIGN KEY (id)
+                    REFERENCES job (id)
+            );
+CREATE TABLE track_point
+            (
+                id        integer,
+                count     integer,
+                x real,
+                y real,
+                z real,
+                PRIMARY KEY (id, count),
+                FOREIGN KEY (id)
+                    REFERENCES tracks (id)
+            );
+INSERT INTO "track_point" VALUES(1,0,-1.04305182922363281247e+05,1.21028461456298828122e+01,-6.66552018508911132792e+04);
+INSERT INTO "track_point" VALUES(1,1,-1.04272021575927734376e+05,1.21054849624633789064e+01,-6.66048666954040527324e+04);
+INSERT INTO "track_point" VALUES(2,0,-1.04272021575927734376e+05,1.21054849624633789064e+01,-6.66048666954040527324e+04);
+CREATE TABLE tracks
+            (
+                id    integer primary key,
+                last_time integer,
+                FOREIGN KEY (id)
+                    REFERENCES job (id)
+            );
+INSERT INTO "tracks" VALUES(1,37228);
+INSERT INTO "tracks" VALUES(2,37228);
+COMMIT;

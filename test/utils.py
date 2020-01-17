@@ -4,6 +4,9 @@ import shutil
 from pathlib import Path
 from typing import List, Tuple
 
+import jsonpickle as jsonpickle
+from approvaltests import verify_with_namer, Namer, get_default_reporter
+
 from ets2.model import Model, add_json_to_model
 from ets2.database import DataBase
 from ets2.work_log import WorkLog, add_json_to_work_log
@@ -24,3 +27,11 @@ def rerun_data_from_files(files: List[str], test_case: str) -> Tuple[Model, Work
                 add_json_to_model(model, json_data, topic)
                 add_json_to_work_log(work_log, json_data, topic)
     return model, work_log, database
+
+
+def verify_work_log_as_json(work_log):
+    jsonpickle.set_encoder_options('json', sort_keys=True, indent=4)
+    jsonpickle.set_preferred_backend('json')
+    verify_with_namer(data=jsonpickle.encode(work_log),
+                      namer=Namer(extension='.json'),
+                      reporter=get_default_reporter())
