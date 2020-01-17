@@ -3,157 +3,8 @@
         "_conn": {
             "py/object": "sqlite3.Connection"
         },
-        "py/object": "ets2_worklog.database.DataBase"
+        "py/object": "ets2.database.DataBase"
     },
-    "_jobs": [
-        {
-            "cancelled": null,
-            "config": null,
-            "delivered": null,
-            "ended": 37228,
-            "id": 1,
-            "py/object": "ets2_worklog.jobs.Job",
-            "started": null,
-            "track": {
-                "last_time": 37228,
-                "points": [
-                    {
-                        "orientation": {
-                            "heading": 0.4340660274028778,
-                            "pitch": 0.0,
-                            "py/object": "ets2.model.Euler",
-                            "roll": 0.0
-                        },
-                        "position": {
-                            "py/object": "ets2.model.Vector",
-                            "x": -104305.18292236328,
-                            "y": 12.102846145629883,
-                            "z": -66655.20185089111
-                        },
-                        "py/object": "ets2.model.Placement"
-                    },
-                    {
-                        "orientation": {
-                            "heading": 0.9165719151496887,
-                            "pitch": -4.098113549844129e-06,
-                            "py/object": "ets2.model.Euler",
-                            "roll": 2.504402573322295e-06
-                        },
-                        "position": {
-                            "py/object": "ets2.model.Vector",
-                            "x": -104272.02157592773,
-                            "y": 12.105484962463379,
-                            "z": -66604.86669540405
-                        },
-                        "py/object": "ets2.model.Placement"
-                    }
-                ],
-                "py/object": "ets2.model.Tracks"
-            }
-        },
-        {
-            "cancelled": null,
-            "config": {
-                "cargo": "Lumber",
-                "cargo_id": "lumber_b",
-                "cargo_mass": 21387.240234375,
-                "delivery_time": 38821,
-                "destination_city": "Coos Bay",
-                "destination_city_id": "coos_bay",
-                "destination_company": "Olthon Homes",
-                "destination_company_id": "oh_con_hom",
-                "income": 18742,
-                "py/object": "ets2.model.JobConfig",
-                "source_city": "Port Angeles",
-                "source_city_id": "port_angeles",
-                "source_company": "Deepgrove",
-                "source_company_id": "dg_wd_saw"
-            },
-            "delivered": {
-                "auto_load": true,
-                "auto_park": false,
-                "cargo_damage": 0.0,
-                "distance": 676.0,
-                "py/object": "ets2_worklog.jobs.Delivered",
-                "revenue": 18742,
-                "time": 1084,
-                "xp": 870
-            },
-            "ended": 38312,
-            "id": 2,
-            "py/object": "ets2_worklog.jobs.Job",
-            "started": 37228,
-            "track": {
-                "last_time": 38312,
-                "points": [
-                    {
-                        "py/id": 10
-                    },
-                    {
-                        "orientation": {
-                            "heading": 0.38147035241127014,
-                            "pitch": 0.00024254759773612022,
-                            "py/object": "ets2.model.Euler",
-                            "roll": 6.837778346380219e-05
-                        },
-                        "position": {
-                            "py/object": "ets2.model.Vector",
-                            "x": -113779.6833114624,
-                            "y": 5.177712440490723,
-                            "z": -42559.202308654785
-                        },
-                        "py/object": "ets2.model.Placement"
-                    },
-                    {
-                        "orientation": {
-                            "heading": 0.3937177062034607,
-                            "pitch": 8.139308192767203e-05,
-                            "py/object": "ets2.model.Euler",
-                            "roll": -1.51781978274812e-06
-                        },
-                        "position": {
-                            "py/object": "ets2.model.Vector",
-                            "x": -113934.7191772461,
-                            "y": 5.177143096923828,
-                            "z": -42777.36331176758
-                        },
-                        "py/object": "ets2.model.Placement"
-                    }
-                ],
-                "py/object": "ets2.model.Tracks"
-            }
-        },
-        {
-            "cancelled": null,
-            "config": null,
-            "delivered": null,
-            "ended": null,
-            "id": 3,
-            "py/object": "ets2_worklog.jobs.Job",
-            "started": 38312,
-            "track": {
-                "last_time": 38312,
-                "points": [
-                    {
-                        "orientation": {
-                            "heading": 0.3937177062034607,
-                            "pitch": 8.226583304349333e-05,
-                            "py/object": "ets2.model.Euler",
-                            "roll": -1.51781978274812e-06
-                        },
-                        "position": {
-                            "py/object": "ets2.model.Vector",
-                            "x": -113934.7191772461,
-                            "y": 5.177135944366455,
-                            "z": -42777.36331176758
-                        },
-                        "py/object": "ets2.model.Placement"
-                    }
-                ],
-                "py/object": "ets2.model.Tracks"
-            }
-        }
-    ],
     "_model": {
         "_observers": [
             {
@@ -379,16 +230,64 @@
             "last_time": 38312,
             "points": [
                 {
-                    "py/id": 7
+                    "orientation": {
+                        "heading": 0.4340660274028778,
+                        "pitch": 0.0,
+                        "py/object": "ets2.model.Euler",
+                        "roll": 0.0
+                    },
+                    "position": {
+                        "py/object": "ets2.model.Vector",
+                        "x": -104305.18292236328,
+                        "y": 12.102846145629883,
+                        "z": -66655.20185089111
+                    },
+                    "py/object": "ets2.model.Placement"
                 },
                 {
-                    "py/id": 10
+                    "orientation": {
+                        "heading": 0.9165719151496887,
+                        "pitch": -4.098113549844129e-06,
+                        "py/object": "ets2.model.Euler",
+                        "roll": 2.504402573322295e-06
+                    },
+                    "position": {
+                        "py/object": "ets2.model.Vector",
+                        "x": -104272.02157592773,
+                        "y": 12.105484962463379,
+                        "z": -66604.86669540405
+                    },
+                    "py/object": "ets2.model.Placement"
                 },
                 {
-                    "py/id": 18
+                    "orientation": {
+                        "heading": 0.38147035241127014,
+                        "pitch": 0.00024254759773612022,
+                        "py/object": "ets2.model.Euler",
+                        "roll": 6.837778346380219e-05
+                    },
+                    "position": {
+                        "py/object": "ets2.model.Vector",
+                        "x": -113779.6833114624,
+                        "y": 5.177712440490723,
+                        "z": -42559.202308654785
+                    },
+                    "py/object": "ets2.model.Placement"
                 },
                 {
-                    "py/id": 21
+                    "orientation": {
+                        "heading": 0.3937177062034607,
+                        "pitch": 8.139308192767203e-05,
+                        "py/object": "ets2.model.Euler",
+                        "roll": -1.51781978274812e-06
+                    },
+                    "position": {
+                        "py/object": "ets2.model.Vector",
+                        "x": -113934.7191772461,
+                        "y": 5.177143096923828,
+                        "z": -42777.36331176758
+                    },
+                    "py/object": "ets2.model.Placement"
                 }
             ],
             "py/object": "ets2.model.Tracks"
@@ -461,5 +360,106 @@
             "wheels_count": 6
         }
     },
-    "py/object": "ets2_worklog.model.WorkLog"
+    "jobs": [
+        {
+            "cancelled": null,
+            "config": null,
+            "delivered": null,
+            "ended": 37228,
+            "id": 1,
+            "py/object": "ets2.jobs.Job",
+            "started": null,
+            "track": {
+                "last_time": 37228,
+                "points": [
+                    {
+                        "py/id": 36
+                    },
+                    {
+                        "py/id": 39
+                    }
+                ],
+                "py/object": "ets2.model.Tracks"
+            }
+        },
+        {
+            "cancelled": null,
+            "config": {
+                "cargo": "Lumber",
+                "cargo_id": "lumber_b",
+                "cargo_mass": 21387.240234375,
+                "delivery_time": 38821,
+                "destination_city": "Coos Bay",
+                "destination_city_id": "coos_bay",
+                "destination_company": "Olthon Homes",
+                "destination_company_id": "oh_con_hom",
+                "income": 18742,
+                "py/object": "ets2.model.JobConfig",
+                "source_city": "Port Angeles",
+                "source_city_id": "port_angeles",
+                "source_company": "Deepgrove",
+                "source_company_id": "dg_wd_saw"
+            },
+            "delivered": {
+                "auto_load": true,
+                "auto_park": false,
+                "cargo_damage": 0.0,
+                "distance": 676.0,
+                "py/object": "ets2.jobs.Delivered",
+                "revenue": 18742,
+                "time": 1084,
+                "xp": 870
+            },
+            "ended": 38312,
+            "id": 2,
+            "py/object": "ets2.jobs.Job",
+            "started": 37228,
+            "track": {
+                "last_time": 38312,
+                "points": [
+                    {
+                        "py/id": 39
+                    },
+                    {
+                        "py/id": 42
+                    },
+                    {
+                        "py/id": 45
+                    }
+                ],
+                "py/object": "ets2.model.Tracks"
+            }
+        },
+        {
+            "cancelled": null,
+            "config": null,
+            "delivered": null,
+            "ended": null,
+            "id": 3,
+            "py/object": "ets2.jobs.Job",
+            "started": 38312,
+            "track": {
+                "last_time": 38312,
+                "points": [
+                    {
+                        "orientation": {
+                            "heading": 0.3937177062034607,
+                            "pitch": 8.226583304349333e-05,
+                            "py/object": "ets2.model.Euler",
+                            "roll": -1.51781978274812e-06
+                        },
+                        "position": {
+                            "py/object": "ets2.model.Vector",
+                            "x": -113934.7191772461,
+                            "y": 5.177135944366455,
+                            "z": -42777.36331176758
+                        },
+                        "py/object": "ets2.model.Placement"
+                    }
+                ],
+                "py/object": "ets2.model.Tracks"
+            }
+        }
+    ],
+    "py/object": "ets2.work_log.WorkLog"
 }

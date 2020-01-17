@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 import typing
 
 
-def on_message(client: typing.Any, userdata: typing.Any, message: object):
+def on_message(client: typing.Any, userdata: typing.Any, message: mqtt.MQTTMessage):
     print("message: ", client)
     print("userdata: ", userdata)
     print("message received ", message.payload)

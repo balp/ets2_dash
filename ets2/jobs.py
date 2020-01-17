@@ -1,9 +1,7 @@
-import datetime
 from dataclasses import dataclass
 from typing import Optional, Dict
 
 import ets2.model
-
 
 
 @dataclass
@@ -31,6 +29,7 @@ class Cancelled:
 def cancelled_from_dict(data: Dict) -> Cancelled:
     return Cancelled(penalty=data['cancel.penalty'])
 
+
 @dataclass
 class Job:
     config: Optional[ets2.model.JobConfig]
@@ -40,4 +39,3 @@ class Job:
     cancelled: Optional[Cancelled]
     track: ets2.model.Tracks
     id: Optional[int]
-

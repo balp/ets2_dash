@@ -13,7 +13,7 @@ class GlobalState:
     active: bool = True
 
 
-def on_message(client: typing.Any, userdata: typing.Any, message: typing.Any):
+def on_message(_: typing.Any, userdata: typing.Any, message: typing.Any):
     """Handle a mqtt message and send to Model"""
     model, work_log = userdata
     assert isinstance(model, Model)
@@ -57,4 +57,3 @@ def mqtt_thread_loop(model: Model, work_log: WorkLog, state: GlobalState) -> Non
 
     while state.active:
         client.loop(timeout=1.0)
-

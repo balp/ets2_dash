@@ -21,6 +21,19 @@ def game_time_to_datetime(time):
            + datetime.timedelta(minutes=time)
 
 
+def job_from_model(model):
+    game_time = None
+    if model.telematic:
+        game_time = model.telematic.common.game_time
+    return Job(id=None,
+               config=model.job,
+               started=game_time,
+               ended=None,
+               delivered=None,
+               cancelled=None,
+               track=ets2.model.Tracks())
+
+
 class WorkLog:
     """A log work jobs in ETS2/ATS"""
 
@@ -37,14 +50,14 @@ class WorkLog:
     def __repr__(self):
         return str(self.jobs)
 
-    def notify(self, model: ets2.model.Model, change: str):
+    def notify(self, model: ets2.model.Model, _: str):
         if self.jobs:
             if model.job != self.jobs[-1].config:
                 game_time = None
                 if model.telematic:
                     game_time = model.telematic.common.game_time
                 self.jobs[-1].ended = game_time
-                job = self.job_from_model(model)
+                job = job_from_model(model)
                 self.jobs.append(job)
                 self._db.save_job(job)
             else:
@@ -52,22 +65,10 @@ class WorkLog:
                     if self.jobs[-1].track.add_telematic(model.telematic):
                         self._db.save_job(self.jobs[-1])
         else:
-            job = self.job_from_model(model)
+            job = job_from_model(model)
             self.jobs.append(job)
             print(job)
             self._db.save_job(job)
-
-    def job_from_model(self, model):
-        game_time = None
-        if model.telematic:
-            game_time = model.telematic.common.game_time
-        return Job(id=None,
-                   config=model.job,
-                   started=game_time,
-                   ended=None,
-                   delivered=None,
-                   cancelled=None,
-                   track=ets2.model.Tracks())
 
     def job_delivered(self, delivered: Delivered) -> None:
         if self.jobs[-1].config:

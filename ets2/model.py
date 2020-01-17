@@ -244,7 +244,7 @@ class JobConfig:
     delivery_time: int
     destination_city: str
     destination_city_id: str
-    destination_companywiw1waawewadaewddewdweawewaweweaweewiw1waawewadaewddewdweawewaweweawee: str
+    destination_company: str
     destination_company_id: str
     income: int
     source_city: str
@@ -448,8 +448,6 @@ class Tracks:
             z = min(self.points, key=attrgetter('position.z')).position.z
             return x, y, z
         return -139999, 20000  # ATS Hack
-    # (-112412.32244873047, -4.791529655456543, -21954.455291748047) (-81420.59246826172, 135.00054931640625, 16343.585357666016)
-
 
     def top_right(self) -> (int, int):
         if self.points:

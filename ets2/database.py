@@ -86,7 +86,7 @@ class DataBase:
         cursor = self._conn.cursor()
         if job.id is not None:
             cursor.execute("update job set started = ?, ended = ? where id = ?",
-                           (job.started, job.ended, (job.id)))
+                           (job.started, job.ended, job.id))
         else:
             cursor.execute("insert into job (started, ended) values (?,?)",
                            (job.started, job.ended))
