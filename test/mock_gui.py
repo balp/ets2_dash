@@ -8,7 +8,7 @@ from test.utils import rerun_data_from_files
 
 
 def setup():
-    model, work_log = rerun_data_from_files(["data/ats_start_port_ang_coos_bay.mqtt.json.bz2",
+    model, work_log, _ = rerun_data_from_files(["data/ats_start_port_ang_coos_bay.mqtt.json.bz2",
                                              "data/ats_end_port_ang_coos_bay.mqtt.json.bz2",
                                              "data/ats_start_coos_dalles_short.mqtt.json.bz2",
                                              "data/ats_end_coos_dalles_short.mqtt.json.bz2"

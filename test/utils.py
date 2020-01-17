@@ -9,7 +9,7 @@ from ets2.database import DataBase
 from ets2.work_log import WorkLog, add_json_to_work_log
 
 
-def rerun_data_from_files(files: List[str], test_case: str) -> Tuple[Model, WorkLog]:
+def rerun_data_from_files(files: List[str], test_case: str) -> Tuple[Model, WorkLog, DataBase]:
     model = Model()
 
     path = Path(f'/tmp/{test_case}')
@@ -23,4 +23,4 @@ def rerun_data_from_files(files: List[str], test_case: str) -> Tuple[Model, Work
                 json_data = json.loads(json_str)
                 add_json_to_model(model, json_data, topic)
                 add_json_to_work_log(work_log, json_data, topic)
-    return model, work_log
+    return model, work_log, database
