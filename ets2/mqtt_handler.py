@@ -1,4 +1,5 @@
 import json
+import threading
 import typing
 from dataclasses import dataclass
 
@@ -57,3 +58,24 @@ def mqtt_thread_loop(model: Model, work_log: WorkLog, state: GlobalState) -> Non
 
     while state.active:
         client.loop(timeout=1.0)
+
+
+def mqtt_model_handler():
+    model: Model = Model()
+    work_log: WorkLog = WorkLog(model, database=None)
+    state: GlobalState = GlobalState()
+    mqtt_reader_thread = threading.Thread(target=mqtt_thread_loop,
+                                          args=(model, work_log, state))
+    mqtt_reader_thread.start()
+    return model, mqtt_reader_thread, state, work_log
+
+
+def mqtt_event_loop(hmi, mqtt_reader_thread, state):
+    while True:
+        event, values = hmi.window.Read(timeout=50)
+        hmi.update_data()
+        if event == 'Exit':
+            break
+    state.active = False
+    mqtt_reader_thread.join(timeout=2.0)
+    hmi.window.CloseNonBlockingForm()

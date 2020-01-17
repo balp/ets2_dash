@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Run GUI with mock data.
+# Run Worklog GUI with mock data.
 
 
 import PySimpleGUI
