@@ -458,12 +458,24 @@
             "ended": 37228,
             "id": 1,
             "py/object": "ets2.jobs.Job",
-            "started": null,
+            "started": 37201,
             "track": {
                 "last_time": 37228,
                 "points": [
                     {
-                        "py/id": 36
+                        "orientation": {
+                            "heading": 0.4340660274028778,
+                            "pitch": 0.0,
+                            "py/object": "ets2.model.Euler",
+                            "roll": 0.0
+                        },
+                        "position": {
+                            "py/object": "ets2.model.Vector",
+                            "x": -104305.18292236328,
+                            "y": 12.102846145629883,
+                            "z": -66655.20185089111
+                        },
+                        "py/object": "ets2.model.Placement"
                     },
                     {
                         "py/id": 39

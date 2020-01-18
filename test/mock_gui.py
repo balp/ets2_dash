@@ -17,7 +17,8 @@ def setup():
     return model, work_log
 
 
-def main(data_values, _):
+def main(args):
+    data_values, work_log = args
     PySimpleGUI.ChangeLookAndFeel('Dark')
     hmi = View(data_values)
 

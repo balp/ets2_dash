@@ -34,6 +34,13 @@ def job_from_model(model):
                track=ets2.model.Tracks())
 
 
+def _game_time_in_model(model: ets2.model.Model) -> Optional[int]:
+    game_time = None
+    if model.telematic:
+        game_time = model.telematic.common.game_time
+    return game_time
+
+
 class WorkLog:
     """A log work jobs in ETS2/ATS"""
 
@@ -41,7 +48,7 @@ class WorkLog:
         self._model = data
         self._model.register_observer(self)
         if database is None:
-            self._db = DataBase(Path('~/.local/share/ets2_work_log/'),
+            self._db = DataBase(Path.home() / '.local/share/ets2_work_log/',
                                 'work_log.sqlite')
         else:
             self._db = database
@@ -51,25 +58,30 @@ class WorkLog:
         return str(self.jobs)
 
     def notify(self, model: ets2.model.Model, _: str):
-        if self.jobs:
-            if model.job != self.jobs[-1].config:
-                game_time = None
-                if model.telematic:
-                    game_time = model.telematic.common.game_time
-                self.jobs[-1].ended = game_time
-                self._db.save_job(self.jobs[-1])
-                job = job_from_model(model)
-                self.jobs.append(job)
-                self._db.save_job(job)
+        print(f"notify:({model.job}) {len(self.jobs)}:")
+        if model is None:
+            return
+        if model.telematic is None:
+            return
+        if len(self.jobs) > 0:
+            current_job = self.jobs[-1]
+            if model.job != current_job.config:
+                print(f"start new job")
+                current_job.ended = _game_time_in_model(model)
+                self._db.save_job(current_job)
+                self._add_new_job(model)
             else:
                 if model.telematic:
-                    if self.jobs[-1].track.add_telematic(model.telematic):
-                        self._db.save_job(self.jobs[-1])
+                    if current_job.track.add_telematic(model.telematic):
+                        self._db.save_job(current_job)
         else:
-            job = job_from_model(model)
-            self.jobs.append(job)
-            print(job)
-            self._db.save_job(job)
+            print(f"new first job")
+            self._add_new_job(model)
+
+    def _add_new_job(self, model):
+        new_job = job_from_model(model)
+        self.jobs.append(new_job)
+        self._db.save_job(new_job)
 
     def job_delivered(self, delivered: Delivered) -> None:
         if self.jobs[-1].config:

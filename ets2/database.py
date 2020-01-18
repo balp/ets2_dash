@@ -70,7 +70,6 @@ def _get_job_track(curr2, job, job_id):
                                           orientation=Euler(heading=0, pitch=0, roll=0)))
 
 
-
 class DataBase:
     def __init__(self, db_path, db_name):
         db_path.mkdir(parents=True, exist_ok=True)
@@ -150,17 +149,23 @@ class DataBase:
 """)
         cursor.close()
 
-    def save_job(self, job: Job):
+    def save_job(self, job: Job) -> int:
+        print(f"Save job {job.id}: {job.started}")
+        if job is None:
+            return -1
+        job_id = 0
         cursor = self._conn.cursor()
         if job.id is not None:
             print(f"update job set started = {job.started}, ended = {job.ended} where id = {job.id}")
             cursor.execute("update job set started = ?, ended = ? where id = ?",
                            (job.started, job.ended, job.id))
+            job_id = job.id
         else:
             print(f"insert into job (started, ended) values ({job.started},{job.ended})")
             cursor.execute("insert into job (started, ended) values (?,?)",
                            (job.started, job.ended))
             job.id = cursor.lastrowid
+            job_id = job.id
         if job.config is not None:
             cursor.execute("replace into job_config (id, cargo, cargo_id, cargo_mass, delivery_time, "
                            "                         destination_city, destination_city_id, destination_company,"
@@ -202,6 +207,7 @@ class DataBase:
             cursor.execute("replace into track_point (id, count, x, y, z) values (?,?,?,?,?)",
                            (job.id, i, point.position.x, point.position.y, point.position.z))
         cursor.close()
+        return job_id
 
     def get_jobs(self) -> List[Job]:
         jobs: List[Job] = []

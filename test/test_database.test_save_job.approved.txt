@@ -5,7 +5,7 @@ CREATE TABLE job
                 started integer,
                 ended   integer
             );
-INSERT INTO "job" VALUES(1,NULL,37228);
+INSERT INTO "job" VALUES(1,37201,37228);
 INSERT INTO "job" VALUES(2,37228,NULL);
 CREATE TABLE job_cancelled
             (
