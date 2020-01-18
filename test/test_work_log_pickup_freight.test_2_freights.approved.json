@@ -31,35 +31,35 @@
         "telematic": {
             "common": {
                 "game_time": 38667,
-                "py/object": "ets2.model.Common",
+                "py/object": "ets2.telematic.Common",
                 "rest_stop": 226,
                 "scale": 3.0
             },
-            "py/object": "ets2.model.Telematic",
+            "py/object": "ets2.telematic.Telematic",
             "trailer": {
                 "acceleration_angular": {
-                    "py/object": "ets2.model.Vector",
+                    "py/object": "ets2.types.Vector",
                     "x": -0.0005581545410677791,
                     "y": -1.2042250091326423e-05,
                     "z": -3.1988733098842204e-05
                 },
                 "acceleration_linear": {
-                    "py/object": "ets2.model.Vector",
+                    "py/object": "ets2.types.Vector",
                     "x": 0.00046772247878834605,
                     "y": -0.013350364752113819,
                     "z": 3.2667260256857844e-06
                 },
                 "cargo_damage": 2.6963388677359035e-07,
                 "connected": false,
-                "py/object": "ets2.model.Trailer",
+                "py/object": "ets2.telematic.Trailer",
                 "velocity_angular": {
-                    "py/object": "ets2.model.Vector",
+                    "py/object": "ets2.types.Vector",
                     "x": 6.509331433335319e-05,
                     "y": -7.756915692880284e-06,
                     "z": -7.646862059118575e-07
                 },
                 "velocity_linear": {
-                    "py/object": "ets2.model.Vector",
+                    "py/object": "ets2.types.Vector",
                     "x": 0.0002764087694231421,
                     "y": 0.002197939669713378,
                     "z": -3.936955181416124e-05
@@ -70,16 +70,16 @@
                     "orientation": {
                         "heading": 0.24393245577812195,
                         "pitch": -5.5210693972185254e-05,
-                        "py/object": "ets2.model.Euler",
+                        "py/object": "ets2.types.Euler",
                         "roll": -2.117358599207364e-05
                     },
                     "position": {
-                        "py/object": "ets2.model.Vector",
+                        "py/object": "ets2.types.Vector",
                         "x": -99282.47064208984,
                         "y": 12.375089645385742,
                         "z": -51051.71896362305
                     },
-                    "py/object": "ets2.model.Placement"
+                    "py/object": "ets2.types.Placement"
                 }
             },
             "truck": {
@@ -95,7 +95,7 @@
                 "brake_retarder": 0,
                 "brake_temperature": 61.57093048095703,
                 "cabin_acceleration_angular": {
-                    "py/object": "ets2.model.Vector",
+                    "py/object": "ets2.types.Vector",
                     "x": 0.0,
                     "y": 0.0,
                     "z": 0.0
@@ -104,19 +104,19 @@
                     "orientation": {
                         "heading": 0.0,
                         "pitch": 0.0,
-                        "py/object": "ets2.model.Euler",
+                        "py/object": "ets2.types.Euler",
                         "roll": 0.0
                     },
                     "position": {
-                        "py/object": "ets2.model.Vector",
+                        "py/object": "ets2.types.Vector",
                         "x": 0.0,
                         "y": 0.0,
                         "z": 0.0
                     },
-                    "py/object": "ets2.model.Placement"
+                    "py/object": "ets2.types.Placement"
                 },
                 "cabin_velocity_angular": {
-                    "py/object": "ets2.model.Vector",
+                    "py/object": "ets2.types.Vector",
                     "x": 0.0,
                     "y": 0.0,
                     "z": 0.0
@@ -140,16 +140,16 @@
                     "orientation": {
                         "heading": 0.0,
                         "pitch": -0.01944444701075554,
-                        "py/object": "ets2.model.Euler",
+                        "py/object": "ets2.types.Euler",
                         "roll": 0.0
                     },
                     "position": {
-                        "py/object": "ets2.model.Vector",
+                        "py/object": "ets2.types.Vector",
                         "x": 0.0,
                         "y": -0.019999999552965164,
                         "z": 0.0
                     },
-                    "py/object": "ets2.model.Placement"
+                    "py/object": "ets2.types.Placement"
                 },
                 "hshifter_slot": 0,
                 "input_brake": 0.0,
@@ -168,25 +168,25 @@
                 "light_rblinker": false,
                 "light_reverse": true,
                 "local_acceleration_angular": {
-                    "py/object": "ets2.model.Vector",
+                    "py/object": "ets2.types.Vector",
                     "x": -0.001948226010426879,
                     "y": -2.1071453375043347e-05,
                     "z": 9.130919352173805e-05
                 },
                 "local_acceleration_linear": {
-                    "py/object": "ets2.model.Vector",
+                    "py/object": "ets2.types.Vector",
                     "x": 0.0002647233195602894,
                     "y": 0.03982933610677719,
                     "z": 0.00021258782362565398
                 },
                 "local_velocity_angular": {
-                    "py/object": "ets2.model.Vector",
+                    "py/object": "ets2.types.Vector",
                     "x": 0.0001670177443884313,
                     "y": 1.512439575890312e-05,
                     "z": -1.0040561164714745e-06
                 },
                 "local_velocity_linear": {
-                    "py/object": "ets2.model.Vector",
+                    "py/object": "ets2.types.Vector",
                     "x": -1.6030235201469623e-05,
                     "y": -0.0015500109875574708,
                     "z": 0.000493462139274925
@@ -198,7 +198,7 @@
                 "oil_pressure": 39.545352935791016,
                 "oil_pressure_warning": false,
                 "oil_temperature": 91.64779663085938,
-                "py/object": "ets2.model.Truck",
+                "py/object": "ets2.telematic.Truck",
                 "rblinker": false,
                 "speed": -0.01175117027014494,
                 "water_temperature": 87.06563568115234,
@@ -213,16 +213,16 @@
                     "orientation": {
                         "heading": 0.22336062788963318,
                         "pitch": 0.0003549421380739659,
-                        "py/object": "ets2.model.Euler",
+                        "py/object": "ets2.types.Euler",
                         "roll": -5.7145913160638884e-05
                     },
                     "position": {
-                        "py/object": "ets2.model.Vector",
+                        "py/object": "ets2.types.Vector",
                         "x": -99288.8861694336,
                         "y": 12.376470565795898,
                         "z": -51052.101501464844
                     },
-                    "py/object": "ets2.model.Placement"
+                    "py/object": "ets2.types.Placement"
                 }
             }
         },
@@ -230,157 +230,107 @@
             "last_time": 38667,
             "points": [
                 {
-                    "orientation": {
-                        "heading": 0.4340660274028778,
-                        "pitch": 0.0,
-                        "py/object": "ets2.model.Euler",
-                        "roll": 0.0
-                    },
                     "position": {
-                        "py/object": "ets2.model.Vector",
+                        "py/object": "ets2.types.Vector",
                         "x": -104305.18292236328,
                         "y": 12.102846145629883,
                         "z": -66655.20185089111
                     },
-                    "py/object": "ets2.model.Placement"
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 37201
                 },
                 {
-                    "orientation": {
-                        "heading": 0.9165719151496887,
-                        "pitch": -4.098113549844129e-06,
-                        "py/object": "ets2.model.Euler",
-                        "roll": 2.504402573322295e-06
-                    },
                     "position": {
-                        "py/object": "ets2.model.Vector",
+                        "py/object": "ets2.types.Vector",
                         "x": -104272.02157592773,
                         "y": 12.105484962463379,
                         "z": -66604.86669540405
                     },
-                    "py/object": "ets2.model.Placement"
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 37228
                 },
                 {
-                    "orientation": {
-                        "heading": 0.38147035241127014,
-                        "pitch": 0.00024254759773612022,
-                        "py/object": "ets2.model.Euler",
-                        "roll": 6.837778346380219e-05
-                    },
                     "position": {
-                        "py/object": "ets2.model.Vector",
+                        "py/object": "ets2.types.Vector",
                         "x": -113779.6833114624,
                         "y": 5.177712440490723,
                         "z": -42559.202308654785
                     },
-                    "py/object": "ets2.model.Placement"
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38299
                 },
                 {
-                    "orientation": {
-                        "heading": 0.3937177062034607,
-                        "pitch": 8.139308192767203e-05,
-                        "py/object": "ets2.model.Euler",
-                        "roll": -1.51781978274812e-06
-                    },
                     "position": {
-                        "py/object": "ets2.model.Vector",
+                        "py/object": "ets2.types.Vector",
                         "x": -113934.7191772461,
                         "y": 5.177143096923828,
                         "z": -42777.36331176758
                     },
-                    "py/object": "ets2.model.Placement"
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38312
                 },
                 {
-                    "orientation": {
-                        "heading": 0.6608810424804688,
-                        "pitch": -6.7163523453928065e-06,
-                        "py/object": "ets2.model.Euler",
-                        "roll": 5.54004191144486e-06
-                    },
                     "position": {
-                        "py/object": "ets2.model.Vector",
+                        "py/object": "ets2.types.Vector",
                         "x": -113746.27894592285,
                         "y": 5.177285194396973,
                         "z": -42803.44400024414
                     },
-                    "py/object": "ets2.model.Placement"
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38315
                 },
                 {
-                    "orientation": {
-                        "heading": 0.42154666781425476,
-                        "pitch": -0.0001929907884914428,
-                        "py/object": "ets2.model.Euler",
-                        "roll": -0.00018251781875733286
-                    },
                     "position": {
-                        "py/object": "ets2.model.Vector",
+                        "py/object": "ets2.types.Vector",
                         "x": -113731.70094299316,
                         "y": 5.183038234710693,
                         "z": -42779.22634887695
                     },
-                    "py/object": "ets2.model.Placement"
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38316
                 },
                 {
-                    "orientation": {
-                        "heading": 0.90943443775177,
-                        "pitch": 1.753081778588239e-05,
-                        "py/object": "ets2.model.Euler",
-                        "roll": -1.13836483706109e-06
-                    },
                     "position": {
-                        "py/object": "ets2.model.Vector",
+                        "py/object": "ets2.types.Vector",
                         "x": -113712.37997817993,
                         "y": 5.176380634307861,
                         "z": -42736.49880981445
                     },
-                    "py/object": "ets2.model.Placement"
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38318
                 },
                 {
-                    "orientation": {
-                        "heading": 0.3180747926235199,
-                        "pitch": -0.0003237130003981292,
-                        "py/object": "ets2.model.Euler",
-                        "roll": -0.0015823650173842907
-                    },
                     "position": {
-                        "py/object": "ets2.model.Vector",
+                        "py/object": "ets2.types.Vector",
                         "x": -99166.45639038086,
                         "y": 12.230788230895996,
                         "z": -51001.42868041992
                     },
-                    "py/object": "ets2.model.Placement"
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38659
                 },
                 {
-                    "orientation": {
-                        "heading": 0.2571701109409332,
-                        "pitch": 0.0020690918900072575,
-                        "py/object": "ets2.model.Euler",
-                        "roll": 0.0001236264215549454
-                    },
                     "position": {
-                        "py/object": "ets2.model.Vector",
+                        "py/object": "ets2.types.Vector",
                         "x": -99233.9595336914,
                         "y": 12.250280380249023,
                         "z": -50934.83279418945
                     },
-                    "py/object": "ets2.model.Placement"
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38660
                 },
                 {
-                    "orientation": {
-                        "heading": 0.2233603447675705,
-                        "pitch": 0.00035232389927841723,
-                        "py/object": "ets2.model.Euler",
-                        "roll": -5.710796904168092e-05
-                    },
                     "position": {
-                        "py/object": "ets2.model.Vector",
+                        "py/object": "ets2.types.Vector",
                         "x": -99288.8861694336,
                         "y": 12.376511573791504,
                         "z": -51052.101501464844
                     },
-                    "py/object": "ets2.model.Placement"
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38667
                 }
             ],
-            "py/object": "ets2.model.Tracks"
+            "py/object": "ets2.tracks.Tracks"
         },
         "trailer_config": [
             null,
@@ -403,7 +353,7 @@
             "brand": "Volvo",
             "brand_id": "volvo",
             "cabin_position": {
-                "py/object": "ets2.model.Vector",
+                "py/object": "ets2.types.Vector",
                 "x": 0.0,
                 "y": 3.0,
                 "z": -2.0
@@ -415,13 +365,13 @@
             "gears_forward": 13,
             "gears_reverse": 3,
             "head_position": {
-                "py/object": "ets2.model.Vector",
+                "py/object": "ets2.types.Vector",
                 "x": -0.5642366409301758,
                 "y": -0.5814938545227051,
                 "z": 0.570602536201477
             },
             "hook_position": {
-                "py/object": "ets2.model.Vector",
+                "py/object": "ets2.types.Vector",
                 "x": 0.0,
                 "y": 1.0,
                 "z": 1.068235158920288
@@ -432,13 +382,13 @@
             "license_plate_country_id": "california",
             "name": "VNL",
             "oil_pressure_warning": 10.149999618530273,
-            "py/object": "ets2.model.TruckConfig",
+            "py/object": "ets2.config.TruckConfig",
             "retarder_steps": 3,
             "reverse_ratio": -4.03000020980835,
             "rpm_limit": 2100.0,
             "water_temperature_warning": 105.0,
             "wheel_position": {
-                "py/object": "ets2.model.Vector",
+                "py/object": "ets2.types.Vector",
                 "x": 0.9612910747528076,
                 "y": 0.5059999823570251,
                 "z": 0.5031635761260986
@@ -463,25 +413,24 @@
                 "last_time": 37228,
                 "points": [
                     {
-                        "orientation": {
-                            "heading": 0.4340660274028778,
-                            "pitch": 0.0,
-                            "py/object": "ets2.model.Euler",
-                            "roll": 0.0
-                        },
                         "position": {
-                            "py/object": "ets2.model.Vector",
+                            "py/object": "ets2.types.Vector",
                             "x": -104305.18292236328,
                             "y": 12.102846145629883,
                             "z": -66655.20185089111
                         },
-                        "py/object": "ets2.model.Placement"
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 37201
                     },
                     {
-                        "py/id": 39
+                        "position": {
+                            "py/id": 39
+                        },
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 37228
                     }
                 ],
-                "py/object": "ets2.model.Tracks"
+                "py/object": "ets2.tracks.Tracks"
             }
         },
         {
@@ -496,7 +445,7 @@
                 "destination_company": "Olthon Homes",
                 "destination_company_id": "oh_con_hom",
                 "income": 18742,
-                "py/object": "ets2.model.JobConfig",
+                "py/object": "ets2.jobs.JobConfig",
                 "source_city": "Port Angeles",
                 "source_city_id": "port_angeles",
                 "source_company": "Deepgrove",
@@ -520,16 +469,28 @@
                 "last_time": 38312,
                 "points": [
                     {
-                        "py/id": 39
+                        "position": {
+                            "py/id": 39
+                        },
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 37228
                     },
                     {
-                        "py/id": 42
+                        "position": {
+                            "py/id": 41
+                        },
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 38299
                     },
                     {
-                        "py/id": 45
+                        "position": {
+                            "py/id": 43
+                        },
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 38312
                     }
                 ],
-                "py/object": "ets2.model.Tracks"
+                "py/object": "ets2.tracks.Tracks"
             }
         },
         {
@@ -544,28 +505,31 @@
                 "last_time": 38316,
                 "points": [
                     {
-                        "orientation": {
-                            "heading": 0.3937177062034607,
-                            "pitch": 8.226583304349333e-05,
-                            "py/object": "ets2.model.Euler",
-                            "roll": -1.51781978274812e-06
-                        },
                         "position": {
-                            "py/object": "ets2.model.Vector",
+                            "py/object": "ets2.types.Vector",
                             "x": -113934.7191772461,
                             "y": 5.177135944366455,
                             "z": -42777.36331176758
                         },
-                        "py/object": "ets2.model.Placement"
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 38312
                     },
                     {
-                        "py/id": 48
+                        "position": {
+                            "py/id": 45
+                        },
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 38315
                     },
                     {
-                        "py/id": 51
+                        "position": {
+                            "py/id": 47
+                        },
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 38316
                     }
                 ],
-                "py/object": "ets2.model.Tracks"
+                "py/object": "ets2.tracks.Tracks"
             }
         },
         {
@@ -583,7 +547,7 @@
                 "destination_company": "Home Store",
                 "destination_company_id": "hs_mkt",
                 "income": 12429,
-                "py/object": "ets2.model.JobConfig",
+                "py/object": "ets2.jobs.JobConfig",
                 "source_city": "Coos Bay",
                 "source_city_id": "coos_bay",
                 "source_company": "Home Store",
@@ -607,22 +571,42 @@
                 "last_time": 38667,
                 "points": [
                     {
-                        "py/id": 51
+                        "position": {
+                            "py/id": 47
+                        },
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 38316
                     },
                     {
-                        "py/id": 54
+                        "position": {
+                            "py/id": 49
+                        },
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 38318
                     },
                     {
-                        "py/id": 57
+                        "position": {
+                            "py/id": 51
+                        },
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 38659
                     },
                     {
-                        "py/id": 60
+                        "position": {
+                            "py/id": 53
+                        },
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 38660
                     },
                     {
-                        "py/id": 63
+                        "position": {
+                            "py/id": 55
+                        },
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 38667
                     }
                 ],
-                "py/object": "ets2.model.Tracks"
+                "py/object": "ets2.tracks.Tracks"
             }
         },
         {
@@ -637,10 +621,14 @@
                 "last_time": 38667,
                 "points": [
                     {
-                        "py/id": 31
+                        "position": {
+                            "py/id": 33
+                        },
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 38667
                     }
                 ],
-                "py/object": "ets2.model.Tracks"
+                "py/object": "ets2.tracks.Tracks"
             }
         }
     ],

@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import List, Optional
 
 import ets2.model
+import ets2.tracks
 from ets2.database import DataBase
 from ets2.jobs import Job, Delivered, delivered_from_dict, Cancelled, cancelled_from_dict
 
@@ -31,7 +32,7 @@ def job_from_model(model):
                ended=None,
                delivered=None,
                cancelled=None,
-               track=ets2.model.Tracks())
+               track=ets2.tracks.Tracks())
 
 
 def _game_time_in_model(model: ets2.model.Model) -> Optional[int]:

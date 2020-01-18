@@ -1,8 +1,9 @@
 import sqlite3
 from typing import List
 
-from ets2.jobs import Job, Delivered, Cancelled
-from ets2.model import Tracks, JobConfig, Placement, Vector, Euler
+from ets2.jobs import Job, Delivered, Cancelled, JobConfig
+from ets2.types import Vector
+from ets2.tracks import Tracks, TrackPoint
 
 
 def _get_job_delivered(curr2, job, job_id):
@@ -63,11 +64,10 @@ def _get_job_track(curr2, job, job_id):
         print(f"Got config {r}")
         job.track.last_time = r[0]
 
-    for count, x, y, z in curr2.execute('select count, x, y, z from track_point'
-                                        ' where id=?'
-                                        ' order by count', (job_id,)):
-        job.track.points.append(Placement(position=Vector(x=x, y=y, z=z),
-                                          orientation=Euler(heading=0, pitch=0, roll=0)))
+    for count, time, x, y, z in curr2.execute('select count, time, x, y, z from track_point'
+                                              ' where id=?'
+                                              ' order by count', (job_id,)):
+        job.track.points.append(TrackPoint(position=Vector(x=x, y=y, z=z), time=time))
 
 
 class DataBase:
@@ -139,6 +139,7 @@ class DataBase:
             (
                 id        integer,
                 count     integer,
+                time      integer,
                 x real,
                 y real,
                 z real,
@@ -153,7 +154,6 @@ class DataBase:
         print(f"Save job {job.id}: {job.started}")
         if job is None:
             return -1
-        job_id = 0
         cursor = self._conn.cursor()
         if job.id is not None:
             print(f"update job set started = {job.started}, ended = {job.ended} where id = {job.id}")
@@ -204,8 +204,8 @@ class DataBase:
                            (job.id, job.cancelled.penalty))
         cursor.execute("replace into tracks (id, last_time) values (?,?)", (job.id, job.track.last_time))
         for i, point in enumerate(job.track.points):
-            cursor.execute("replace into track_point (id, count, x, y, z) values (?,?,?,?,?)",
-                           (job.id, i, point.position.x, point.position.y, point.position.z))
+            cursor.execute("replace into track_point (id, count, time, x, y, z) values (?,?,?,?,?,?)",
+                           (job.id, i, point.time, point.position.x, point.position.y, point.position.z))
         cursor.close()
         return job_id
 

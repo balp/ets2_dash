@@ -19,7 +19,7 @@
         "tracks": {
             "last_time": 0,
             "points": [],
-            "py/object": "ets2.model.Tracks"
+            "py/object": "ets2.tracks.Tracks"
         },
         "trailer_config": [
             null,
@@ -48,37 +48,27 @@
                 "last_time": 37228,
                 "points": [
                     {
-                        "orientation": {
-                            "heading": 0,
-                            "pitch": 0,
-                            "py/object": "ets2.model.Euler",
-                            "roll": 0
-                        },
                         "position": {
-                            "py/object": "ets2.model.Vector",
+                            "py/object": "ets2.types.Vector",
                             "x": -104305.18292236328,
                             "y": 12.102846145629883,
                             "z": -66655.20185089111
                         },
-                        "py/object": "ets2.model.Placement"
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 37201
                     },
                     {
-                        "orientation": {
-                            "heading": 0,
-                            "pitch": 0,
-                            "py/object": "ets2.model.Euler",
-                            "roll": 0
-                        },
                         "position": {
-                            "py/object": "ets2.model.Vector",
+                            "py/object": "ets2.types.Vector",
                             "x": -104272.02157592773,
                             "y": 12.105484962463379,
                             "z": -66604.86669540405
                         },
-                        "py/object": "ets2.model.Placement"
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 37228
                     }
                 ],
-                "py/object": "ets2.model.Tracks"
+                "py/object": "ets2.tracks.Tracks"
             }
         },
         {
@@ -93,7 +83,7 @@
                 "destination_company": "Olthon Homes",
                 "destination_company_id": "oh_con_hom",
                 "income": 18742,
-                "py/object": "ets2.model.JobConfig",
+                "py/object": "ets2.jobs.JobConfig",
                 "source_city": "Port Angeles",
                 "source_city_id": "port_angeles",
                 "source_company": "Deepgrove",
@@ -108,22 +98,17 @@
                 "last_time": 37228,
                 "points": [
                     {
-                        "orientation": {
-                            "heading": 0,
-                            "pitch": 0,
-                            "py/object": "ets2.model.Euler",
-                            "roll": 0
-                        },
                         "position": {
-                            "py/object": "ets2.model.Vector",
+                            "py/object": "ets2.types.Vector",
                             "x": -104272.02157592773,
                             "y": 12.105484962463379,
                             "z": -66604.86669540405
                         },
-                        "py/object": "ets2.model.Placement"
+                        "py/object": "ets2.tracks.TrackPoint",
+                        "time": 37228
                     }
                 ],
-                "py/object": "ets2.model.Tracks"
+                "py/object": "ets2.tracks.Tracks"
             }
         }
     ],
