@@ -107,11 +107,17 @@ def _save_job(cursor, job):
 
 
 def _save_tracks(cursor, job):
-    _log.debug(f"replace into tracks (id, last_time) values ({job.id}, {job.track.last_time}))")
+    number_of_track_points = len(job.track.points)
+    _log.debug(f"replace into tracks (id, last_time) values ({job.id}, {job.track.last_time})) # {number_of_track_points}")
     cursor.execute("replace into tracks (id, last_time) values (?,?)", (job.id, job.track.last_time))
-    for i, point in enumerate(job.track.points):
+    # for i, point in enumerate(job.track.points):
+    if number_of_track_points > 0:
+        last_index = number_of_track_points - 1
+        point = job.track.points[-1]
+        _log.debug(f"replace into track_point (id, count, time, x, y, z) values ({job.id}, {last_index}, {point.time},"
+                   f" {point.position.x}, {point.position.y}, {point.position.z})")
         cursor.execute("replace into track_point (id, count, time, x, y, z) values (?,?,?,?,?,?)",
-                       (job.id, i, point.time, point.position.x, point.position.y, point.position.z))
+                       (job.id, last_index, point.time, point.position.x, point.position.y, point.position.z))
 
 
 def _save_job_cancelled(cursor, job):
@@ -264,16 +270,16 @@ class DataBase:
 
     def save_job(self, job: Job) -> int:
         _log.debug(f"save_job(self, {job}: Job) -> :")
-        _log.debug(f"Save job id: {job.id} started: {job.started}")
+        # _log.debug(f"Save job id: {job.id} started: {job.started}")
         if job is None:
             _log.warning(f"save_job() on none")
             return -1
-        _log.debug("get cursor")
+        # _log.debug("get cursor")
         try:
             cursor = self._get_cursor()
-            _log.debug("got cursor")
+            # _log.debug("got cursor")
             job_id = _save_job(cursor, job)
-            _log.debug(f"got job_id: {job_id}")
+            # _log.debug(f"got job_id: {job_id}")
             _save_job_config(cursor, job)
             _save_job_delivered(cursor, job)
             _save_job_cancelled(cursor, job)

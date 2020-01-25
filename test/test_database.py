@@ -2,7 +2,7 @@ from approvaltests import verify
 
 from ets2.model import Model
 from ets2.work_log import WorkLog
-from test.utils import rerun_data_from_files, verify_work_log_as_json
+from test.utils import rerun_data_from_files, verify_work_log_as_json, TestDataBaseProvider
 
 
 def test_save_job():
@@ -18,7 +18,7 @@ def test_generate_object_from():
     _, _, database = rerun_data_from_files(["data/ats_start_port_ang_coos_bay.mqtt.json.bz2"],
                                            'test_save_job')
     model = Model()
-    work_log = WorkLog(model, database)
+    work_log = WorkLog(model, TestDataBaseProvider(database))
 
     verify_work_log_as_json(work_log)
 
@@ -42,5 +42,5 @@ def test_load_2_freights():
                                             "data/ats_end_coos_dalles_short.mqtt.json.bz2"
                                             ], 'test_2_freights')
     model = Model()
-    work_log = WorkLog(model, database)
+    work_log = WorkLog(model, TestDataBaseProvider(database))
     verify_work_log_as_json(work_log)

@@ -1,4 +1,5 @@
 import json
+import logging
 from dataclasses import dataclass
 from typing import Optional, Dict, List
 
@@ -6,6 +7,8 @@ from ets2.config import TruckConfig, truckconfig_from_dict, TrailerConfig, trail
 from ets2.jobs import JobConfig, jobconfig_from_dict
 from ets2.telematic import Telematic, telematic_from_dict
 from ets2.tracks import Tracks
+
+_log = logging.getLogger("model")
 
 
 @dataclass
@@ -61,9 +64,11 @@ class Model:
             observer.notify(self, change)
 
     def set_telematic_data(self, data):
+        _log.debug("set_telematic_data(self, data)")
         self.telematic = telematic_from_dict(data)
         self.tracks.add_telematic(self.telematic)
         self._data_changed("telematic")
+        _log.debug("set_telematic_data(self, data) [done]")
 
     def set_job_config(self, data):
         self.job = jobconfig_from_dict(data)

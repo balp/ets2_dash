@@ -472,9 +472,7 @@ class View:
         if self._count % 100:
             return
         tracks = self._data.tracks
-        print(len(tracks.points),
-              tracks.bottom_left(),
-              tracks.top_right())
+
         canvas: PySimpleGUI.Graph = self.window.FindElement('map_canvas')
         canvas.Erase()
         # canvas.DrawRectangle(top_left=(-99005, -60005),

@@ -1,3 +1,5 @@
+import logging
+
 from test.utils import rerun_data_from_files, verify_work_log_as_json
 
 

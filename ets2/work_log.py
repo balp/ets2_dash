@@ -2,7 +2,7 @@ import datetime
 import json
 import logging
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Dict
 
 import ets2.model
 import ets2.tracks
@@ -45,41 +45,69 @@ def _game_time_in_model(model: ets2.model.Model) -> Optional[int]:
     return game_time
 
 
-class WorkLog:
-    """A log work jobs in ETS2/ATS"""
+class DatabaseProvider:
+    """
 
-    def __init__(self, data: ets2.model.Model, database: Optional[DataBase]) -> None:
-        self._model = data
-        self._model.register_observer(self)
+    """
+
+    def __init__(self, database: Optional[DataBase]):
+        self._databases: Dict[str, DataBase] = {}
         if database is None:
             self._db = DataBase(Path.home() / '.local/share/ets2_work_log/',
                                 'work_log.sqlite')
         else:
             self._db = database
-        self.jobs: List[Job] = self._db.get_jobs()
+
+    def get_database(self, game_id: str) -> DataBase:
+        """Returns a database instance based on the current game
+        :param game_id: Id of the current game
+        """
+        if game_id not in self._databases:
+            self._databases[game_id] = DataBase(Path.home() / '.local/share/ets2_work_log/',
+                                                f'{game_id}.sqlite')
+        return self._databases[game_id]
+
+
+class WorkLog:
+    """A log work jobs in ETS2/ATS"""
+
+    def __init__(self, data: ets2.model.Model, database_provider: DatabaseProvider) -> None:
+        self._model = data
+        self._model.register_observer(self)
+        if database_provider is None:
+            self._db_provider = DatabaseProvider(None)
+        else:
+            self._db_provider = database_provider
+        self._game_id = 'ats'
+        self.jobs: List[Job] = self._db_provider.get_database(self._game_id).get_jobs()
 
     def __repr__(self):
         return str(self.jobs)
 
     def notify(self, model: ets2.model.Model, _: str):
-        _log.debug(f"notify:({model.job}) {len(self.jobs)}:")
+        # Good to follow issues, but takes loots of resources in live running
+        # _log.debug(f"notify:({model.job}) {len(self.jobs)}:")
         if model is None:
             _log.debug(f"no model yet")
             return
         if model.telematic is None:
             _log.debug(f"no telematic yet")
             return
+        if model.game.id != self._game_id:  # Reload jobs if game have changed
+            self.jobs = self._db_provider.get_database(model.game.id).get_jobs()
+            self._game_id = model.game.id
+
         if len(self.jobs) > 0:
             current_job = self.jobs[-1]
             if model.job != current_job.config:
                 _log.debug(f"start a new job")
                 current_job.ended = _game_time_in_model(model)
-                self._db.save_job(current_job)
+                self._db_provider.get_database('').save_job(current_job)
                 self._add_new_job(model)
             else:
                 if model.telematic:
                     if current_job.track.add_telematic(model.telematic):
-                        self._db.save_job(current_job)
+                        self._db_provider.get_database('').save_job(current_job)
         else:
             _log.debug(f"new first job")
             self._add_new_job(model)
@@ -89,7 +117,7 @@ class WorkLog:
         new_job = job_from_model(model)
         if new_job is not None:
             self.jobs.append(new_job)
-            self._db.save_job(new_job)
+            self._db_provider.get_database('').save_job(new_job)
         else:
             _log.warning(f"Could not make job from {model}")
 
@@ -97,14 +125,17 @@ class WorkLog:
         _log.debug(f"job_delivered({job_delivered})")
         if self.jobs[-1].config:
             self.jobs[-1].delivered = job_delivered
+            self._db_provider.get_database('').save_job(self.jobs[-1])
 
     def job_cancelled(self, cancelled: Cancelled) -> None:
         _log.debug(f"job_delivered({cancelled})")
         if self.jobs[-1].config:
             self.jobs[-1].cancelled = cancelled
+            self._db_provider.get_database('').save_job(self.jobs[-1])
 
 
 def add_json_to_work_log(work_log: WorkLog, json_data: json, topic: str) -> None:
+    _log.debug(f"add_json_to_work_log({work_log}, {json_data}, {topic}) -> None:")
     if topic == "ets2/info/gameplay/job.cancelled":
         work_log.job_cancelled(cancelled_from_dict(json_data))
     elif topic == "ets2/info/gameplay/job.delivered":

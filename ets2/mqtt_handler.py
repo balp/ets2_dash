@@ -62,7 +62,7 @@ def mqtt_thread_loop(model: Model, work_log: WorkLog, state: GlobalState) -> Non
 
 def mqtt_model_handler():
     model: Model = Model()
-    work_log: WorkLog = WorkLog(model, database=None)
+    work_log: WorkLog = WorkLog(model, database_provider=None)
     state: GlobalState = GlobalState()
     mqtt_reader_thread = threading.Thread(target=mqtt_thread_loop,
                                           args=(model, work_log, state))
