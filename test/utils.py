@@ -29,9 +29,9 @@ def rerun_data_from_files(files: List[str], test_case: str) -> Tuple[Model, Work
     return model, work_log, database
 
 
-def verify_work_log_as_json(work_log):
+def verify_work_log_as_json(work_log: WorkLog):
     jsonpickle.set_encoder_options('json', sort_keys=True, indent=4)
     jsonpickle.set_preferred_backend('json')
-    verify_with_namer(data=jsonpickle.encode(work_log),
+    verify_with_namer(data=jsonpickle.encode(work_log.jobs),
                       namer=Namer(extension='.json'),
                       reporter=get_default_reporter())

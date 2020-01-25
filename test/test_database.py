@@ -9,7 +9,7 @@ def test_save_job():
     _, _, database = rerun_data_from_files(["data/ats_start_port_ang_coos_bay.mqtt.json.bz2"],
                                            'test_save_job')
     lines = []
-    for line in database._conn.iterdump():
+    for line in database._get_connection().iterdump():
         lines.append(line)
     verify('\n'.join(lines))
 
@@ -30,7 +30,7 @@ def test_save_2_freights():
                                             "data/ats_end_coos_dalles_short.mqtt.json.bz2"
                                             ], 'test_2_freights')
     lines = []
-    for line in database._conn.iterdump():
+    for line in database._get_connection().iterdump():
         lines.append(line)
     verify('\n'.join(lines))
 

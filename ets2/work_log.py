@@ -1,5 +1,6 @@
 import datetime
 import json
+import logging
 from pathlib import Path
 from typing import List, Optional
 
@@ -7,6 +8,8 @@ import ets2.model
 import ets2.tracks
 from ets2.database import DataBase
 from ets2.jobs import Job, Delivered, delivered_from_dict, Cancelled, cancelled_from_dict
+
+_log = logging.getLogger("work_log")
 
 
 def time_in_game(model: ets2.model.Model):
@@ -59,15 +62,17 @@ class WorkLog:
         return str(self.jobs)
 
     def notify(self, model: ets2.model.Model, _: str):
-        print(f"notify:({model.job}) {len(self.jobs)}:")
+        _log.debug(f"notify:({model.job}) {len(self.jobs)}:")
         if model is None:
+            _log.debug(f"no model yet")
             return
         if model.telematic is None:
+            _log.debug(f"no telematic yet")
             return
         if len(self.jobs) > 0:
             current_job = self.jobs[-1]
             if model.job != current_job.config:
-                print(f"start new job")
+                _log.debug(f"start a new job")
                 current_job.ended = _game_time_in_model(model)
                 self._db.save_job(current_job)
                 self._add_new_job(model)
@@ -76,19 +81,25 @@ class WorkLog:
                     if current_job.track.add_telematic(model.telematic):
                         self._db.save_job(current_job)
         else:
-            print(f"new first job")
+            _log.debug(f"new first job")
             self._add_new_job(model)
 
     def _add_new_job(self, model):
+        _log.debug(f"_add_new_job({model})")
         new_job = job_from_model(model)
-        self.jobs.append(new_job)
-        self._db.save_job(new_job)
+        if new_job is not None:
+            self.jobs.append(new_job)
+            self._db.save_job(new_job)
+        else:
+            _log.warning(f"Could not make job from {model}")
 
-    def job_delivered(self, delivered: Delivered) -> None:
+    def job_delivered(self, job_delivered: Delivered) -> None:
+        _log.debug(f"job_delivered({job_delivered})")
         if self.jobs[-1].config:
-            self.jobs[-1].delivered = delivered
+            self.jobs[-1].delivered = job_delivered
 
     def job_cancelled(self, cancelled: Cancelled) -> None:
+        _log.debug(f"job_delivered({cancelled})")
         if self.jobs[-1].config:
             self.jobs[-1].cancelled = cancelled
 

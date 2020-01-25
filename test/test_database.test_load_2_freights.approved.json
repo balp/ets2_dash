@@ -1,307 +1,268 @@
-{
-    "_db": {
-        "_conn": {
-            "py/object": "sqlite3.Connection"
-        },
-        "py/object": "ets2.database.DataBase"
-    },
-    "_model": {
-        "_observers": [
-            {
-                "py/id": 0
-            }
-        ],
-        "game": null,
-        "info": null,
-        "job": null,
-        "py/object": "ets2.model.Model",
-        "telematic": null,
-        "tracks": {
-            "last_time": 0,
-            "points": [],
+[
+    {
+        "cancelled": null,
+        "config": null,
+        "delivered": null,
+        "ended": 37228,
+        "id": 1,
+        "py/object": "ets2.jobs.Job",
+        "started": 37201,
+        "track": {
+            "last_time": 37228,
+            "points": [
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -104305.18292236328,
+                        "y": 12.102846145629883,
+                        "z": -66655.20185089111
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 37201
+                },
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -104272.02157592773,
+                        "y": 12.105484962463379,
+                        "z": -66604.86669540405
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 37228
+                }
+            ],
             "py/object": "ets2.tracks.Tracks"
-        },
-        "trailer_config": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        ],
-        "truck_config": null
-    },
-    "jobs": [
-        {
-            "cancelled": null,
-            "config": null,
-            "delivered": null,
-            "ended": 37228,
-            "id": 1,
-            "py/object": "ets2.jobs.Job",
-            "started": 37201,
-            "track": {
-                "last_time": 37228,
-                "points": [
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -104305.18292236328,
-                            "y": 12.102846145629883,
-                            "z": -66655.20185089111
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 37201
-                    },
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -104272.02157592773,
-                            "y": 12.105484962463379,
-                            "z": -66604.86669540405
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 37228
-                    }
-                ],
-                "py/object": "ets2.tracks.Tracks"
-            }
-        },
-        {
-            "cancelled": null,
-            "config": {
-                "cargo": "Lumber",
-                "cargo_id": "lumber_b",
-                "cargo_mass": 21387.240234375,
-                "delivery_time": 38821,
-                "destination_city": "Coos Bay",
-                "destination_city_id": "coos_bay",
-                "destination_company": "Olthon Homes",
-                "destination_company_id": "oh_con_hom",
-                "income": 18742,
-                "py/object": "ets2.jobs.JobConfig",
-                "source_city": "Port Angeles",
-                "source_city_id": "port_angeles",
-                "source_company": "Deepgrove",
-                "source_company_id": "dg_wd_saw"
-            },
-            "delivered": {
-                "auto_load": 1,
-                "auto_park": 0,
-                "cargo_damage": 0.0,
-                "distance": 676.0,
-                "py/object": "ets2.jobs.Delivered",
-                "revenue": 18742,
-                "time": 1084,
-                "xp": 870
-            },
-            "ended": 38312,
-            "id": 2,
-            "py/object": "ets2.jobs.Job",
-            "started": 37228,
-            "track": {
-                "last_time": 38312,
-                "points": [
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -104272.02157592773,
-                            "y": 12.105484962463379,
-                            "z": -66604.86669540405
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 37228
-                    },
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -113779.6833114624,
-                            "y": 5.177712440490723,
-                            "z": -42559.202308654785
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 38299
-                    },
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -113934.7191772461,
-                            "y": 5.177143096923828,
-                            "z": -42777.36331176758
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 38312
-                    }
-                ],
-                "py/object": "ets2.tracks.Tracks"
-            }
-        },
-        {
-            "cancelled": null,
-            "config": null,
-            "delivered": null,
-            "ended": 38316,
-            "id": 3,
-            "py/object": "ets2.jobs.Job",
-            "started": 38312,
-            "track": {
-                "last_time": 38316,
-                "points": [
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -113934.7191772461,
-                            "y": 5.177135944366455,
-                            "z": -42777.36331176758
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 38312
-                    },
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -113746.27894592285,
-                            "y": 5.177285194396973,
-                            "z": -42803.44400024414
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 38315
-                    },
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -113731.70094299316,
-                            "y": 5.183038234710693,
-                            "z": -42779.22634887695
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 38316
-                    }
-                ],
-                "py/object": "ets2.tracks.Tracks"
-            }
-        },
-        {
-            "cancelled": {
-                "penalty": 15000,
-                "py/object": "ets2.jobs.Cancelled"
-            },
-            "config": {
-                "cargo": "Gypsum",
-                "cargo_id": "gypsum",
-                "cargo_mass": 21492.798828125,
-                "delivery_time": 38977,
-                "destination_city": "The Dalles",
-                "destination_city_id": "the_dalles",
-                "destination_company": "Home Store",
-                "destination_company_id": "hs_mkt",
-                "income": 12429,
-                "py/object": "ets2.jobs.JobConfig",
-                "source_city": "Coos Bay",
-                "source_city_id": "coos_bay",
-                "source_company": "Home Store",
-                "source_company_id": "hs_whs"
-            },
-            "delivered": {
-                "auto_load": 1,
-                "auto_park": 0,
-                "cargo_damage": 0.0,
-                "distance": 487.0,
-                "py/object": "ets2.jobs.Delivered",
-                "revenue": 12429,
-                "time": 351,
-                "xp": 795
-            },
-            "ended": 38667,
-            "id": 4,
-            "py/object": "ets2.jobs.Job",
-            "started": 38316,
-            "track": {
-                "last_time": 38667,
-                "points": [
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -113731.70094299316,
-                            "y": 5.183038234710693,
-                            "z": -42779.22634887695
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 38316
-                    },
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -113712.37997817993,
-                            "y": 5.176380634307861,
-                            "z": -42736.49880981445
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 38318
-                    },
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -99166.45639038086,
-                            "y": 12.230788230895996,
-                            "z": -51001.42868041992
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 38659
-                    },
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -99233.9595336914,
-                            "y": 12.250280380249023,
-                            "z": -50934.83279418945
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 38660
-                    },
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -99288.8861694336,
-                            "y": 12.376511573791504,
-                            "z": -51052.101501464844
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 38667
-                    }
-                ],
-                "py/object": "ets2.tracks.Tracks"
-            }
-        },
-        {
-            "cancelled": null,
-            "config": null,
-            "delivered": null,
-            "ended": null,
-            "id": 5,
-            "py/object": "ets2.jobs.Job",
-            "started": 38667,
-            "track": {
-                "last_time": 38667,
-                "points": [
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -99288.8861694336,
-                            "y": 12.376470565795898,
-                            "z": -51052.101501464844
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 38667
-                    }
-                ],
-                "py/object": "ets2.tracks.Tracks"
-            }
         }
-    ],
-    "py/object": "ets2.work_log.WorkLog"
-}
+    },
+    {
+        "cancelled": null,
+        "config": {
+            "cargo": "Lumber",
+            "cargo_id": "lumber_b",
+            "cargo_mass": 21387.240234375,
+            "delivery_time": 38821,
+            "destination_city": "Coos Bay",
+            "destination_city_id": "coos_bay",
+            "destination_company": "Olthon Homes",
+            "destination_company_id": "oh_con_hom",
+            "income": 18742,
+            "py/object": "ets2.jobs.JobConfig",
+            "source_city": "Port Angeles",
+            "source_city_id": "port_angeles",
+            "source_company": "Deepgrove",
+            "source_company_id": "dg_wd_saw"
+        },
+        "delivered": {
+            "auto_load": 1,
+            "auto_park": 0,
+            "cargo_damage": 0.0,
+            "distance": 676.0,
+            "py/object": "ets2.jobs.Delivered",
+            "revenue": 18742,
+            "time": 1084,
+            "xp": 870
+        },
+        "ended": 38312,
+        "id": 2,
+        "py/object": "ets2.jobs.Job",
+        "started": 37228,
+        "track": {
+            "last_time": 38312,
+            "points": [
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -104272.02157592773,
+                        "y": 12.105484962463379,
+                        "z": -66604.86669540405
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 37228
+                },
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -113779.6833114624,
+                        "y": 5.177712440490723,
+                        "z": -42559.202308654785
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38299
+                },
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -113934.7191772461,
+                        "y": 5.177143096923828,
+                        "z": -42777.36331176758
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38312
+                }
+            ],
+            "py/object": "ets2.tracks.Tracks"
+        }
+    },
+    {
+        "cancelled": null,
+        "config": null,
+        "delivered": null,
+        "ended": 38316,
+        "id": 3,
+        "py/object": "ets2.jobs.Job",
+        "started": 38312,
+        "track": {
+            "last_time": 38316,
+            "points": [
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -113934.7191772461,
+                        "y": 5.177135944366455,
+                        "z": -42777.36331176758
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38312
+                },
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -113746.27894592285,
+                        "y": 5.177285194396973,
+                        "z": -42803.44400024414
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38315
+                },
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -113731.70094299316,
+                        "y": 5.183038234710693,
+                        "z": -42779.22634887695
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38316
+                }
+            ],
+            "py/object": "ets2.tracks.Tracks"
+        }
+    },
+    {
+        "cancelled": {
+            "penalty": 15000,
+            "py/object": "ets2.jobs.Cancelled"
+        },
+        "config": {
+            "cargo": "Gypsum",
+            "cargo_id": "gypsum",
+            "cargo_mass": 21492.798828125,
+            "delivery_time": 38977,
+            "destination_city": "The Dalles",
+            "destination_city_id": "the_dalles",
+            "destination_company": "Home Store",
+            "destination_company_id": "hs_mkt",
+            "income": 12429,
+            "py/object": "ets2.jobs.JobConfig",
+            "source_city": "Coos Bay",
+            "source_city_id": "coos_bay",
+            "source_company": "Home Store",
+            "source_company_id": "hs_whs"
+        },
+        "delivered": {
+            "auto_load": 1,
+            "auto_park": 0,
+            "cargo_damage": 0.0,
+            "distance": 487.0,
+            "py/object": "ets2.jobs.Delivered",
+            "revenue": 12429,
+            "time": 351,
+            "xp": 795
+        },
+        "ended": 38667,
+        "id": 4,
+        "py/object": "ets2.jobs.Job",
+        "started": 38316,
+        "track": {
+            "last_time": 38667,
+            "points": [
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -113731.70094299316,
+                        "y": 5.183038234710693,
+                        "z": -42779.22634887695
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38316
+                },
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -113712.37997817993,
+                        "y": 5.176380634307861,
+                        "z": -42736.49880981445
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38318
+                },
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -99166.45639038086,
+                        "y": 12.230788230895996,
+                        "z": -51001.42868041992
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38659
+                },
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -99233.9595336914,
+                        "y": 12.250280380249023,
+                        "z": -50934.83279418945
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38660
+                },
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -99288.8861694336,
+                        "y": 12.376511573791504,
+                        "z": -51052.101501464844
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38667
+                }
+            ],
+            "py/object": "ets2.tracks.Tracks"
+        }
+    },
+    {
+        "cancelled": null,
+        "config": null,
+        "delivered": null,
+        "ended": null,
+        "id": 5,
+        "py/object": "ets2.jobs.Job",
+        "started": 38667,
+        "track": {
+            "last_time": 38667,
+            "points": [
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -99288.8861694336,
+                        "y": 12.376470565795898,
+                        "z": -51052.101501464844
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38667
+                }
+            ],
+            "py/object": "ets2.tracks.Tracks"
+        }
+    }
+]

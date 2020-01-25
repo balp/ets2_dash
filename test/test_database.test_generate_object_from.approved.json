@@ -1,116 +1,77 @@
-{
-    "_db": {
-        "_conn": {
-            "py/object": "sqlite3.Connection"
-        },
-        "py/object": "ets2.database.DataBase"
-    },
-    "_model": {
-        "_observers": [
-            {
-                "py/id": 0
-            }
-        ],
-        "game": null,
-        "info": null,
-        "job": null,
-        "py/object": "ets2.model.Model",
-        "telematic": null,
-        "tracks": {
-            "last_time": 0,
-            "points": [],
-            "py/object": "ets2.tracks.Tracks"
-        },
-        "trailer_config": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        ],
-        "truck_config": null
-    },
-    "jobs": [
-        {
-            "cancelled": null,
-            "config": null,
-            "delivered": null,
-            "ended": 37228,
-            "id": 1,
-            "py/object": "ets2.jobs.Job",
-            "started": 37201,
-            "track": {
-                "last_time": 37228,
-                "points": [
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -104305.18292236328,
-                            "y": 12.102846145629883,
-                            "z": -66655.20185089111
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 37201
+[
+    {
+        "cancelled": null,
+        "config": null,
+        "delivered": null,
+        "ended": 37228,
+        "id": 1,
+        "py/object": "ets2.jobs.Job",
+        "started": 37201,
+        "track": {
+            "last_time": 37228,
+            "points": [
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -104305.18292236328,
+                        "y": 12.102846145629883,
+                        "z": -66655.20185089111
                     },
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -104272.02157592773,
-                            "y": 12.105484962463379,
-                            "z": -66604.86669540405
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 37228
-                    }
-                ],
-                "py/object": "ets2.tracks.Tracks"
-            }
-        },
-        {
-            "cancelled": null,
-            "config": {
-                "cargo": "Lumber",
-                "cargo_id": "lumber_b",
-                "cargo_mass": 21387.240234375,
-                "delivery_time": 38821,
-                "destination_city": "Coos Bay",
-                "destination_city_id": "coos_bay",
-                "destination_company": "Olthon Homes",
-                "destination_company_id": "oh_con_hom",
-                "income": 18742,
-                "py/object": "ets2.jobs.JobConfig",
-                "source_city": "Port Angeles",
-                "source_city_id": "port_angeles",
-                "source_company": "Deepgrove",
-                "source_company_id": "dg_wd_saw"
-            },
-            "delivered": null,
-            "ended": null,
-            "id": 2,
-            "py/object": "ets2.jobs.Job",
-            "started": 37228,
-            "track": {
-                "last_time": 37228,
-                "points": [
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -104272.02157592773,
-                            "y": 12.105484962463379,
-                            "z": -66604.86669540405
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 37228
-                    }
-                ],
-                "py/object": "ets2.tracks.Tracks"
-            }
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 37201
+                },
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -104272.02157592773,
+                        "y": 12.105484962463379,
+                        "z": -66604.86669540405
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 37228
+                }
+            ],
+            "py/object": "ets2.tracks.Tracks"
         }
-    ],
-    "py/object": "ets2.work_log.WorkLog"
-}
+    },
+    {
+        "cancelled": null,
+        "config": {
+            "cargo": "Lumber",
+            "cargo_id": "lumber_b",
+            "cargo_mass": 21387.240234375,
+            "delivery_time": 38821,
+            "destination_city": "Coos Bay",
+            "destination_city_id": "coos_bay",
+            "destination_company": "Olthon Homes",
+            "destination_company_id": "oh_con_hom",
+            "income": 18742,
+            "py/object": "ets2.jobs.JobConfig",
+            "source_city": "Port Angeles",
+            "source_city_id": "port_angeles",
+            "source_company": "Deepgrove",
+            "source_company_id": "dg_wd_saw"
+        },
+        "delivered": null,
+        "ended": null,
+        "id": 2,
+        "py/object": "ets2.jobs.Job",
+        "started": 37228,
+        "track": {
+            "last_time": 37228,
+            "points": [
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -104272.02157592773,
+                        "y": 12.105484962463379,
+                        "z": -66604.86669540405
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 37228
+                }
+            ],
+            "py/object": "ets2.tracks.Tracks"
+        }
+    }
+]

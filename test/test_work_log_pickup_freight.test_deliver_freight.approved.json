@@ -1,233 +1,14 @@
-{
-    "_db": {
-        "_conn": {
-            "py/object": "sqlite3.Connection"
-        },
-        "py/object": "ets2.database.DataBase"
-    },
-    "_model": {
-        "_observers": [
-            {
-                "py/id": 0
-            }
-        ],
-        "game": {
-            "id": "ats",
-            "name": "American Truck Simulator 1.36.1.34s",
-            "py/object": "ets2.model.Game",
-            "raw_version": 65539,
-            "version": {
-                "major": 1,
-                "minor": 3,
-                "py/object": "ets2.model.Version"
-            }
-        },
-        "info": {
-            "paused": false,
-            "py/object": "ets2.model.Info"
-        },
-        "job": null,
-        "py/object": "ets2.model.Model",
-        "telematic": {
-            "common": {
-                "game_time": 38312,
-                "py/object": "ets2.telematic.Common",
-                "rest_stop": 581,
-                "scale": 3.0
-            },
-            "py/object": "ets2.telematic.Telematic",
-            "trailer": {
-                "acceleration_angular": {
-                    "py/object": "ets2.types.Vector",
-                    "x": -0.0011283610947430134,
-                    "y": 1.2916611922264565e-06,
-                    "z": 5.581895948125748e-06
-                },
-                "acceleration_linear": {
-                    "py/object": "ets2.types.Vector",
-                    "x": 2.687186497496441e-05,
-                    "y": -0.013560137711465359,
-                    "z": 0.0021443134173750877
-                },
-                "cargo_damage": 6.945314817130566e-05,
-                "connected": false,
-                "py/object": "ets2.telematic.Trailer",
-                "velocity_angular": {
-                    "py/object": "ets2.types.Vector",
-                    "x": 0.00011189553333679214,
-                    "y": -2.2064783422592882e-07,
-                    "z": 4.46151375399495e-07
-                },
-                "velocity_linear": {
-                    "py/object": "ets2.types.Vector",
-                    "x": 8.353917110071052e-06,
-                    "y": 0.0024038839619606733,
-                    "z": -0.00010401262989034876
-                },
-                "wear_chassis": 0.013595662079751492,
-                "wear_wheels": 0.013595662079751492,
-                "world_placement": {
-                    "orientation": {
-                        "heading": 0.3958577811717987,
-                        "pitch": 8.363186498172581e-05,
-                        "py/object": "ets2.types.Euler",
-                        "roll": -1.0700628990889527e-05
-                    },
-                    "position": {
-                        "py/object": "ets2.types.Vector",
-                        "x": -113930.79376220703,
-                        "y": 5.173255920410156,
-                        "z": -42782.45690917969
-                    },
-                    "py/object": "ets2.types.Placement"
-                }
-            },
-            "truck": {
-                "adblue": 64.88665771484375,
-                "adblue_warning": false,
-                "battery_voltage": 13.69074821472168,
-                "battery_voltage_warning": false,
-                "brake_air_pressure": 97.89523315429688,
-                "brake_air_pressure_emergency": false,
-                "brake_air_pressure_warning": false,
-                "brake_motor": false,
-                "brake_parking": false,
-                "brake_retarder": 0,
-                "brake_temperature": 94.8542251586914,
-                "cabin_acceleration_angular": {
-                    "py/object": "ets2.types.Vector",
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "cabin_offset": {
-                    "orientation": {
-                        "heading": 0.0,
-                        "pitch": 0.0,
-                        "py/object": "ets2.types.Euler",
-                        "roll": 0.0
-                    },
-                    "position": {
-                        "py/object": "ets2.types.Vector",
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0
-                    },
-                    "py/object": "ets2.types.Placement"
-                },
-                "cabin_velocity_angular": {
-                    "py/object": "ets2.types.Vector",
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "cruise_control": 0.0,
-                "dashboard_backlight": 1.0,
-                "displayed_gear": 3,
-                "effective_brake": 1.0,
-                "effective_clutch": 0.0,
-                "effective_steering": 0.002087546046823263,
-                "effective_throttle": 0.0,
-                "electric_enabled": true,
-                "engine_enabled": true,
-                "engine_gear": 0,
-                "engine_rpm": 599.9986572265625,
-                "fuel_amount": 455.7331848144531,
-                "fuel_consumption_average": 0.46223539113998413,
-                "fuel_range": 1431.0462646484375,
-                "fuel_warning": false,
-                "head_offset": {
-                    "orientation": {
-                        "heading": 0.0,
-                        "pitch": -0.01944444701075554,
-                        "py/object": "ets2.types.Euler",
-                        "roll": 0.0
-                    },
-                    "position": {
-                        "py/object": "ets2.types.Vector",
-                        "x": 0.0,
-                        "y": -0.019999999552965164,
-                        "z": 0.0
-                    },
-                    "py/object": "ets2.types.Placement"
-                },
-                "hshifter_slot": 0,
-                "input_brake": 0.0,
-                "input_clutch": 0.0,
-                "input_steering": 0.002087546046823263,
-                "input_throttle": 0.0,
-                "lblinker": false,
-                "light_aux_front": 1,
-                "light_aux_roof": 1,
-                "light_beacon": false,
-                "light_beam_high": false,
-                "light_beam_low": true,
-                "light_brake": false,
-                "light_lblinker": false,
-                "light_parking": true,
-                "light_rblinker": false,
-                "light_reverse": false,
-                "local_acceleration_angular": {
-                    "py/object": "ets2.types.Vector",
-                    "x": -0.003223245730623603,
-                    "y": 5.16258387506241e-06,
-                    "z": 0.00010118159116245806
-                },
-                "local_acceleration_linear": {
-                    "py/object": "ets2.types.Vector",
-                    "x": 0.00037163091474212706,
-                    "y": -0.0057870023883879185,
-                    "z": 0.023027215152978897
-                },
-                "local_velocity_angular": {
-                    "py/object": "ets2.types.Vector",
-                    "x": -0.0004103201499674469,
-                    "y": 3.180055045959307e-06,
-                    "z": 1.4616225598729216e-05
-                },
-                "local_velocity_linear": {
-                    "py/object": "ets2.types.Vector",
-                    "x": 8.843670366331935e-05,
-                    "y": -0.0013863801723346114,
-                    "z": 0.0057382117956876755
-                },
-                "navigation_distance": 737.828857421875,
-                "navigation_speed_limit": 0.0,
-                "navigation_time": 117.77947998046875,
-                "odometer": 17137.17578125,
-                "oil_pressure": 39.54541015625,
-                "oil_pressure_warning": false,
-                "oil_temperature": 90.75440979003906,
-                "py/object": "ets2.telematic.Truck",
-                "rblinker": false,
-                "speed": -0.00712883984670043,
-                "water_temperature": 86.2168197631836,
-                "water_temperature_warning": false,
-                "wear_cabin": 0.00254922010935843,
-                "wear_chassis": 0.0031865250784903765,
-                "wear_engine": 0.0037152734585106373,
-                "wear_transmission": 0.0030779684893786907,
-                "wear_wheels": 0.021697821095585823,
-                "wipers": false,
-                "world_placement": {
-                    "orientation": {
-                        "heading": 0.3937174081802368,
-                        "pitch": 4.819077730644494e-05,
-                        "py/object": "ets2.types.Euler",
-                        "roll": -1.89727472843515e-07
-                    },
-                    "position": {
-                        "py/object": "ets2.types.Vector",
-                        "x": -113934.71926879883,
-                        "y": 5.177162170410156,
-                        "z": -42777.36328125
-                    },
-                    "py/object": "ets2.types.Placement"
-                }
-            }
-        },
-        "tracks": {
-            "last_time": 38312,
+[
+    {
+        "cancelled": null,
+        "config": null,
+        "delivered": null,
+        "ended": 37228,
+        "id": 1,
+        "py/object": "ets2.jobs.Job",
+        "started": 37201,
+        "track": {
+            "last_time": 37228,
             "points": [
                 {
                     "position": {
@@ -245,6 +26,52 @@
                         "x": -104272.02157592773,
                         "y": 12.105484962463379,
                         "z": -66604.86669540405
+                    },
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 37228
+                }
+            ],
+            "py/object": "ets2.tracks.Tracks"
+        }
+    },
+    {
+        "cancelled": null,
+        "config": {
+            "cargo": "Lumber",
+            "cargo_id": "lumber_b",
+            "cargo_mass": 21387.240234375,
+            "delivery_time": 38821,
+            "destination_city": "Coos Bay",
+            "destination_city_id": "coos_bay",
+            "destination_company": "Olthon Homes",
+            "destination_company_id": "oh_con_hom",
+            "income": 18742,
+            "py/object": "ets2.jobs.JobConfig",
+            "source_city": "Port Angeles",
+            "source_city_id": "port_angeles",
+            "source_company": "Deepgrove",
+            "source_company_id": "dg_wd_saw"
+        },
+        "delivered": {
+            "auto_load": true,
+            "auto_park": false,
+            "cargo_damage": 0.0,
+            "distance": 676.0,
+            "py/object": "ets2.jobs.Delivered",
+            "revenue": 18742,
+            "time": 1084,
+            "xp": 870
+        },
+        "ended": 38312,
+        "id": 2,
+        "py/object": "ets2.jobs.Job",
+        "started": 37228,
+        "track": {
+            "last_time": 38312,
+            "points": [
+                {
+                    "position": {
+                        "py/id": 7
                     },
                     "py/object": "ets2.tracks.TrackPoint",
                     "time": 37228
@@ -271,193 +98,31 @@
                 }
             ],
             "py/object": "ets2.tracks.Tracks"
-        },
-        "trailer_config": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        ],
-        "truck_config": {
-            "adblue_capacity": 80.0,
-            "adblue_warning_factor": 0.15000000596046448,
-            "battery_voltage_warning": 11.880000114440918,
-            "brake_air_pressure_emergency": 29.579999923706055,
-            "brake_air_pressure_warning": 59.15999984741211,
-            "brand": "Volvo",
-            "brand_id": "volvo",
-            "cabin_position": {
-                "py/object": "ets2.types.Vector",
-                "x": 0.0,
-                "y": 3.0,
-                "z": -2.0
-            },
-            "differential_ratio": 3.549999952316284,
-            "forward_ratio": 0.7300000190734863,
-            "fuel_capacity": 758.0,
-            "fuel_warning_factor": 0.15000000596046448,
-            "gears_forward": 13,
-            "gears_reverse": 3,
-            "head_position": {
-                "py/object": "ets2.types.Vector",
-                "x": -0.5642366409301758,
-                "y": -0.5814938545227051,
-                "z": 0.570602536201477
-            },
-            "hook_position": {
-                "py/object": "ets2.types.Vector",
-                "x": 0.0,
-                "y": 1.0,
-                "z": 1.068235158920288
-            },
-            "id": "vehicle.volvo.vnl",
-            "license_plate": "8A7P001",
-            "license_plate_country": "California",
-            "license_plate_country_id": "california",
-            "name": "VNL",
-            "oil_pressure_warning": 10.149999618530273,
-            "py/object": "ets2.config.TruckConfig",
-            "retarder_steps": 3,
-            "reverse_ratio": -4.03000020980835,
-            "rpm_limit": 2100.0,
-            "water_temperature_warning": 105.0,
-            "wheel_position": {
-                "py/object": "ets2.types.Vector",
-                "x": 0.9612910747528076,
-                "y": 0.5059999823570251,
-                "z": 0.5031635761260986
-            },
-            "wheel_powered": true,
-            "wheel_radius": 0.5072842240333557,
-            "wheel_simulated": true,
-            "wheel_steerable": false,
-            "wheels_count": 6
         }
     },
-    "jobs": [
-        {
-            "cancelled": null,
-            "config": null,
-            "delivered": null,
-            "ended": 37228,
-            "id": 1,
-            "py/object": "ets2.jobs.Job",
-            "started": 37201,
-            "track": {
-                "last_time": 37228,
-                "points": [
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -104305.18292236328,
-                            "y": 12.102846145629883,
-                            "z": -66655.20185089111
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 37201
+    {
+        "cancelled": null,
+        "config": null,
+        "delivered": null,
+        "ended": null,
+        "id": 3,
+        "py/object": "ets2.jobs.Job",
+        "started": 38312,
+        "track": {
+            "last_time": 38312,
+            "points": [
+                {
+                    "position": {
+                        "py/object": "ets2.types.Vector",
+                        "x": -113934.7191772461,
+                        "y": 5.177135944366455,
+                        "z": -42777.36331176758
                     },
-                    {
-                        "position": {
-                            "py/id": 39
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 37228
-                    }
-                ],
-                "py/object": "ets2.tracks.Tracks"
-            }
-        },
-        {
-            "cancelled": null,
-            "config": {
-                "cargo": "Lumber",
-                "cargo_id": "lumber_b",
-                "cargo_mass": 21387.240234375,
-                "delivery_time": 38821,
-                "destination_city": "Coos Bay",
-                "destination_city_id": "coos_bay",
-                "destination_company": "Olthon Homes",
-                "destination_company_id": "oh_con_hom",
-                "income": 18742,
-                "py/object": "ets2.jobs.JobConfig",
-                "source_city": "Port Angeles",
-                "source_city_id": "port_angeles",
-                "source_company": "Deepgrove",
-                "source_company_id": "dg_wd_saw"
-            },
-            "delivered": {
-                "auto_load": true,
-                "auto_park": false,
-                "cargo_damage": 0.0,
-                "distance": 676.0,
-                "py/object": "ets2.jobs.Delivered",
-                "revenue": 18742,
-                "time": 1084,
-                "xp": 870
-            },
-            "ended": 38312,
-            "id": 2,
-            "py/object": "ets2.jobs.Job",
-            "started": 37228,
-            "track": {
-                "last_time": 38312,
-                "points": [
-                    {
-                        "position": {
-                            "py/id": 39
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 37228
-                    },
-                    {
-                        "position": {
-                            "py/id": 41
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 38299
-                    },
-                    {
-                        "position": {
-                            "py/id": 43
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 38312
-                    }
-                ],
-                "py/object": "ets2.tracks.Tracks"
-            }
-        },
-        {
-            "cancelled": null,
-            "config": null,
-            "delivered": null,
-            "ended": null,
-            "id": 3,
-            "py/object": "ets2.jobs.Job",
-            "started": 38312,
-            "track": {
-                "last_time": 38312,
-                "points": [
-                    {
-                        "position": {
-                            "py/object": "ets2.types.Vector",
-                            "x": -113934.7191772461,
-                            "y": 5.177135944366455,
-                            "z": -42777.36331176758
-                        },
-                        "py/object": "ets2.tracks.TrackPoint",
-                        "time": 38312
-                    }
-                ],
-                "py/object": "ets2.tracks.Tracks"
-            }
+                    "py/object": "ets2.tracks.TrackPoint",
+                    "time": 38312
+                }
+            ],
+            "py/object": "ets2.tracks.Tracks"
         }
-    ],
-    "py/object": "ets2.work_log.WorkLog"
-}
+    }
+]

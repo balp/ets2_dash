@@ -1,71 +1,71 @@
 BEGIN TRANSACTION;
 CREATE TABLE job
-            (
-                id      integer primary key,
-                started integer,
-                ended   integer
-            );
+        (
+            id      integer primary key,
+            started integer,
+            ended   integer
+        );
 INSERT INTO "job" VALUES(1,37201,37228);
 INSERT INTO "job" VALUES(2,37228,38312);
 INSERT INTO "job" VALUES(3,38312,38316);
 INSERT INTO "job" VALUES(4,38316,38667);
 INSERT INTO "job" VALUES(5,38667,NULL);
 CREATE TABLE job_cancelled
-            (
-                id      integer primary key,
-                penalty integer,
-                FOREIGN KEY (id)
-                    REFERENCES job (id)
-            );
+        (
+            id      integer primary key,
+            penalty integer,
+            FOREIGN KEY (id)
+                REFERENCES job (id)
+        );
 INSERT INTO "job_cancelled" VALUES(4,15000);
 CREATE TABLE job_config
-            (
-                id                     integer primary key,
-                cargo                  text,
-                cargo_id               text,
-                cargo_mass             real,
-                delivery_time          integer,
-                destination_city       text,
-                destination_city_id    text,
-                destination_company    text,
-                destination_company_id text,
-                income                 integer,
-                source_city            text,
-                source_city_id         text,
-                source_company         text,
-                source_company_id      text,
-                FOREIGN KEY (id)
-                    REFERENCES job (id)
-            );
+        (
+            id                     integer primary key,
+            cargo                  text,
+            cargo_id               text,
+            cargo_mass             real,
+            delivery_time          integer,
+            destination_city       text,
+            destination_city_id    text,
+            destination_company    text,
+            destination_company_id text,
+            income                 integer,
+            source_city            text,
+            source_city_id         text,
+            source_company         text,
+            source_company_id      text,
+            FOREIGN KEY (id)
+                REFERENCES job (id)
+        );
 INSERT INTO "job_config" VALUES(2,'Lumber','lumber_b',21387.240234375,38821,'Coos Bay','coos_bay','Olthon Homes','oh_con_hom',18742,'Port Angeles','port_angeles','Deepgrove','dg_wd_saw');
 INSERT INTO "job_config" VALUES(4,'Gypsum','gypsum',21492.798828125,38977,'The Dalles','the_dalles','Home Store','hs_mkt',12429,'Coos Bay','coos_bay','Home Store','hs_whs');
 CREATE TABLE job_delivered
-            (
-                id           integer primary key,
-                auto_load    integer,
-                auto_park    integer,
-                cargo_damage real,
-                time         integer,
-                distance     real,
-                xp           integer,
-                revenue      integer,
-                FOREIGN KEY (id)
-                    REFERENCES job (id)
-            );
+        (
+            id           integer primary key,
+            auto_load    integer,
+            auto_park    integer,
+            cargo_damage real,
+            time         integer,
+            distance     real,
+            xp           integer,
+            revenue      integer,
+            FOREIGN KEY (id)
+                REFERENCES job (id)
+        );
 INSERT INTO "job_delivered" VALUES(2,1,0,0.0,1084,676.0,870,18742);
 INSERT INTO "job_delivered" VALUES(4,1,0,0.0,351,487.0,795,12429);
 CREATE TABLE track_point
-            (
-                id        integer,
-                count     integer,
-                time      integer,
-                x real,
-                y real,
-                z real,
-                PRIMARY KEY (id, count),
-                FOREIGN KEY (id)
-                    REFERENCES tracks (id)
-            );
+        (
+            id        integer,
+            count     integer,
+            time      integer,
+            x real,
+            y real,
+            z real,
+            PRIMARY KEY (id, count),
+            FOREIGN KEY (id)
+                REFERENCES tracks (id)
+        );
 INSERT INTO "track_point" VALUES(1,0,37201,-1.04305182922363281247e+05,1.21028461456298828122e+01,-6.66552018508911132792e+04);
 INSERT INTO "track_point" VALUES(1,1,37228,-1.04272021575927734376e+05,1.21054849624633789064e+01,-6.66048666954040527324e+04);
 INSERT INTO "track_point" VALUES(2,0,37228,-1.04272021575927734376e+05,1.21054849624633789064e+01,-6.66048666954040527324e+04);
@@ -81,12 +81,12 @@ INSERT INTO "track_point" VALUES(4,3,38660,-99233.9595336914,1.22502803802490234
 INSERT INTO "track_point" VALUES(4,4,38667,-99288.8861694336,1.23765115737915039058e+01,-5.10521015014648437508e+04);
 INSERT INTO "track_point" VALUES(5,0,38667,-99288.8861694336,1.23764705657958984375e+01,-5.10521015014648437508e+04);
 CREATE TABLE tracks
-            (
-                id    integer primary key,
-                last_time integer,
-                FOREIGN KEY (id)
-                    REFERENCES job (id)
-            );
+        (
+            id    integer primary key,
+            last_time integer,
+            FOREIGN KEY (id)
+                REFERENCES job (id)
+        );
 INSERT INTO "tracks" VALUES(1,37228);
 INSERT INTO "tracks" VALUES(2,38312);
 INSERT INTO "tracks" VALUES(3,38316);
