@@ -29,7 +29,7 @@ def on_message(_: typing.Any, userdata: typing.Any, message: typing.Any):
 def mqtt_thread_loop(model: Model, work_log: WorkLog, state: GlobalState) -> None:
     client = mqtt.Client("ets2_gui", userdata=(model, work_log))
     client.on_message = on_message
-    client.connect("localhost")
+    client.connect("192.168.1.20")
     client.subscribe("ets2/data")
     client.subscribe("ets2/game")
     client.subscribe("ets2/info")

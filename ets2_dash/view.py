@@ -1,5 +1,6 @@
 import decimal
 import datetime
+from pathlib import Path
 
 import PySimpleGUI
 
@@ -31,10 +32,16 @@ def _info_label(label, key):
 class View:
     def __init__(self, data):
         self._data: ets2.model.Model = data
+        # TODO: Get the icon location someplace better, e.g. install with program
+        self._icons_folder = Path("C:\\Users\\ander\\PycharmProjects\\ets2_dash\\ets2_dash\\icons")
+        # self._icons_folder = Path("/home/balp/src/ets2_dash/ets2_dash/icons/")
+
+        # Uses self._icons_folder so have to be after
         self._setup_window()
         self._count = 0
 
     def _setup_window(self):
+
         job_layout = [
             _info_label('Cargo', 'job_cargo'),
             _info_label('Income', 'job_income'),
@@ -155,87 +162,87 @@ class View:
         ]
         warning_icons = [
             # Malfunctions
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/battery.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('battery.png')}",
                               size=(25, 25),
                               key='battery_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/warning.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('warning.png')}",
                               size=(25, 25),
                               key='electric_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/malfunction-indicador.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('malfunction-indicador.png')}",
                               size=(25, 25),
                               key='engine_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/warning.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('warning.png')}",
                               size=(25, 25),
                               key='water_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/oil.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('oil.png')}",
                               size=(25, 25),
                               key='oil_icon'),
         ]
         info_icons = [
             # Info
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/winshield-wiper.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('winshield-wiper.png')}",
                               size=(25, 25),
                               key='wipers_icon'),
             # Fuel
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/fuel.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('fuel.png')}",
                               size=(25, 25),
                               key='adblue_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/fuel.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('fuel.png')}",
                               size=(25, 25),
                               key='fuel_icon'),
         ]
         light_icons = [
             # Lights
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/turn-signals.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('turn-signals.png')}",
                               size=(25, 25),
                               key='lblinker_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/turn-signals.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('turn-signals.png')}",
                               size=(25, 25),
                               key='rblinker_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/turn-signals.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('turn-signals.png')}",
                               size=(25, 25),
                               key='light_lblinker_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/turn-signals.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('turn-signals.png')}",
                               size=(25, 25),
                               key='light_rblinker_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/dome-light.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('dome-light.png')}",
                               size=(25, 25),
                               key='light_aux_roof_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/fog-light.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('fog-light.png')}",
                               size=(25, 25),
                               key='light_aux_font_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/dome-light.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('dome-light.png')}",
                               size=(25, 25),
                               key='light_beacon_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/high-beam.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('high-beam.png')}",
                               size=(25, 25),
                               key='light_beam_high_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/low-beam.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('low-beam.png')}",
                               size=(25, 25),
                               key='light_beam_low_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/light.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('light.png')}",
                               size=(25, 25),
                               key='light_brake_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/parking-lights.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('parking-lights.png')}",
                               size=(25, 25),
                               key='light_parking_icon'),
-            PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/light.png",
+            PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('light.png')}",
                               size=(25, 25),
                               key='light_reverse_icon'),
 
         ]
         brake_info = [
             # Breaking
-            [PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/brake-system-warning.png",
+            [PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('brake-system-warning.png')}",
                                size=(25, 25),
                                key='break_emergency'),
-             PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/brake-system-warning.png",
+             PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('brake-system-warning.png')}",
                                size=(25, 25),
                                key='break_warning')],
-            [PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/hazard.png",
+            [PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('hazard.png')}",
                                size=(25, 25),
                                key='break_parking_icon'),
-             PySimpleGUI.Image(filename="/home/balp/src/ets2_dash/ets2_dash/icons/25/warning.png",
+             PySimpleGUI.Image(filename=f"{self._icons_folder / Path('25') / Path('warning.png')}",
                                size=(25, 25),
                                key='brake_engine_icon')],
             wear_info_label('Pressure', "air_pressure"),
@@ -325,9 +332,11 @@ class View:
 
     def _update_image(self, key: str, iconname: str, active: bool):
         if active:
-            filename = f"/home/balp/src/ets2_dash/ets2_dash/icons/25-on/{iconname}.png"
+            # filename = f"/home/balp/src/ets2_dash/ets2_dash/icons/25-on/{iconname}.png"
+            filename = f"C:\\Users\\ander\\PycharmProjects\\ets2_dash\\ets2_dash\\icons\\25-on\\{iconname}.png"
         else:
-            filename = f"/home/balp/src/ets2_dash/ets2_dash/icons/25/{iconname}.png"
+            # filename = f"/home/balp/src/ets2_dash/ets2_dash/icons/25/{iconname}.png"
+            filename = f"C:\\Users\\ander\\PycharmProjects\\ets2_dash\\ets2_dash\\icons\\25\\{iconname}.png"
         self.window.FindElement(key).Update(filename=filename)
 
     def update_data(self):
