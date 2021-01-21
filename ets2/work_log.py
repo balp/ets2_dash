@@ -135,7 +135,7 @@ class WorkLog:
 
 
 def add_json_to_work_log(work_log: WorkLog, json_data: json, topic: str) -> None:
-    _log.debug(f"add_json_to_work_log({work_log}, {json_data}, {topic}) -> None:")
+    # _log.debug(f"add_json_to_work_log({work_log}, {json_data}, {topic}) -> None:")
     if topic == "ets2/info/gameplay/job.cancelled":
         work_log.job_cancelled(cancelled_from_dict(json_data))
     elif topic == "ets2/info/gameplay/job.delivered":

@@ -1,5 +1,6 @@
 import decimal
 import datetime
+import logging
 from pathlib import Path
 
 import PySimpleGUI
@@ -32,6 +33,8 @@ def _info_label(label, key):
 class View:
     def __init__(self, data):
         self._data: ets2.model.Model = data
+        self._log = logging.getLogger("view")
+
         # TODO: Get the icon location someplace better, e.g. install with program
         self._icons_folder = Path("C:\\Users\\ander\\PycharmProjects\\ets2_dash\\ets2_dash\\icons")
         # self._icons_folder = Path("/home/balp/src/ets2_dash/ets2_dash/icons/")
@@ -340,6 +343,7 @@ class View:
         self.window.FindElement(key).Update(filename=filename)
 
     def update_data(self):
+        self._log.debug("update_data")
         self._update_element('game_name', self._data.get_game_name())
         self._update_element('game_pause', 'paused' if self._data.get_game_pause() else '')
         if self._data.telematic:
@@ -488,6 +492,10 @@ class View:
         #                      bottom_right=(-119999, -65000))
         for point in tracks.points:
             canvas.DrawPoint(point=(point.position.x, point.position.z))
+
+    def notify(self, model: ets2.model.Model, event: str):
+        pass
+
 
 
 def format_minute_time(time):

@@ -17,6 +17,7 @@ class Info:
 
 
 def info_from_dict(data: Dict) -> Info:
+    _log.debug(f"info_from_dict({data})")
     return Info(paused=data['paused'])
 
 
@@ -64,17 +65,18 @@ class Model:
             observer.notify(self, change)
 
     def set_telematic_data(self, data):
-        _log.debug("set_telematic_data(self, data)")
+        # _log.debug("set_telematic_data(self, data)")
         self.telematic = telematic_from_dict(data)
         self.tracks.add_telematic(self.telematic)
         self._data_changed("telematic")
-        _log.debug("set_telematic_data(self, data) [done]")
+        # _log.debug("set_telematic_data(self, data) [done]")
 
     def set_job_config(self, data):
         self.job = jobconfig_from_dict(data)
         self._data_changed("job")
 
     def set_info(self, data):
+        _log.debug("set_info(self, data)")
         self.info = info_from_dict(data)
         self._data_changed("info")
 
