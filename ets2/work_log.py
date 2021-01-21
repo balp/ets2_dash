@@ -50,21 +50,19 @@ class DatabaseProvider:
 
     """
 
-    def __init__(self, database: Optional[DataBase]):
+    def __init__(self):
         self._databases: Dict[str, DataBase] = {}
-        if database is None:
-            self._db = DataBase(Path.home() / '.local/share/ets2_work_log/',
-                                'work_log.sqlite')
-        else:
-            self._db = database
 
     def get_database(self, game_id: str) -> DataBase:
         """Returns a database instance based on the current game
         :param game_id: Id of the current game
         """
         if game_id not in self._databases:
-            self._databases[game_id] = DataBase(Path.home() / '.local/share/ets2_work_log/',
-                                                f'{game_id}.sqlite')
+            db_path = Path.home() / '.local' / 'share' / 'ets2_work_log'
+            db_name = Path(f'{game_id}.sqlite')
+            new_database = DataBase(db_path, db_name)
+            _log.debug(f"open new database, {db_path}/{db_name}")
+            self._databases[game_id] = new_database
         return self._databases[game_id]
 
 
@@ -75,10 +73,10 @@ class WorkLog:
         self._model = data
         self._model.register_observer(self)
         if database_provider is None:
-            self._db_provider = DatabaseProvider(None)
+            self._db_provider = DatabaseProvider()
         else:
             self._db_provider = database_provider
-        self._game_id = 'ats'
+        self._game_id = 'no_game'
         self.jobs: List[Job] = self._db_provider.get_database(self._game_id).get_jobs()
 
     def __repr__(self):
@@ -102,12 +100,12 @@ class WorkLog:
             if model.job != current_job.config:
                 _log.debug(f"start a new job")
                 current_job.ended = _game_time_in_model(model)
-                self._db_provider.get_database('').save_job(current_job)
+                self._db_provider.get_database(self._game_id).save_job(current_job)
                 self._add_new_job(model)
             else:
                 if model.telematic:
                     if current_job.track.add_telematic(model.telematic):
-                        self._db_provider.get_database('').save_job(current_job)
+                        self._db_provider.get_database(self._game_id).save_job(current_job)
         else:
             _log.debug(f"new first job")
             self._add_new_job(model)
@@ -117,7 +115,7 @@ class WorkLog:
         new_job = job_from_model(model)
         if new_job is not None:
             self.jobs.append(new_job)
-            self._db_provider.get_database('').save_job(new_job)
+            self._db_provider.get_database(self._game_id).save_job(new_job)
         else:
             _log.warning(f"Could not make job from {model}")
 
@@ -125,13 +123,13 @@ class WorkLog:
         _log.debug(f"job_delivered({job_delivered})")
         if self.jobs[-1].config:
             self.jobs[-1].delivered = job_delivered
-            self._db_provider.get_database('').save_job(self.jobs[-1])
+            self._db_provider.get_database(self._game_id).save_job(self.jobs[-1])
 
     def job_cancelled(self, cancelled: Cancelled) -> None:
         _log.debug(f"job_delivered({cancelled})")
         if self.jobs[-1].config:
             self.jobs[-1].cancelled = cancelled
-            self._db_provider.get_database('').save_job(self.jobs[-1])
+            self._db_provider.get_database(self._game_id).save_job(self.jobs[-1])
 
 
 def add_json_to_work_log(work_log: WorkLog, json_data: json, topic: str) -> None:

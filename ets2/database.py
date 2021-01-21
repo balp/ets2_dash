@@ -15,6 +15,7 @@
 import logging
 import sqlite3 as db
 import threading
+from pathlib import Path
 from typing import List, Dict
 
 from ets2.jobs import Job, Delivered, Cancelled, JobConfig
@@ -248,7 +249,7 @@ def _setup_tables(cursor):
 
 
 class DataBase:
-    def __init__(self, db_path, db_name):
+    def __init__(self, db_path: Path, db_name: Path):
         self._connections: Dict[int, db.Connection] = {}
         db_path.mkdir(parents=True, exist_ok=True)
         self.database = db_path / db_name

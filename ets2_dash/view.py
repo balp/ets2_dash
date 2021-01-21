@@ -276,8 +276,8 @@ class View:
                                          # size=(80, 2),
                                          )]
         map_area = [PySimpleGUI.Graph(canvas_size=(400, 400),
-                                      graph_bottom_left=self._data.tracks.bottom_left(),
-                                      graph_top_right=self._data.tracks.top_right(),
+                                      graph_bottom_left=(1000,1000),
+                                      graph_top_right=(0,0),
                                       key='map_canvas')]
         dash_1 = [
             speed_info,
@@ -343,7 +343,7 @@ class View:
         self.window.FindElement(key).Update(filename=filename)
 
     def update_data(self):
-        self._log.debug("update_data")
+        #self._log.debug("update_data")
         self._update_element('game_name', self._data.get_game_name())
         self._update_element('game_pause', 'paused' if self._data.get_game_pause() else '')
         if self._data.telematic:
@@ -485,17 +485,31 @@ class View:
         if self._count % 100:
             return
         tracks = self._data.tracks
-
+        bottom_left = tracks.bottom_left()
+        top_right = tracks.top_right()
+        self._log.debug(f"draw tracks: {bottom_left}x{top_right}")
         canvas: PySimpleGUI.Graph = self.window.FindElement('map_canvas')
         canvas.Erase()
-        # canvas.DrawRectangle(top_left=(-99005, -60005),
-        #                      bottom_right=(-119999, -65000))
+        delta_x = abs(bottom_left[0] - top_right[0])
+        if delta_x > 1:
+            scale_x = 1000.0 / delta_x
+        else:
+            scale_x = 10.0
+        offset_x = -bottom_left[0]
+        delta_z = abs(bottom_left[2] - top_right[2])
+        if delta_z > 1:
+            scale_z = 1000.0 / delta_z
+        else:
+            scale_z = 10.0
+        offset_z = -bottom_left[2]
         for point in tracks.points:
-            canvas.DrawPoint(point=(point.position.x, point.position.z))
+            x = (point.position.x + offset_x) * scale_x
+            z = (point.position.z + offset_z) * scale_z
+            position = (x, z)
+            canvas.DrawPoint(point=position)
 
     def notify(self, model: ets2.model.Model, event: str):
         pass
-
 
 
 def format_minute_time(time):

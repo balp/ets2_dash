@@ -42,18 +42,18 @@ class Tracks:
             return True
         return False
 
-    def bottom_left(self) -> (int, int):
+    def bottom_left(self) -> (float, float, float):
         if self.points:
             x = min(self.points, key=attrgetter('position.x')).position.x
             y = min(self.points, key=attrgetter('position.y')).position.y
             z = min(self.points, key=attrgetter('position.z')).position.z
             return x, y, z
-        return -139999, 20000  # ATS Hack
+        return -139999.0, 0.0, 20000.0  # ATS Hack
 
-    def top_right(self) -> (int, int):
+    def top_right(self) -> (float, float, float):
         if self.points:
             x = max(self.points, key=attrgetter('position.x')).position.x
             y = max(self.points, key=attrgetter('position.y')).position.y
             z = max(self.points, key=attrgetter('position.z')).position.z
             return x, y, z
-        return -20000, -85000  # ATS Hack
+        return -20000.0, 0.0, -85000.0  # ATS Hack
