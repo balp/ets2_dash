@@ -445,11 +445,6 @@ def test_inital_track():
     verify(str(model.tracks))
 
 
-def test_inital_track_bottom_left_corner_empty():
-    model = Model()
-    assert model.tracks.bottom_left() == (-139999, 20000)
-
-
 def test_inital_track_bottom_left_corner():
     model = Model()
     files = ["data/telematic.json",
@@ -462,11 +457,6 @@ def test_inital_track_bottom_left_corner():
         with open(f, "r") as j:
             model.set_telematic_data(json.load(j))
     assert model.tracks.bottom_left() == (-38626.81513977051, 28.410934448242188, 35655.31903076172)
-
-
-def test_inital_track_top_right_corner_empty():
-    model = Model()
-    assert model.tracks.top_right() == (-20000, -85000)
 
 
 def test_inital_track_top_right_corner():

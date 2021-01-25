@@ -5,7 +5,8 @@ from pathlib import Path
 from typing import List, Tuple
 
 import jsonpickle as jsonpickle
-from approvaltests import verify_with_namer, Namer, get_default_reporter
+from approvaltests import verify_with_namer, get_default_reporter
+from approvaltests.core.namer import StackFrameNamer
 
 from ets2.model import Model, add_json_to_model
 from ets2.database import DataBase
@@ -24,7 +25,7 @@ def rerun_data_from_files(files: List[str], test_case: str) -> Tuple[Model, Work
     model = Model()
     path = Path(f'/tmp/{test_case}')
     shutil.rmtree(path, ignore_errors=True)
-    database = DataBase(path, 'work_log.sqlite')
+    database = DataBase(path, Path('work_log.sqlite'))
     work_log: WorkLog = WorkLog(model, database_provider=TestDataBaseProvider(database))
     for f in files:
         with bz2.open(f) as gj:
@@ -40,5 +41,5 @@ def verify_work_log_as_json(work_log: WorkLog):
     jsonpickle.set_encoder_options('json', sort_keys=True, indent=4)
     jsonpickle.set_preferred_backend('json')
     verify_with_namer(data=jsonpickle.encode(work_log.jobs),
-                      namer=Namer(extension='.json'),
+                      namer=StackFrameNamer(extension='.json'),
                       reporter=get_default_reporter())

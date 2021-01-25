@@ -33,36 +33,48 @@ def cancelled_from_dict(data: Dict) -> Cancelled:
 
 @dataclass
 class JobConfig:
-    cargo: str
-    cargo_id: str
-    cargo_mass: float
-    delivery_time: int
-    destination_city: str
-    destination_city_id: str
-    destination_company: str
-    destination_company_id: str
-    income: int
-    source_city: str
-    source_city_id: str
-    source_company: str
-    source_company_id: str
+    cargo: Optional[str]
+    cargo_id: Optional[str]
+    cargo_loaded: Optional[bool]
+    cargo_mass: Optional[float]
+    cargo_unit_count: Optional[int]
+    cargo_unit_mass: Optional[float]
+    delivery_time: Optional[int]
+    destination_city: Optional[str]
+    destination_city_id: Optional[str]
+    destination_company: Optional[str]
+    destination_company_id: Optional[str]
+    income: Optional[int]
+    is_special_job: Optional[bool]
+    job_market: Optional[str]
+    planned_distance_km: Optional[int]
+    source_city: Optional[str]
+    source_city_id: Optional[str]
+    source_company: Optional[str]
+    source_company_id: Optional[str]
 
 
 def jobconfig_from_dict(data: Dict) -> Optional[JobConfig]:
     if len(data):
-        return JobConfig(cargo=data['cargo'],
-                         cargo_id=data['cargo.id'],
-                         cargo_mass=data['cargo.mass'],
-                         delivery_time=data['delivery.time'],
-                         destination_city=data['destination.city'],
-                         destination_city_id=data['destination.city.id'],
-                         destination_company=data['destination.company'],
-                         destination_company_id=data['destination.company.id'],
-                         income=data['income'],
-                         source_city=data['source.city'],
-                         source_city_id=data['source.city.id'],
-                         source_company=data['source.company'],
-                         source_company_id=data['source.company.id'])
+        return JobConfig(cargo=data.get('cargo'),
+                         cargo_id=data.get('cargo.id'),
+                         cargo_loaded=data.get('cargo.loaded'),
+                         cargo_mass=data.get('cargo.mass'),
+                         cargo_unit_count=data.get('cargo.unit.count'),
+                         cargo_unit_mass=data.get('cargo.unit.mass'),
+                         delivery_time=data.get('delivery.time'),
+                         destination_city=data.get('destination.city'),
+                         destination_city_id=data.get('destination.city.id'),
+                         destination_company=data.get('destination.company'),
+                         destination_company_id=data.get('destination.company.id'),
+                         income=data.get('income'),
+                         is_special_job=data.get('is.special.job'),
+                         job_market=data.get('job.market'),
+                         planned_distance_km=data.get('planned_distance.km'),
+                         source_city=data.get('source.city'),
+                         source_city_id=data.get('source.city.id'),
+                         source_company=data.get('source.company'),
+                         source_company_id=data.get('source.company.id'))
     else:
         return None
 

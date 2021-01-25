@@ -57,11 +57,12 @@ class DatabaseProvider:
         """Returns a database instance based on the current game
         :param game_id: Id of the current game
         """
+        _log.debug(f"get_database(self, {game_id})")
         if game_id not in self._databases:
             db_path = Path.home() / '.local' / 'share' / 'ets2_work_log'
             db_name = Path(f'{game_id}.sqlite')
+            _log.info(f"open new DataBase({db_path}, {db_name})")
             new_database = DataBase(db_path, db_name)
-            _log.debug(f"open new database, {db_path}/{db_name}")
             self._databases[game_id] = new_database
         return self._databases[game_id]
 
@@ -69,7 +70,7 @@ class DatabaseProvider:
 class WorkLog:
     """A log work jobs in ETS2/ATS"""
 
-    def __init__(self, data: ets2.model.Model, database_provider: DatabaseProvider) -> None:
+    def __init__(self, data: ets2.model.Model, database_provider: Optional[DatabaseProvider]) -> None:
         self._model = data
         self._model.register_observer(self)
         if database_provider is None:
@@ -86,12 +87,13 @@ class WorkLog:
         # Good to follow issues, but takes loots of resources in live running
         # _log.debug(f"notify:({model.job}) {len(self.jobs)}:")
         if model is None:
-            _log.debug(f"no model yet")
+            _log.debug(f"no model yet: {self._game_id}")
             return
         if model.telematic is None:
-            _log.debug(f"no telematic yet")
+            _log.debug(f"no telematic yet: {self._game_id}")
             return
         if model.game.id != self._game_id:  # Reload jobs if game have changed
+            _log.info(f"new game id: {model.game.id} != {self._game_id}")
             self.jobs = self._db_provider.get_database(model.game.id).get_jobs()
             self._game_id = model.game.id
 

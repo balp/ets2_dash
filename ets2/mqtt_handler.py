@@ -1,4 +1,6 @@
 import json
+import random
+import string
 import threading
 import typing
 from dataclasses import dataclass
@@ -26,8 +28,10 @@ def on_message(_: typing.Any, userdata: typing.Any, message: typing.Any):
                              topic=message.topic)
 
 
-def mqtt_thread_loop(model: Model, work_log: WorkLog, state: GlobalState) -> None:
-    client = mqtt.Client("ets2_gui", userdata=(model, work_log))
+def mqtt_thread_loop(model: Model, work_log: WorkLog, state: GlobalState, client_id: typing.Optional[str]) -> None:
+    if not client_id:
+        client_id = f"ets_client_{ ''.join(random.choices(string.ascii_lowercase + string.digits, k=8))}"
+    client = mqtt.Client(client_id, userdata=(model, work_log))
     client.on_message = on_message
     client.connect("192.168.1.20")
     client.subscribe("ets2/data")
@@ -64,8 +68,9 @@ def mqtt_model_handler():
     model: Model = Model()
     work_log: WorkLog = WorkLog(model, database_provider=None)
     state: GlobalState = GlobalState()
+    client_id: typing.Optional[str] = None
     mqtt_reader_thread = threading.Thread(target=mqtt_thread_loop,
-                                          args=(model, work_log, state))
+                                          args=(model, work_log, state, client_id))
     mqtt_reader_thread.start()
     return model, mqtt_reader_thread, state, work_log
 

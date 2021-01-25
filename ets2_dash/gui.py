@@ -8,10 +8,14 @@ from ets2_dash.view import View
 
 
 def main():
-    logging.basicConfig(format='%(asctime)s %(message)s', level=logging.DEBUG)
+    logging.basicConfig(format='%(asctime)s:%(module)s: %(message)s', level=logging.ERROR)
+    logging.getLogger("database").setLevel(logging.DEBUG)
+    # logging.getLogger("view").setLevel(logging.INFO)
+    # logging.getLogger("model").setLevel(logging.INFO)
+    # logging.getLogger("work_log").setLevel(logging.DEBUG)
     model, mqtt_reader_thread, state, work_log = mqtt_model_handler()
     PySimpleGUI.ChangeLookAndFeel('Dark')
-    hmi = View(model)
+    hmi = View(model, work_log)
     model.register_observer(hmi)
     mqtt_event_loop(hmi, mqtt_reader_thread, state)
 

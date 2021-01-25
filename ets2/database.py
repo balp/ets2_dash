@@ -43,10 +43,10 @@ def _get_job_delivered(curr2, job, job_id):
 
 
 def _get_job_config(curr2, job, job_id):
-    curr2.execute('select cargo, cargo_id, cargo_mass,'
-                  ' delivery_time, destination_city, destination_city_id,'
+    curr2.execute('select cargo, cargo_id, cargo_loaded, cargo_mass,'
+                  ' cargo_unit_count, cargo_unit_mass, delivery_time, destination_city, destination_city_id,'
                   ' destination_company, destination_company_id,'
-                  ' income, source_city, source_city_id,'
+                  ' income, is_special_job, job_market, planned_distance_km, source_city, source_city_id,'
                   ' source_company, source_company_id from job_config where id=?',
                   (job_id,))
     r = curr2.fetchone()
@@ -54,17 +54,23 @@ def _get_job_config(curr2, job, job_id):
         _log.debug(f"Got config {r}")
         job.config = JobConfig(cargo=r[0],
                                cargo_id=r[1],
-                               cargo_mass=r[2],
-                               delivery_time=r[3],
-                               destination_city=r[4],
-                               destination_city_id=r[5],
-                               destination_company=r[6],
-                               destination_company_id=r[7],
-                               income=r[8],
-                               source_city=r[9],
-                               source_city_id=r[10],
-                               source_company=r[11],
-                               source_company_id=r[12])
+                               cargo_loaded=r[2],
+                               cargo_mass=r[3],
+                               cargo_unit_count=r[4],
+                               cargo_unit_mass=r[5],
+                               delivery_time=r[6],
+                               destination_city=r[7],
+                               destination_city_id=r[8],
+                               destination_company=r[9],
+                               destination_company_id=r[10],
+                               income=r[11],
+                               is_special_job=r[12],
+                               job_market=r[13],
+                               planned_distance_km=r[14],
+                               source_city=r[15],
+                               source_city_id=r[16],
+                               source_company=r[17],
+                               source_company_id=r[18])
 
 
 def _get_job_cancelled(curr2, job, job_id):
@@ -153,21 +159,29 @@ def _save_job_delivered(cursor, job):
 def _save_job_config(cursor, job):
     _log.debug(f"_save_job_config(self, cursor, {job})")
     if job.config is not None:
-        cursor.execute("replace into job_config (id, cargo, cargo_id, cargo_mass, delivery_time, "
+        cursor.execute("replace into job_config (id, cargo, cargo_id, cargo_loaded, cargo_mass, cargo_unit_count,"
+                       "                         cargo_unit_mass, delivery_time, "
                        "                         destination_city, destination_city_id, destination_company,"
-                       "                         destination_company_id, income, source_city, source_city_id,"
+                       "                         destination_company_id, income, is_special_job, source_city,"
+                       "                         job_market, source_city_id, planned_distance_km, "
                        "                         source_company, source_company_id)"
-                       "   values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                       "   values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                        (job.id,
                         job.config.cargo,
                         job.config.cargo_id,
+                        job.config.cargo_loaded,
                         job.config.cargo_mass,
+                        job.config.cargo_unit_count,
+                        job.config.cargo_unit_mass,
                         job.config.delivery_time,
                         job.config.destination_city,
                         job.config.destination_city_id,
                         job.config.destination_company,
                         job.config.destination_company_id,
                         job.config.income,
+                        job.config.is_special_job,
+                        job.config.job_market,
+                        job.config.planned_distance_km,
                         job.config.source_city,
                         job.config.source_city_id,
                         job.config.source_company,
@@ -175,7 +189,47 @@ def _save_job_config(cursor, job):
 
 
 def _setup_tables(cursor):
-    cursor.executescript("""
+    user_version = None
+    schema_version = None
+    application_id = None
+    cursor.execute('PRAGMA user_version')
+    for version in cursor:
+        user_version = version[0]
+    cursor.execute('PRAGMA schema_version')
+    for _schema_version in cursor:
+        schema_version = _schema_version[0]
+    cursor.execute('PRAGMA application_id')
+    for _application_id in cursor:
+        application_id = _application_id[0]
+    _log.info(f"_setup_tables: user_version={user_version}, schema_version={schema_version}, application_id={application_id}")
+    if application_id == 0:
+        cursor.execute('PRAGMA application_id = 1337')
+    elif application_id != 1337:
+        _log.error(f"Unknown application id in data base: {application_id}, not adding tables")
+        return
+    if user_version == 0 and schema_version != 0:
+        _log.debug(f"initial database had no version, e.g. 0 lets call that version 1 as 0 also is empty file")
+        cursor.execute('PRAGMA user_version = 1')
+        user_version = 1
+    # Nice to have in development if you forget to ser new db version on upgrade
+    # if user_version == 1 and schema_version == 12:
+    #     cursor.execute('PRAGMA user_version = 2')
+    #     user_version = 2
+    if user_version == 1:
+        pass
+        # Upgrade v1 to v2
+        cursor.executescript("""
+        ALTER TABLE job_config ADD COLUMN cargo_loaded           boolean;
+        ALTER TABLE job_config ADD COLUMN cargo_unit_count       integer;
+        ALTER TABLE job_config ADD COLUMN cargo_unit_mass        real;
+        ALTER TABLE job_config ADD COLUMN is_special_job         boolean;
+        ALTER TABLE job_config ADD COLUMN job_market             text;
+        ALTER TABLE job_config ADD COLUMN planned_distance_km    integer;
+        PRAGMA user_version = 2;
+""")
+    elif user_version == 0:
+        cursor.executescript("""
+    
         CREATE TABLE IF NOT EXISTS job
         (
             id      integer primary key,
@@ -188,13 +242,19 @@ def _setup_tables(cursor):
             id                     integer primary key,
             cargo                  text,
             cargo_id               text,
+            cargo_loaded           boolean,
             cargo_mass             real,
+            cargo_unit_count       integer,
+            cargo_unit_mass        real,
             delivery_time          integer,
             destination_city       text,
             destination_city_id    text,
             destination_company    text,
             destination_company_id text,
             income                 integer,
+            is_special_job         boolean,
+            job_market             text,
+            planned_distance_km    integer,
             source_city            text,
             source_city_id         text,
             source_company         text,
@@ -245,7 +305,10 @@ def _setup_tables(cursor):
             FOREIGN KEY (id)
                 REFERENCES tracks (id)
         );
+        
+        PRAGMA user_version = 2;
 """)
+
 
 
 class DataBase:
@@ -253,7 +316,7 @@ class DataBase:
         self._connections: Dict[int, db.Connection] = {}
         db_path.mkdir(parents=True, exist_ok=True)
         self.database = db_path / db_name
-        _log.debug(f"DataBase.__init__(... {self.database.absolute()} ...)")
+        _log.info(f"DataBase.__init__(... {self.database.absolute()} ...)")
 
         cursor = self._get_cursor()
         _setup_tables(cursor)
@@ -309,5 +372,5 @@ class DataBase:
             jobs.append(job)
             curr2.close()
         curr.close()
-        _log.debug(f"get_jobs(self): returning {len(jobs)} jobs.")
+        _log.info(f"get_jobs(self): returning {len(jobs)} jobs.")
         return jobs

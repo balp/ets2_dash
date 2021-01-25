@@ -26,6 +26,31 @@ def vector_from_dict(value: Dict) -> Vector:
     return Vector(value['x'], value['y'], value['z'])
 
 
+def vector_abs_delta(v1: Vector, v2: Vector) -> Vector:
+    return Vector(abs(v1.x - v2.x), abs(v1.y - v2.y), abs(v1.z - v2.z))
+
+
+def vector_min(v1: Vector, v2: Vector) -> Vector:
+    return Vector(min(v1.x, v2.x), min(v1.y, v2.y), min(v1.z, v2.z))
+
+
+def vector_max(v1: Vector, v2: Vector) -> Vector:
+    return Vector(max(v1.x, v2.x), max(v1.y, v2.y), max(v1.z, v2.z))
+
+
+def vector_multiply(v1: Vector, v2: Vector) -> Vector:
+    return Vector((v1.x * v2.x), (v1.y * v2.y), (v1.z * v2.z))
+
+
+def vector_add(v1: Vector, v2: Vector) -> Vector:
+    return Vector((v1.x + v2.x), (v1.y + v2.y), (v1.z + v2.z))
+
+
+def vector_div(v1: Vector, v2: Vector) -> Vector:
+    return Vector((v1.x / v2.x), (v1.y / v2.y), (v1.z / v2.z))
+
+
+
 @dataclass
 class Euler:
     heading: float

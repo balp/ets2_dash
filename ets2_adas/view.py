@@ -19,7 +19,7 @@ def info_label(label, key):
 
 def format_decimal(value):
     decimal_value = decimal.Decimal(value)
-    return f'{decimal_value:.1f}'
+    return f'{decimal_value:.3f}'
 
 
 class View:
@@ -84,4 +84,4 @@ class View:
             beacon = self._data.telematic.truck.light_beacon
             not_blinkers = not blinkers
             self._adas_ok = cruise_control and not_blinkers and beacon
-            self._log.debug(f"notify: {self._adas_ok} == {cruise_control} and {not_blinkers} ({blinkers}) and {beacon}")
+            #self._log.debug(f"notify: {self._adas_ok} == {cruise_control} and {not_blinkers} ({blinkers}) and {beacon}")

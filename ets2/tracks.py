@@ -11,6 +11,7 @@
 #   WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 #   ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 #   OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+import sys
 from dataclasses import dataclass
 from operator import attrgetter
 from typing import List
@@ -42,18 +43,26 @@ class Tracks:
             return True
         return False
 
-    def bottom_left(self) -> (float, float, float):
+    def min(self) -> Vector:
         if self.points:
             x = min(self.points, key=attrgetter('position.x')).position.x
             y = min(self.points, key=attrgetter('position.y')).position.y
             z = min(self.points, key=attrgetter('position.z')).position.z
-            return x, y, z
-        return -139999.0, 0.0, 20000.0  # ATS Hack
+            return Vector(x, y, z)
+        return Vector(sys.float_info.max, sys.float_info.max, sys.float_info.max)
 
-    def top_right(self) -> (float, float, float):
+    def bottom_left(self) -> (float, float, float):
+        v = self.min()
+        return v.x, v.y, v.z
+
+    def max(self) -> (float, float, float):
         if self.points:
             x = max(self.points, key=attrgetter('position.x')).position.x
             y = max(self.points, key=attrgetter('position.y')).position.y
             z = max(self.points, key=attrgetter('position.z')).position.z
-            return x, y, z
-        return -20000.0, 0.0, -85000.0  # ATS Hack
+            return Vector(x, y, z)
+        return Vector(sys.float_info.min, sys.float_info.min, sys.float_info.min)
+
+    def top_right(self) -> (float, float, float):
+        v = self.max()
+        return v.x, v.y, v.z
